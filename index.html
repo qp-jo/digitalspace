@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>الفضاء الرقمي | للأجهزة الخلوية والكمبيوتر</title>
   
-  <!-- Tailwind CSS للتصميم -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- أيقونات FontAwesome -->
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- مكتبة PapaParse لقراءة جدول جوجل بدون أخطاء -->
+  <!-- PapaParse Library for Google Sheets Parsing -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   
-  <!-- خط تجوال من جوجل -->
+  <!-- Google Font (Tajawal) -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
   
   <style>
@@ -23,57 +23,168 @@
       background-color: #0b0f19;
       color: #f8fafc;
     }
+    .glow-cyan {
+      box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
+    }
+    .cyber-border {
+      border: 1px solid rgba(51, 65, 85, 0.7);
+    }
+    .cyber-border:hover {
+      border-color: rgba(6, 182, 212, 0.5);
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between pb-16 md:pb-0">
 
   <!-- الهيدر العلوي -->
-  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 p-4">
+  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-2xl bg-cyan-500 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-cyan-500/20">
-          🚀
-        </div>
+        <!-- الشعار الأصلي (Inline SVG) -->
+        <svg class="w-10 h-10 shadow-lg shadow-cyan-500/20 rounded-full" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="48" fill="#06b6d4" />
+          <path d="M30 68 L68 32 L50 32 L68 32 L68 50 Z" fill="#ffffff" />
+        </svg>
         <div>
           <h1 class="font-black text-lg text-white leading-tight">الفضاء الرقمي</h1>
           <p class="text-xs text-cyan-400">للأجهزة الخلوية والكمبيوتر</p>
         </div>
       </div>
+
+      <div class="hidden sm:flex items-center gap-4 text-xs font-semibold">
+        <span class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700">عمان - المستندة 📍</span>
+        <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> مفتوح الآن
+        </span>
+      </div>
+
       <a href="https://wa.me/962770088226" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-full text-sm flex items-center gap-2 transition">
-        <i class="fab fa-whatsapp text-lg"></i> تواصل معنا
+        <i class="fab fa-whatsapp text-lg"></i>
+        <span class="hidden sm:inline">تواصل معنا</span>
       </a>
     </div>
   </header>
 
-  <!-- قسم العنوان والترحيب -->
-  <section class="max-w-6xl mx-auto px-4 py-8 text-center">
-    <span class="inline-block bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20 mb-3">عمان - المستندة 📍</span>
-    <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight">أحدث الأجهزة الخلوية والكمبيوتر</h2>
-    <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto">تصفح المنتجات المتوفرة حالياً داخل المحل واطلب فوراً عبر الواتساب</p>
+  <!-- قسم الهيرو الرئيسي -->
+  <section class="max-w-6xl mx-auto px-4 pt-8 pb-6 text-center">
+    <div class="inline-flex items-center gap-2 bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20 mb-4">
+      <i class="fas fa-bolt"></i> عروض وأجهزة أصلية 100%
+    </div>
+    <h2 class="text-3xl md:text-5xl font-black mb-4 leading-tight">عالم الأجهزة الذكية والكمبيوتر في مكان واحد</h2>
+    <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto mb-6">تصفح أحدث الهواتف واللابتوبات وإكسسوارات WIWU المتوفرة داخل المحل في عمان - المستندة، واطلب فوراً عبر الواتساب.</p>
+    
+    <!-- شارات الثقة -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto text-xs font-bold text-slate-300">
+      <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800"><i class="fas fa-shield-alt text-cyan-400 ml-1"></i> كفالة رسمية</div>
+      <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800"><i class="fas fa-truck text-cyan-400 ml-1"></i> توصيل لكافة المحافظات</div>
+      <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800"><i class="fas fa-check-circle text-cyan-400 ml-1"></i> أجهزة أصلية 100%</div>
+      <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800"><i class="fas fa-sync text-cyan-400 ml-1"></i> إمكانية الاستبدال</div>
+    </div>
   </section>
 
-  <!-- شبكة عرض المنتجات -->
-  <main class="max-w-6xl mx-auto px-4 pb-16 flex-grow w-full">
-    <h3 class="text-lg font-bold mb-6 text-slate-200 flex items-center gap-2 border-b border-slate-800 pb-3">
-      <i class="fas fa-layer-group text-cyan-400"></i> المعروضات المتاحة
-    </h3>
+  <!-- شبكة عرض المنتجات من Google Sheets -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+    <div class="flex justify-between items-center mb-6 border-b border-slate-800 pb-3">
+      <h3 class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="fas fa-layer-group text-cyan-400"></i> المعروضات المتاحة حالياً
+      </h3>
+      <span class="text-xs text-slate-400" id="products-count">تحديث حي من الجدول</span>
+    </div>
 
+    <!-- شبكة المنتجات -->
     <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="col-span-full text-center py-12 text-slate-400">
-        <i class="fas fa-spinner fa-spin text-2xl text-cyan-400 mb-2"></i>
-        <p>جاري تحميل المنتجات...</p>
+      <div class="col-span-full text-center py-16 text-slate-400">
+        <i class="fas fa-spinner fa-spin text-3xl text-cyan-400 mb-3"></i>
+        <p>جاري تحميل أحدث العروض والمنتجات...</p>
       </div>
     </div>
   </main>
 
-  <!-- الفوتر -->
-  <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-    <p>جميع الحقوق محفوظة © الفضاء الرقمي للأجهزة الخلوية والكمبيوتر</p>
+  <!-- قسم نموذج الطلب المباشر -->
+  <section class="max-w-3xl mx-auto px-4 py-10 w-full">
+    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 glow-cyan">
+      <h3 class="text-xl font-bold text-cyan-400 mb-2 flex items-center gap-2">
+        <i class="fas fa-shopping-cart"></i> نموذج الطلب والسريع
+      </h3>
+      <p class="text-slate-400 text-xs mb-6">أدخل بياناتك وسيتم توجيه طلبك المباشر لواتساب المحل لتأكيد التوصيل.</p>
+
+      <form id="order-form" onsubmit="sendWhatsAppOrder(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">الاسم الكامل:</label>
+          <input type="text" id="cust-name" required placeholder="أدخل اسمك" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">رقم الهاتف:</label>
+          <input type="tel" id="cust-phone" required placeholder="07XXXXXXXX" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">منطقة التوصيل:</label>
+          <select id="cust-location" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+            <option value="عمان - المستندة (استلام من المحل)">استلام مباشر من المحل (عمان - المستندة)</option>
+            <option value="عمان (توصيل)">توصيل داخل عمان</option>
+            <option value="باقي المحافظات (توصيل)">توصيل لباقي المحافظات</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">اسم الجهاز أو الطلب:</label>
+          <input type="text" id="cust-item" required placeholder="مثال: honor 200" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">طريقة الدفع المفضلة:</label>
+          <select id="cust-payment" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+            <option value="الدفع عند الاستلام">الدفع عند الاستلام (كاش)</option>
+            <option value="تحويل CliQ">تحويل عبر كليك (CliQ)</option>
+            <option value="محفظة إلكترونية">زين كاش / أورنج ماني</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black py-3.5 rounded-xl text-center flex items-center justify-center gap-2 transition text-base">
+          <i class="fab fa-whatsapp text-xl"></i> إرسال الطلب عبر الواتساب
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- الفوتر والمعلومات -->
+  <footer class="bg-slate-950 border-t border-slate-800 py-8 text-slate-400 text-xs">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-right mb-6">
+      <div>
+        <h4 class="font-bold text-white text-sm mb-2">الفضاء الرقمي</h4>
+        <p class="leading-relaxed">متخصصون في بيع وصيانة الأجهزة الخلوية، أجهزة الكمبيوتر، واللابتوبات وأحدث الإكسسوارات في عمان.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-sm mb-2">التواصل والمعاينة</h4>
+        <p>📍 العنوان: عمان - المستندة</p>
+        <p>📞 الهاتف: 0770088226</p>
+        <p>✉️ البريد: digitalspaceop@gmail.com</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white text-sm mb-2">ساعات العمل</h4>
+        <p>يومياً من الساعة 10:00 صباحاً حتى 10:00 مساءً</p>
+      </div>
+    </div>
+    <div class="text-center border-t border-slate-900 pt-4 text-slate-600">
+      جميع الحقوق محفوظة © الفضاء الرقمي للأجهزة الخلوية والكمبيوتر
+    </div>
   </footer>
 
+  <!-- الشريط السفلي للتلفون -->
+  <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 p-2.5 flex justify-between gap-2 md:hidden z-50">
+    <a href="tel:0770088226" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 border border-slate-700">
+      <i class="fas fa-phone text-cyan-400"></i> اتصال مباشر
+    </a>
+    <a href="https://wa.me/962770088226" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5">
+      <i class="fab fa-whatsapp text-base"></i> واتساب سريع
+    </a>
+  </div>
+
   <script>
-    // رابط المستند الخاص بك مجهز ومحول لملف CSV مباشر
-    const CSV_URL = 'https://docs.google.com/spreadsheets/d/1oZJX4rbYrGAcvSQslSQg0pt5lK38fdHfOaLZWB2w40U/export?format=csv';
+    // رابط المستند الخاص بك المباشر تحويل CSV
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/1oZJX4rbYrGAcvSGslSQg0pt5lK38fdHfOaLZWB2w40U/export?format=csv';
     const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500';
 
     function loadProducts() {
@@ -92,9 +203,9 @@
           }
 
           container.innerHTML = '';
+          let loadedCount = 0;
 
           rows.forEach((row) => {
-            // القراءة التلقائية سواء العناوين بالجدول عربي أو إنجليزي
             const keys = Object.keys(row);
             const title = row['Title'] || row['title'] || row['اسم المنتج'] || row['المنتج'] || row[keys[0]] || '';
             const price = row['Price'] || row['price'] || row['السعر'] || row[keys[1]] || '';
@@ -103,34 +214,42 @@
 
             if (!title || !title.trim()) return;
 
+            loadedCount++;
             const cleanImage = (image && image.trim() !== '') ? image.trim() : DEFAULT_IMAGE;
-            const whatsappMsg = encodeURIComponent(`مرحباً الفضاء الرقمي، أود الاستفسار عن: ${title.trim()} ${price ? 'بسعر ' + price.trim() + ' دينار' : ''}`);
+            const whatsappMsg = encodeURIComponent(`مرحباً الفضاء الرقمي، مهتم بشراء/استفسار عن: ${title.trim()} ${price ? 'بسعر ' + price.trim() + ' دينار' : ''}`);
 
             container.innerHTML += `
-              <div class="bg-slate-800/60 border border-slate-700/60 hover:border-cyan-500/50 rounded-2xl p-4 flex flex-col justify-between transition group">
+              <div class="bg-slate-900/80 cyber-border rounded-2xl p-4 flex flex-col justify-between transition group">
                 <div>
-                  <div class="overflow-hidden rounded-xl bg-slate-900 mb-4 h-52 flex items-center justify-center">
+                  <div class="overflow-hidden rounded-xl bg-slate-950 mb-4 h-52 flex items-center justify-center border border-slate-800">
                     <img src="${cleanImage}" 
                          alt="${title}" 
                          class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                          onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}'">
                   </div>
                   <h4 class="font-bold text-lg text-white mb-1 leading-snug">${title}</h4>
-                  ${description ? `<p class="text-xs text-slate-400 mb-3">${description}</p>` : ''}
+                  ${description ? `<p class="text-xs text-slate-400 mb-3 leading-relaxed">${description}</p>` : ''}
                   <div class="text-2xl font-black text-cyan-400 mb-4">
                     ${price ? `${price} <span class="text-xs text-slate-400 font-normal">د.أ</span>` : 'تواصل للسعر'}
                   </div>
                 </div>
-                <a href="https://wa.me/962770088226?text=${whatsappMsg}" 
-                   target="_blank" 
-                   class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 rounded-xl text-center flex items-center justify-center gap-2 transition">
-                  <i class="fab fa-whatsapp text-lg"></i> اطلب الآن عبر الواتساب
-                </a>
+                <div class="space-y-2">
+                  <a href="https://wa.me/962770088226?text=${whatsappMsg}" 
+                     target="_blank" 
+                     class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 rounded-xl text-center flex items-center justify-center gap-2 transition text-sm">
+                    <i class="fab fa-whatsapp text-lg"></i> طلب سريع عبر الواتساب
+                  </a>
+                  <button onclick="fillOrderForm('${title.trim()}')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-2 rounded-xl text-xs transition">
+                    تعبئة النموذج بالأسفل 👇
+                  </button>
+                </div>
               </div>
             `;
           });
 
-          if (container.children.length === 0) {
+          document.getElementById('products-count').innerText = `تم تحميل ${loadedCount} منتجات`;
+
+          if (loadedCount === 0) {
             container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">لم يتم العثور على أسطر مكتوبة في الجدول.</div>`;
           }
         },
@@ -138,11 +257,28 @@
           container.innerHTML = `
             <div class="col-span-full text-center py-8 bg-rose-500/10 border border-rose-500/20 rounded-2xl p-6 text-rose-300">
               <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
-              <p class="font-bold">تنبيه: تأكد من ضبط صلاحية مشاركة ملف Google Sheet</p>
-              <p class="text-xs text-slate-400 mt-1">من تطبيق الجدول اضغط مشاركة وغيّر الصلاحية إلى "أي شخص لديه الرابط (Anyone with the link)" لكي يظهر للموقع.</p>
+              <p class="font-bold">تنبيه: تعذر قراءة بيانات الجدول</p>
+              <p class="text-xs text-slate-400 mt-1">تأكد من اختيار "أي شخص لديه الرابط" في إعدادات المشاركة للجدول.</p>
             </div>`;
         }
       });
+    }
+
+    function fillOrderForm(itemName) {
+      document.getElementById('cust-item').value = itemName;
+      document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function sendWhatsAppOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('cust-name').value;
+      const phone = document.getElementById('cust-phone').value;
+      const location = document.getElementById('cust-location').value;
+      const item = document.getElementById('cust-item').value;
+      const payment = document.getElementById('cust-payment').value;
+
+      const message = `مرحباً الفضاء الرقمي 🚀%0Aطلب جديد من الموقع:%0A- *الاسم:* ${name}%0A- *الهاتف:* ${phone}%0A- *الطلب:* ${item}%0A- *المنطقة:* ${location}%0A- *طريقة الدفع:* ${payment}`;
+      window.open(`https://wa.me/962770088226?text=${message}`, '_blank');
     }
 
     window.addEventListener('DOMContentLoaded', loadProducts);
