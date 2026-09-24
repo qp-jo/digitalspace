@@ -4,20 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>الفضاء الرقمي | للأجهزة الخلوية والكمبيوتر</title>
+  
+  <!-- Tailwind CSS للتصميم -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- أيقونات FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- مكتبة PapaParse لقراءة جدول جوجل بدون أخطاء -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  
+  <!-- خط تجوال من جوجل -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
-    body { font-family: 'Tajawal', sans-serif; background-color: #0b0f19; color: #f8fafc; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #0b0f19;
+      color: #f8fafc;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-  <!-- الهيدر -->
+  <!-- الهيدر العلوي -->
   <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 p-4">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center font-black text-slate-950 text-xl">
+        <div class="w-10 h-10 rounded-2xl bg-cyan-500 flex items-center justify-center font-black text-slate-950 text-xl shadow-lg shadow-cyan-500/20">
           🚀
         </div>
         <div>
@@ -25,85 +39,113 @@
           <p class="text-xs text-cyan-400">للأجهزة الخلوية والكمبيوتر</p>
         </div>
       </div>
-      <a href="https://wa.me/962770088226" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-full text-sm flex items-center gap-2">
+      <a href="https://wa.me/962770088226" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-full text-sm flex items-center gap-2 transition">
         <i class="fab fa-whatsapp text-lg"></i> تواصل معنا
       </a>
     </div>
   </header>
 
-  <!-- قسم الهيرو -->
+  <!-- قسم العنوان والترحيب -->
   <section class="max-w-6xl mx-auto px-4 py-8 text-center">
     <span class="inline-block bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20 mb-3">عمان - المستندة 📍</span>
-    <h2 class="text-3xl md:text-5xl font-black mb-4 leading-tight">أحدث الأجهزة الذكية واللابتوبات بأفضل الأسعار</h2>
-    <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto mb-6">تصفح أحدث العروض والمنتجات المتوفرة داخل المحل وحصل على طلبك مباشرة عبر الواتساب.</p>
+    <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight">أحدث الأجهزة الخلوية والكمبيوتر</h2>
+    <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto">تصفح المنتجات المتوفرة حالياً داخل المحل واطلب فوراً عبر الواتساب</p>
   </section>
 
-  <!-- شبكة المنتجات الحية من Google Sheet -->
+  <!-- شبكة عرض المنتجات -->
   <main class="max-w-6xl mx-auto px-4 pb-16 flex-grow w-full">
-    <h3 class="text-xl font-bold mb-6 text-cyan-400 flex items-center gap-2">
-      <i class="fas fa-store text-amber-500"></i> العروض والمنتجات المتاحة حالياً:
+    <h3 class="text-lg font-bold mb-6 text-slate-200 flex items-center gap-2 border-b border-slate-800 pb-3">
+      <i class="fas fa-layer-group text-cyan-400"></i> المعروضات المتاحة
     </h3>
 
     <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="col-span-full text-center py-12 text-slate-500">جاري تحميل المنتجات...</div>
+      <div class="col-span-full text-center py-12 text-slate-400">
+        <i class="fas fa-spinner fa-spin text-2xl text-cyan-400 mb-2"></i>
+        <p>جاري تحميل المنتجات...</p>
+      </div>
     </div>
   </main>
 
   <!-- الفوتر -->
   <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-    <p> جميع الحقوق محفوظة © الفضاء الرقمي للأجهزة الخلوية والكمبيوتر</p>
+    <p>جميع الحقوق محفوظة © الفضاء الرقمي للأجهزة الخلوية والكمبيوتر</p>
   </footer>
 
   <script>
-    // ضع رابط الـ CSV من Google Sheets هنا
-    const SHEET_CSV_URL = 'ضع_رابط_CSV_هنا';
+    // رابط المستند الخاص بك مجهز ومحول لملف CSV مباشر
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/1oZJX4rbYrGAcvSQslSQg0pt5lK38fdHfOaLZWB2w40U/export?format=csv';
+    const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500';
 
-    async function fetchProductsFromSheet() {
-      const grid = document.getElementById('products-grid');
-      try {
-        const response = await fetch(SHEET_CSV_URL);
-        const data = await response.text();
-        
-        // تحويل أسطر الـ CSV إلى بيانات
-        const rows = data.split('\n').slice(1); // تجاهل السطر الأول (العناوين)
-        
-        if (rows.length === 0 || rows[0].trim() === '') {
-          grid.innerHTML = '<div class="col-span-full text-center py-8 text-slate-400">لا توجد منتجات مضافة حالياً.</div>';
-          return;
-        }
+    function loadProducts() {
+      const container = document.getElementById('products-grid');
 
-        grid.innerHTML = '';
-        rows.forEach(row => {
-          // تقسيم السطر بناء على الفواصل
-          const cols = row.split(',');
-          if (cols.length >= 2) {
-            const title = cols[0] ? cols[0].replace(/"/g, '').trim() : '';
-            const price = cols[1] ? cols[1].replace(/"/g, '').trim() : '';
-            const image = cols[2] ? cols[2].replace(/"/g, '').trim() : 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500';
-
-            if (title) {
-              const msg = encodeURIComponent(`مرحباً الفضاء الرقمي، مهتم بشراء: ${title} بسعر ${price} دينار`);
-              grid.innerHTML += `
-                <div class="bg-slate-800/60 border border-slate-700/60 hover:border-cyan-500/50 rounded-2xl p-4 flex flex-col justify-between transition">
-                  <div>
-                    <img src="${image}" class="w-full h-48 object-cover rounded-xl mb-4" onerror="this.src='https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500'">
-                    <h4 class="font-bold text-lg text-white mb-2">${title}</h4>
-                    <p class="text-2xl font-black text-cyan-400 mb-4">${price} <span class="text-xs text-slate-400 font-normal">د.أ</span></p>
-                  </div>
-                  <a href="https://wa.me/962770088226?text=${msg}" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 rounded-xl text-center block transition">
-                    أطلب عبر الواتساب <i class="fab fa-whatsapp"></i>
-                  </a>
-                </div>
-              `;
-            }
+      Papa.parse(CSV_URL, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+          const rows = results.data;
+          
+          if (!rows || rows.length === 0) {
+            container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">لا توجد منتجات مضافة في الجدول حالياً.</div>`;
+            return;
           }
-        });
-      } catch (err) {
-        grid.innerHTML = '<div class="col-span-full text-center py-8 text-red-400">تأكد من وضع رابط الـ CSV الصحيح للجدول.</div>';
-      }
+
+          container.innerHTML = '';
+
+          rows.forEach((row) => {
+            // القراءة التلقائية سواء العناوين بالجدول عربي أو إنجليزي
+            const keys = Object.keys(row);
+            const title = row['Title'] || row['title'] || row['اسم المنتج'] || row['المنتج'] || row[keys[0]] || '';
+            const price = row['Price'] || row['price'] || row['السعر'] || row[keys[1]] || '';
+            const image = row['Image'] || row['image'] || row['الصورة'] || row['رابط الصورة'] || row[keys[2]] || DEFAULT_IMAGE;
+            const description = row['Description'] || row['description'] || row['الوصف'] || row[keys[3]] || '';
+
+            if (!title || !title.trim()) return;
+
+            const cleanImage = (image && image.trim() !== '') ? image.trim() : DEFAULT_IMAGE;
+            const whatsappMsg = encodeURIComponent(`مرحباً الفضاء الرقمي، أود الاستفسار عن: ${title.trim()} ${price ? 'بسعر ' + price.trim() + ' دينار' : ''}`);
+
+            container.innerHTML += `
+              <div class="bg-slate-800/60 border border-slate-700/60 hover:border-cyan-500/50 rounded-2xl p-4 flex flex-col justify-between transition group">
+                <div>
+                  <div class="overflow-hidden rounded-xl bg-slate-900 mb-4 h-52 flex items-center justify-center">
+                    <img src="${cleanImage}" 
+                         alt="${title}" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                         onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}'">
+                  </div>
+                  <h4 class="font-bold text-lg text-white mb-1 leading-snug">${title}</h4>
+                  ${description ? `<p class="text-xs text-slate-400 mb-3">${description}</p>` : ''}
+                  <div class="text-2xl font-black text-cyan-400 mb-4">
+                    ${price ? `${price} <span class="text-xs text-slate-400 font-normal">د.أ</span>` : 'تواصل للسعر'}
+                  </div>
+                </div>
+                <a href="https://wa.me/962770088226?text=${whatsappMsg}" 
+                   target="_blank" 
+                   class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 rounded-xl text-center flex items-center justify-center gap-2 transition">
+                  <i class="fab fa-whatsapp text-lg"></i> اطلب الآن عبر الواتساب
+                </a>
+              </div>
+            `;
+          });
+
+          if (container.children.length === 0) {
+            container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">لم يتم العثور على أسطر مكتوبة في الجدول.</div>`;
+          }
+        },
+        error: function() {
+          container.innerHTML = `
+            <div class="col-span-full text-center py-8 bg-rose-500/10 border border-rose-500/20 rounded-2xl p-6 text-rose-300">
+              <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+              <p class="font-bold">تنبيه: تأكد من ضبط صلاحية مشاركة ملف Google Sheet</p>
+              <p class="text-xs text-slate-400 mt-1">من تطبيق الجدول اضغط مشاركة وغيّر الصلاحية إلى "أي شخص لديه الرابط (Anyone with the link)" لكي يظهر للموقع.</p>
+            </div>`;
+        }
+      });
     }
 
-    window.addEventListener('DOMContentLoaded', fetchProductsFromSheet);
+    window.addEventListener('DOMContentLoaded', loadProducts);
   </script>
 </body>
 </html>
