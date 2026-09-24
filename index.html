@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الفضاء الرقمي للأجهزة الخلوية والكمبيوتر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+<style>
+:root{
+  --cyan:#06b6d4; --sky:#0ea5e9; --gold:#F5B93D;
+  --bg:#0f172a; --bg2:#131c30; --card:#16213a; --line:rgba(14,165,233,0.22);
+  --ink:#E7EDF6; --ink-dim:#93A0B4;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth; scroll-padding-top:84px;}
+body{background:var(--bg); color:var(--ink); font-family:'Cairo','Tahoma',sans-serif; overflow-x:hidden;}
+.accent{color:var(--sky);}
+.gold{color:var(--gold);}
+.line{background:linear-gradient(90deg,transparent,var(--cyan),transparent); height:1px;}
+.glass{background:rgba(15,23,42,0.7); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line);}
+#navbar.scrolled{box-shadow:0 8px 26px -12px rgba(0,0,0,0.6);}
+.btn-primary{background:linear-gradient(135deg,var(--sky),var(--cyan)); color:#04141c; box-shadow:0 10px 26px -10px rgba(6,182,212,0.55);}
+.btn-whatsapp{background:#22C55E; color:#fff;}
+.btn-ghost{border:1px solid var(--line); color:var(--ink);}
+.btn-ghost:hover{border-color:var(--cyan); background:rgba(6,182,212,0.08);}
+.card{background:var(--card); border:1px solid var(--line);}
+.input-f{background:#101a2e; border:1px solid #223252; color:var(--ink);}
+.input-f:focus{outline:none; border-color:var(--cyan); box-shadow:0 0 0 3px rgba(6,182,212,0.2);}
+.input-f::placeholder{color:#64748B;}
+.tab-btn{border:1px solid var(--line); color:var(--ink-dim);}
+.tab-btn.active{background:linear-gradient(135deg,var(--sky),var(--cyan)); color:#04141c; border-color:transparent;}
+.badge{background:rgba(6,182,212,0.15); color:var(--cyan); border:1px solid var(--line);}
+.pulse-badge{animation:pulseBadge 1.8s ease-in-out infinite;}
+@keyframes pulseBadge{0%,100%{box-shadow:0 0 0 0 rgba(245,185,61,0.5);}50%{box-shadow:0 0 0 8px rgba(245,185,61,0);}}
+#stickyBar{background:rgba(15,23,42,0.92); backdrop-filter:blur(14px); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom,0px);}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--cyan); outline-offset:2px;}
+</style>
+</head>
+<body class="pb-16 sm:pb-0">
+
+<header id="navbar" class="glass sticky top-0 z-40">
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-2 shrink-0">
+      <div class="w-9 h-9 rounded-lg btn-primary flex items-center justify-center"><i class="fa-solid fa-microchip"></i></div>
+      <span class="font-extrabold text-sm sm:text-lg">الفضاء الرقمي</span>
+    </div>
+    <nav class="hidden lg:flex items-center gap-6 text-sm text-[color:var(--ink-dim)]">
+      <a href="#home" class="hover:accent transition-colors">الرئيسية</a>
+      <a href="#phones" class="hover:accent transition-colors">الأجهزة الذكية</a>
+      <a href="#laptops" class="hover:accent transition-colors">اللابتوبات</a>
+      <a href="#accessories" class="hover:accent transition-colors">الإكسسوارات</a>
+      <a href="#offers" class="hover:accent transition-colors">العروض</a>
+      <a href="#contact" class="hover:accent transition-colors">اتصل بنا</a>
+    </nav>
+    <a href="https://wa.me/962770088226" target="_blank" rel="noopener" class="btn-whatsapp hover:scale-105 transition-all duration-300 text-xs sm:text-sm font-bold px-3 sm:px-5 py-2.5 rounded-full flex items-center gap-2">
+      <i class="fa-brands fa-whatsapp"></i><span class="hidden sm:inline">تواصل عبر الواتساب</span>
+    </a>
+  </div>
+</header>
+
+<section id="home" class="relative overflow-hidden" style="background:linear-gradient(160deg,#111a2e,#0f172a 55%,#0b1220);">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 sm:py-20 text-center">
+    <span class="badge inline-block text-xs font-bold px-3 py-1.5 rounded-full mb-5">وكيل معتمد لأجهزة أصلية 100%</span>
+    <h1 class="font-black text-2xl sm:text-4xl lg:text-5xl leading-tight mb-5 max-w-4xl mx-auto">
+      عالم الأجهزة الذكية والكمبيوتر بين يديك <span class="accent">أفضل الأسعار والكفالات في عمان</span>
+    </h1>
+    <p class="text-sm sm:text-lg text-[color:var(--ink-dim)] max-w-2xl mx-auto mb-8 leading-relaxed">
+      كفالة أصلية على كل جهاز، توصيل سريع لجميع مناطق عمان والمحافظات، وأسعار منافسة على أحدث الهواتف واللابتوبات والإكسسوارات.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4 mb-10">
+      <a href="#products" class="btn-primary hover:scale-105 transition-all duration-300 font-bold px-7 py-3.5 rounded-full">تصفح العروض والمنتجات</a>
+      <a href="https://wa.me/962770088226" target="_blank" rel="noopener" class="btn-whatsapp hover:scale-105 transition-all duration-300 font-bold px-7 py-3.5 rounded-full flex items-center gap-2"><i class="fa-brands fa-whatsapp"></i> طلب سريع عبر الواتساب</a>
+    </div>
+    <div id="offers" class="card pulse-badge inline-flex flex-wrap items-center gap-3 rounded-2xl px-5 py-3 shadow-2xl">
+      <i class="fa-solid fa-bolt gold"></i>
+      <span class="text-sm font-bold">عروض الفضاء الرقمي الخاصة تنتهي قريباً!</span>
+      <div id="countdown" class="flex gap-2 font-black text-sm">
+        <span id="cd-d" class="accent">00</span>ي:<span id="cd-h" class="accent">00</span>س:<span id="cd-m" class="accent">00</span>د:<span id="cd-s" class="accent">00</span>ث
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section id="products" class="py-14 sm:py-20 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-9">
+      <h2 class="font-black text-2xl sm:text-3xl mb-3">منتجاتنا المميزة</h2>
+      <p class="text-sm sm:text-base text-[color:var(--ink-dim)]">اختر من تشكيلة واسعة من الهواتف واللابتوبات والإكسسوارات</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-10">
+      <button class="tab-btn active hover:scale-105 transition-all duration-300 text-sm font-bold px-5 py-2.5 rounded-full" data-filter="all">الكل</button>
+      <button class="tab-btn hover:scale-105 transition-all duration-300 text-sm font-bold px-5 py-2.5 rounded-full" data-filter="phones">الهواتف</button>
+      <button class="tab-btn hover:scale-105 transition-all duration-300 text-sm font-bold px-5 py-2.5 rounded-full" data-filter="laptops">اللابتوبات</button>
+      <button class="tab-btn hover:scale-105 transition-all duration-300 text-sm font-bold px-5 py-2.5 rounded-full" data-filter="accessories">الإكسسوارات والعروض</button>
+    </div>
+
+    <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section class="py-14 sm:py-20 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 text-center">
+      <i class="fa-solid fa-shield-halved text-2xl accent mb-3"></i>
+      <h3 class="font-bold mb-1">كفالة حقيقية</h3>
+      <p class="text-xs text-[color:var(--ink-dim)]">على جميع الأجهزة والإكسسوارات</p>
+    </div>
+    <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 text-center">
+      <i class="fa-solid fa-truck-fast text-2xl accent mb-3"></i>
+      <h3 class="font-bold mb-1">توصيل سريع</h3>
+      <p class="text-xs text-[color:var(--ink-dim)]">لجميع مناطق عمان والمحافظات</p>
+    </div>
+    <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 text-center">
+      <i class="fa-solid fa-certificate text-2xl accent mb-3"></i>
+      <h3 class="font-bold mb-1">أجهزة أصلية ١٠٠٪</h3>
+      <p class="text-xs text-[color:var(--ink-dim)]">مستوردة من وكلاء معتمدين</p>
+    </div>
+    <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 text-center">
+      <i class="fa-solid fa-screwdriver-wrench text-2xl accent mb-3"></i>
+      <h3 class="font-bold mb-1">صيانة ودعم فني</h3>
+      <p class="text-xs text-[color:var(--ink-dim)]">فريق متخصص لخدمتك بعد البيع</p>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section id="order" class="py-14 sm:py-20 px-5 sm:px-8">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-9">
+      <h2 class="font-black text-2xl sm:text-3xl mb-3">أكمل طلبك الآن</h2>
+      <p class="text-sm text-[color:var(--ink-dim)]">عبّي بياناتك وراح يوصلك تأكيد الطلب مباشرة عبر واتساب</p>
+    </div>
+    <form id="orderForm" class="card shadow-2xl rounded-2xl p-5 sm:p-8 space-y-5">
+      <div>
+        <label class="block text-sm font-bold mb-2">الاسم الكامل</label>
+        <input id="fullName" required type="text" placeholder="اكتب اسمك الثلاثي" class="input-f w-full rounded-lg px-4 py-3 text-sm">
+      </div>
+      <div>
+        <label class="block text-sm font-bold mb-2">رقم الهاتف</label>
+        <input id="phone" required type="tel" placeholder="07XXXXXXXX" dir="ltr" class="input-f w-full rounded-lg px-4 py-3 text-sm">
+      </div>
+      <div>
+        <label class="block text-sm font-bold mb-2">منطقة التوصيل</label>
+        <select id="area" required class="input-f w-full rounded-lg px-4 py-3 text-sm">
+          <option value="عمان">عمان</option>
+          <option value="باقي المحافظات">باقي المحافظات</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-bold mb-2">المنتج المطلوب</label>
+        <select id="product" required class="input-f w-full rounded-lg px-4 py-3 text-sm"></select>
+      </div>
+      <div>
+        <label class="block text-sm font-bold mb-2">الكمية</label>
+        <input id="qty" type="number" min="1" value="1" class="input-f w-full rounded-lg px-4 py-3 text-sm">
+      </div>
+      <div>
+        <label class="block text-sm font-bold mb-2">طريقة الدفع</label>
+        <select id="payment" required class="input-f w-full rounded-lg px-4 py-3 text-sm">
+          <option value="الدفع عند الاستلام">الدفع عند الاستلام</option>
+          <option value="تحويل عبر كليك CliQ">تحويل عبر كليك CliQ</option>
+          <option value="المحافظ الإلكترونية">المحافظ الإلكترونية</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-whatsapp hover:scale-105 transition-all duration-300 w-full font-bold text-base py-4 rounded-full flex items-center justify-center gap-2">
+        <i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر واتساب
+      </button>
+    </form>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section id="contact" class="py-14 sm:py-20 px-5 sm:px-8">
+  <div class="max-w-4xl mx-auto card shadow-2xl rounded-2xl p-6 sm:p-10 grid sm:grid-cols-2 gap-8">
+    <div>
+      <h2 class="font-black text-xl sm:text-2xl mb-4">معلومات المتجر</h2>
+      <ul class="space-y-3 text-sm text-[color:var(--ink-dim)]">
+        <li class="flex items-center gap-3"><i class="fa-solid fa-location-dot accent"></i> عمان - المستندة</li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-phone accent"></i> <span dir="ltr">0770088226</span></li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-envelope accent"></i> <span dir="ltr">digitalspaceop@gmail.com</span></li>
+        <li class="flex items-center gap-3"><i class="fa-solid fa-clock accent"></i> مفتوح الآن — يومياً</li>
+      </ul>
+    </div>
+    <div class="flex flex-col justify-center gap-3">
+      <a href="tel:0770088226" class="btn-ghost hover:scale-105 transition-all duration-300 text-center font-bold py-3 rounded-full"><i class="fa-solid fa-phone ml-1"></i> اتصال مباشر</a>
+      <a href="https://wa.me/962770088226" target="_blank" rel="noopener" class="btn-whatsapp hover:scale-105 transition-all duration-300 text-center font-bold py-3 rounded-full"><i class="fa-brands fa-whatsapp ml-1"></i> واتساب فوري</a>
+    </div>
+  </div>
+</section>
+
+<div class="line"></div>
+
+<section class="py-14 sm:py-20 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="font-black text-2xl sm:text-3xl text-center mb-9">آراء عملائنا</h2>
+    <div class="grid sm:grid-cols-3 gap-6">
+      <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="gold text-sm mb-3">★★★★★</div>
+        <p class="text-sm text-[color:var(--ink-dim)] leading-relaxed mb-4">اشتريت آيفون ووصل خلال يوم، والكفالة أصلية والأسعار أحسن من محلات كتير.</p>
+        <div class="font-bold text-sm">محمد ع. — عمان</div>
+      </div>
+      <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="gold text-sm mb-3">★★★★★</div>
+        <p class="text-sm text-[color:var(--ink-dim)] leading-relaxed mb-4">أخذت لابتوب قيمنق وخدمة ما بعد البيع ممتازة، تعاملهم عبر واتساب سريع ومريح.</p>
+        <div class="font-bold text-sm">رنا س. — الزرقاء</div>
+      </div>
+      <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="gold text-sm mb-3">★★★★★</div>
+        <p class="text-sm text-[color:var(--ink-dim)] leading-relaxed mb-4">اكسسوارات WIWU أصلية وسعرها منافس، والتوصيل وصلني لباب البيت بنفس اليوم.</p>
+        <div class="font-bold text-sm">خالد ي. — إربد</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t px-5 sm:px-8 py-8 text-center text-xs text-[color:var(--ink-dim)]" style="border-color:var(--line)">
+  © 2026 الفضاء الرقمي للأجهزة الخلوية والكمبيوتر. جميع الحقوق محفوظة.
+</footer>
+
+<div id="stickyBar" class="sm:hidden fixed bottom-0 left-0 right-0 z-50 grid grid-cols-2 gap-2 px-3 py-2.5">
+  <a href="tel:0770088226" class="btn-ghost text-center font-bold py-2.5 rounded-full text-sm"><i class="fa-solid fa-phone ml-1"></i> اتصال مباشر</a>
+  <a href="https://wa.me/962770088226" target="_blank" rel="noopener" class="btn-whatsapp text-center font-bold py-2.5 rounded-full text-sm"><i class="fa-brands fa-whatsapp ml-1"></i> طلب واتساب سريع</a>
+</div>
+
+<script>
+const PRODUCTS = [
+  {id:'p1',name:'Honor Magic 6 Pro',cat:'phones',catLabel:'هواتف',price:599,icon:'fa-mobile-screen',features:['كاميرا احترافية','شاشة OLED فائقة الدقة','بطارية تدوم يوم كامل']},
+  {id:'p2',name:'Samsung Galaxy S24 Ultra',cat:'phones',catLabel:'هواتف',price:899,icon:'fa-mobile-screen',features:['قلم S Pen مدمج','شاشة AMOLED بـ 120Hz','كاميرا 200 ميجابكسل']},
+  {id:'p3',name:'iPhone 15 Pro',cat:'phones',catLabel:'هواتف',price:1099,icon:'fa-mobile-screen',features:['شريحة A17 Pro','تصميم تيتانيوم فاخر','كاميرا احترافية ثلاثية']},
+  {id:'p4',name:'لابتوب Gaming ASUS ROG',cat:'laptops',catLabel:'لابتوبات',price:749,icon:'fa-laptop',features:['معالج Core i7','كرت شاشة RTX','شاشة بمعدل 144Hz']},
+  {id:'p5',name:'لابتوب Business Lenovo ThinkPad',cat:'laptops',catLabel:'لابتوبات',price:549,icon:'fa-laptop',features:['خفيف الوزن ومحمول','بطارية طويلة الأمد','مثالي لبيئة العمل']},
+  {id:'p6',name:'WIWU مايكروفون لاسلكي',cat:'accessories',catLabel:'إكسسوارات',price:35,icon:'fa-microphone',features:['صوت نقي وواضح','اتصال لاسلكي سريع','متوافق مع جميع الهواتف']},
+  {id:'p7',name:'WIWU سماعة بلوتوث',cat:'accessories',catLabel:'إكسسوارات',price:45,icon:'fa-headphones',features:['جودة صوت عالية','عمر بطارية طويل','تصميم مريح للأذن']}
+];
+
+const grid = document.getElementById('grid');
+const productSelect = document.getElementById('product');
+
+function fmt(n){ return n.toLocaleString('en-US') + ' د.أ'; }
+
+function renderGrid(filter){
+  grid.innerHTML = '';
+  PRODUCTS.filter(p => filter === 'all' || p.cat === filter).forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 flex flex-col';
+    card.innerHTML =
+      '<div class="w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-xl" style="background:rgba(6,182,212,0.12); color:var(--cyan)"><i class="fa-solid ' + p.icon + '"></i></div>' +
+      '<span class="badge inline-block text-xs font-bold px-3 py-1 rounded-full mb-3 self-start">' + p.catLabel + '</span>' +
+      '<h3 class="font-bold text-lg mb-2">' + p.name + '</h3>' +
+      '<ul class="text-xs text-[color:var(--ink-dim)] space-y-1 mb-4">' + p.features.map(f => '<li class="flex items-center gap-2"><i class="fa-solid fa-check accent"></i>' + f + '</li>').join('') + '</ul>' +
+      '<div class="font-black text-2xl accent mb-4">' + fmt(p.price) + '</div>' +
+      '<button data-id="' + p.id + '" class="order-btn btn-whatsapp hover:scale-105 transition-all duration-300 mt-auto font-bold text-sm py-3 rounded-full flex items-center justify-center gap-2"><i class="fa-brands fa-whatsapp"></i> أطلب الآن عبر الواتساب</button>';
+    grid.appendChild(card);
+  });
+  document.querySelectorAll('.order-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      productSelect.value = this.getAttribute('data-id');
+      document.getElementById('order').scrollIntoView({behavior:'smooth'});
+    });
+  });
+}
+
+function populateSelect(){
+  productSelect.innerHTML = PRODUCTS.map(p => '<option value="' + p.id + '">' + p.name + ' — ' + fmt(p.price) + '</option>').join('');
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    renderGrid(this.getAttribute('data-filter'));
+  });
+});
+
+populateSelect();
+renderGrid('all');
+
+// Countdown - 3 days from now
+(function(){
+  const target = new Date().getTime() + (3*24*60*60*1000);
+  const d = document.getElementById('cd-d'), h = document.getElementById('cd-h'), m = document.getElementById('cd-m'), s = document.getElementById('cd-s');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    let diff = Math.max(target - new Date().getTime(), 0);
+    d.textContent = pad(Math.floor(diff/86400000));
+    h.textContent = pad(Math.floor((diff%86400000)/3600000));
+    m.textContent = pad(Math.floor((diff%3600000)/60000));
+    s.textContent = pad(Math.floor((diff%60000)/1000));
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+// Header scroll shadow
+window.addEventListener('scroll', function(){
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 12);
+});
+
+// Order form -> WhatsApp
+document.getElementById('orderForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const fullName = document.getElementById('fullName').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const area = document.getElementById('area').value;
+  const qty = document.getElementById('qty').value || 1;
+  const payment = document.getElementById('payment').value;
+  const product = PRODUCTS.find(p => p.id === productSelect.value);
+
+  if(!fullName || !phone){
+    alert('يرجى تعبئة الاسم ورقم الهاتف قبل إرسال الطلب');
+    return;
+  }
+
+  const total = product.price * qty;
+  const message =
+    'طلب جديد من الفضاء الرقمي' + '\n' +
+    '------------------------' + '\n' +
+    'الاسم: ' + fullName + '\n' +
+    'الهاتف: ' + phone + '\n' +
+    'منطقة التوصيل: ' + area + '\n' +
+    'المنتج: ' + product.name + '\n' +
+    'الكمية: ' + qty + '\n' +
+    'السعر الإجمالي: ' + fmt(total) + '\n' +
+    'طريقة الدفع: ' + payment;
+
+  window.open('https://wa.me/962770088226?text=' + encodeURIComponent(message), '_blank');
+});
+</script>
+</body>
+</html>
