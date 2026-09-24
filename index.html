@@ -19,25 +19,25 @@
   
   <style>
     body { font-family: 'Tajawal', sans-serif; background-color: #0f172a; color: #f8fafc; }
-    .glow-cyan { box-shadow: 0 0 25px rgba(56, 178, 172, 0.2); }
-    .cyber-border { border: 1px solid rgba(56, 178, 172, 0.3); }
-    .cyber-border:hover { border-color: rgba(56, 178, 172, 0.8); }
+    .glow-cyan { box-shadow: 0 0 25px rgba(59, 193, 197, 0.2); }
+    .cyber-border { border: 1px solid rgba(59, 193, 197, 0.3); }
+    .cyber-border:hover { border-color: rgba(59, 193, 197, 0.8); }
     
-    /* خلفية الفضاء الرقمي باستخدام الـ SVG المدمج */
+    /* خلفية الفضاء الرقمي الجديدة بأسلوب SVG */
     .hero-space-bg {
       background-color: #0f172a;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%"><defs><linearGradient id="spaceGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="%230f172a"/><stop offset="60%" stop-color="%231e293b"/><stop offset="100%" stop-color="%230f172a"/></linearGradient><radialGradient id="glow" cx="50%" cy="70%" r="50%"><stop offset="0%" stop-color="%2338b2ac" stop-opacity="0.3"/><stop offset="100%" stop-color="%2338b2ac" stop-opacity="0"/></radialGradient><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="%2338b2ac" stroke-width="0.5" opacity="0.15"/></pattern></defs><rect width="1920" height="1080" fill="url(%23spaceGradient)"/><rect width="1920" height="1080" fill="url(%23grid)"/><rect width="1920" height="1080" fill="url(%23glow)"/><g fill="%23ffffff" opacity="0.8"><circle cx="200" cy="150" r="1.5"/><circle cx="450" cy="300" r="2"/><circle cx="800" cy="100" r="1"/><circle cx="1200" cy="250" r="2.5"/><circle cx="1600" cy="180" r="1.5"/><circle cx="1750" cy="400" r="2"/><circle cx="300" cy="600" r="1"/><circle cx="1500" cy="700" r="1.5"/><circle cx="100" cy="900" r="2"/><circle cx="1800" cy="950" r="1"/><circle cx="900" cy="800" r="2"/><circle cx="600" cy="500" r="1.5"/></g><ellipse cx="960" cy="950" rx="900" ry="150" fill="%2338b2ac" opacity="0.1"/><ellipse cx="960" cy="1000" rx="1000" ry="180" fill="%2338b2ac" opacity="0.05"/><g fill="%231e293b" stroke="%2338b2ac" stroke-width="2" opacity="0.5"><rect x="350" y="700" width="200" height="120" rx="8" /><rect x="330" y="820" width="240" height="15" rx="5" /><rect x="1350" y="700" width="200" height="120" rx="8" /><rect x="1330" y="820" width="240" height="15" rx="5" /><rect x="850" y="750" width="80" height="140" rx="10" /><rect x="860" y="770" width="60" height="100" rx="5" fill="%2338b2ac" opacity="0.3" /></g></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%"><defs><linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%230F172A"/><stop offset="50%" stop-color="%231E293B"/><stop offset="100%" stop-color="%230B1120"/></linearGradient><radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%233BC1C5" stop-opacity="0.15"/><stop offset="100%" stop-color="%233BC1C5" stop-opacity="0"/></radialGradient><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%233BC1C5" stroke-width="0.5" opacity="0.05"/></pattern></defs><rect width="1920" height="1080" fill="url(%23bgGradient)"/><rect width="1920" height="1080" fill="url(%23grid)"/><rect width="1920" height="1080" fill="url(%23glow)"/><g fill="%231A202C" stroke="%233BC1C5" stroke-width="2" opacity="0.4"><rect x="300" y="700" width="80" height="160" rx="10" /><rect x="320" y="850" width="40" height="5" rx="2" fill="%233BC1C5" /><rect x="1540" y="700" width="80" height="160" rx="10" /><rect x="1560" y="850" width="40" height="5" rx="2" fill="%233BC1C5" /><rect x="860" y="650" width="200" height="300" rx="15" /><rect x="880" y="670" width="160" height="250" rx="5" fill="%233BC1C5" opacity="0.1" /></g><path d="M 0 800 L 400 600 L 800 900 L 1200 500 L 1600 800 L 1920 600" fill="none" stroke="%233BC1C5" stroke-width="2" opacity="0.1"/></svg>');
       background-size: cover;
       background-position: center;
     }
 
     /* تنسيق أزرار الفلترة */
     .filter-btn-active {
-      background-color: #38b2ac !important;
+      background-color: #3bc1c5 !important;
       color: #0f172a !important;
       font-weight: 800 !important;
-      border-color: #38b2ac !important;
-      box-shadow: 0 0 15px rgba(56, 178, 172, 0.4);
+      border-color: #3bc1c5 !important;
+      box-shadow: 0 0 15px rgba(59, 193, 197, 0.4);
     }
   </style>
 </head>
@@ -47,13 +47,12 @@
   <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <!-- اللوجو الخاص بكم بدقة عالية SVG -->
+        <!-- اللوجو الخاص بكم الجديد SVG -->
         <svg class="w-10 h-10 shadow-lg shadow-teal-500/20 rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <circle cx="256" cy="256" r="240" fill="#2d3748" />
-          <circle cx="256" cy="256" r="220" fill="#a0aec0" />
-          <circle cx="256" cy="256" r="200" fill="#38b2ac" />
-          <path d="M 180 340 L 256 160 L 332 340 L 280 340 L 256 270 L 220 340 Z" fill="#ffffff" />
-          <path d="M 256 160 L 290 230 L 256 270 Z" fill="#e2e8f0" opacity="0.5" />
+          <circle cx="256" cy="256" r="240" fill="#4A5568" />
+          <circle cx="256" cy="256" r="220" fill="#2D3748" />
+          <circle cx="256" cy="256" r="190" fill="#3BC1C5" />
+          <path d="M 256 140 L 360 320 L 280 380 L 200 380 L 160 320 L 220 320 L 256 260 L 220 320 L 180 370 L 260 280 L 310 370 L 350 320 Z" fill="#FFFFFF" />
         </svg>
         <div>
           <h1 class="font-black text-lg text-white leading-tight">الفضاء الرقمي</h1>
@@ -62,7 +61,10 @@
       </div>
 
       <div class="hidden sm:flex items-center gap-4 text-xs font-semibold">
-        <span class="bg-slate-800 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700">عمان - المستندة 📍</span>
+        <!-- زر الموقع يفتح الخريطة مباشرة -->
+        <a href="https://maps.app.goo.gl/wWxDZtbNJ4hJFp2r6" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-full border border-slate-700 transition flex items-center gap-1.5">
+          <i class="fas fa-map-marker-alt text-teal-400"></i> عمان - المستندة 📍
+        </a>
         <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> مفتوح الآن
         </span>
@@ -75,9 +77,12 @@
     </div>
   </header>
 
-  <!-- الهيرو مع الخلفية الرقمية الفضائية المخصصة -->
+  <!-- الهيرو مع الخلفية الرقمية الفضائية المخصصة الجديدة -->
   <section class="hero-space-bg border-b border-slate-800/80 max-w-6xl mx-auto px-4 pt-12 pb-10 my-4 rounded-3xl text-center shadow-2xl relative overflow-hidden">
-    <span class="inline-block bg-teal-500/20 text-teal-300 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/30 mb-3">عمان - المستندة 📍</span>
+    <!-- زر الموقع المباشر في قسم الترحيب -->
+    <a href="https://maps.app.goo.gl/wWxDZtbNJ4hJFp2r6" target="_blank" class="inline-flex items-center gap-1.5 bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 text-xs font-bold px-3.5 py-1.5 rounded-full border border-teal-500/30 mb-3 transition">
+      <i class="fas fa-map-marker-alt"></i> عمان - المستندة (افتتح موقعنا على الخريطة 📍)
+    </a>
     <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight text-white">عالم الأجهزة الذكية والكمبيوتر</h2>
     <p class="text-slate-300 text-sm max-w-2xl mx-auto mb-2">تصفح أحدث المعروضات والعروض الحصرية بالمحل واطلب فوراً عبر الواتساب</p>
   </section>
@@ -168,16 +173,22 @@
 
   <!-- الفوتر -->
   <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-    جميع الحقوق محفوظة © الفضاء الرقمي للأجهزة الخلوية والكمبيوتر
+    <a href="https://maps.app.goo.gl/wWxDZtbNJ4hJFp2r6" target="_blank" class="hover:text-teal-400 transition inline-block mb-1">
+      📍 موقعنا: عمان - المستندة (انقر لفتح الخريطة)
+    </a>
+    <p>جميع الحقوق محفوظة © الفضاء الرقمي للأجهزة الخلوية والكمبيوتر</p>
   </footer>
 
   <!-- الشريط السفلي الثابت للموبايل -->
   <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 p-2.5 flex justify-between gap-2 md:hidden z-50">
+    <a href="https://maps.app.goo.gl/wWxDZtbNJ4hJFp2r6" target="_blank" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 border border-slate-700">
+      <i class="fas fa-map-marker-alt text-teal-400"></i> الموقع
+    </a>
     <a href="tel:0770088226" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 border border-slate-700">
-      <i class="fas fa-phone text-teal-400"></i> اتصال مباشر
+      <i class="fas fa-phone text-teal-400"></i> اتصال
     </a>
     <a href="https://wa.me/962770088226" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5">
-      <i class="fab fa-whatsapp text-base"></i> واتساب سريع
+      <i class="fab fa-whatsapp text-base"></i> واتساب
     </a>
   </div>
 
@@ -283,7 +294,9 @@
                 <span class="text-[11px] font-bold px-2.5 py-1 rounded-full border ${badgeColor}">
                   ${badgeText}
                 </span>
-                <span class="text-xs text-slate-400">عمان - المستندة</span>
+                <a href="https://maps.app.goo.gl/wWxDZtbNJ4hJFp2r6" target="_blank" class="text-xs text-slate-400 hover:text-teal-400 transition flex items-center gap-1">
+                  <i class="fas fa-map-marker-alt text-teal-400"></i> عمان - المستندة
+                </a>
               </div>
               <div class="overflow-hidden rounded-xl bg-slate-950 mb-3 h-48 flex items-center justify-center border border-slate-800">
                 <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}'">
