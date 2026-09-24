@@ -18,34 +18,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
   
   <style>
-    body { font-family: 'Tajawal', sans-serif; background-color: #0b0f19; color: #f8fafc; }
-    .glow-cyan { box-shadow: 0 0 25px rgba(6, 182, 212, 0.15); }
-    .cyber-border { border: 1px solid rgba(51, 65, 85, 0.7); }
-    .cyber-border:hover { border-color: rgba(6, 182, 212, 0.5); }
+    body { font-family: 'Tajawal', sans-serif; background-color: #0f172a; color: #f8fafc; }
+    .glow-cyan { box-shadow: 0 0 25px rgba(56, 178, 172, 0.2); }
+    .cyber-border { border: 1px solid rgba(56, 178, 172, 0.3); }
+    .cyber-border:hover { border-color: rgba(56, 178, 172, 0.8); }
     
-    /* تنسيق زر الفلترة النشط */
+    /* خلفية الفضاء الرقمي باستخدام الـ SVG المدمج */
+    .hero-space-bg {
+      background-color: #0f172a;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%"><defs><linearGradient id="spaceGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="%230f172a"/><stop offset="60%" stop-color="%231e293b"/><stop offset="100%" stop-color="%230f172a"/></linearGradient><radialGradient id="glow" cx="50%" cy="70%" r="50%"><stop offset="0%" stop-color="%2338b2ac" stop-opacity="0.3"/><stop offset="100%" stop-color="%2338b2ac" stop-opacity="0"/></radialGradient><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="%2338b2ac" stroke-width="0.5" opacity="0.15"/></pattern></defs><rect width="1920" height="1080" fill="url(%23spaceGradient)"/><rect width="1920" height="1080" fill="url(%23grid)"/><rect width="1920" height="1080" fill="url(%23glow)"/><g fill="%23ffffff" opacity="0.8"><circle cx="200" cy="150" r="1.5"/><circle cx="450" cy="300" r="2"/><circle cx="800" cy="100" r="1"/><circle cx="1200" cy="250" r="2.5"/><circle cx="1600" cy="180" r="1.5"/><circle cx="1750" cy="400" r="2"/><circle cx="300" cy="600" r="1"/><circle cx="1500" cy="700" r="1.5"/><circle cx="100" cy="900" r="2"/><circle cx="1800" cy="950" r="1"/><circle cx="900" cy="800" r="2"/><circle cx="600" cy="500" r="1.5"/></g><ellipse cx="960" cy="950" rx="900" ry="150" fill="%2338b2ac" opacity="0.1"/><ellipse cx="960" cy="1000" rx="1000" ry="180" fill="%2338b2ac" opacity="0.05"/><g fill="%231e293b" stroke="%2338b2ac" stroke-width="2" opacity="0.5"><rect x="350" y="700" width="200" height="120" rx="8" /><rect x="330" y="820" width="240" height="15" rx="5" /><rect x="1350" y="700" width="200" height="120" rx="8" /><rect x="1330" y="820" width="240" height="15" rx="5" /><rect x="850" y="750" width="80" height="140" rx="10" /><rect x="860" y="770" width="60" height="100" rx="5" fill="%2338b2ac" opacity="0.3" /></g></svg>');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* تنسيق أزرار الفلترة */
     .filter-btn-active {
-      background-color: #06b6d4 !important;
-      color: #020617 !important;
+      background-color: #38b2ac !important;
+      color: #0f172a !important;
       font-weight: 800 !important;
-      border-color: #06b6d4 !important;
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+      border-color: #38b2ac !important;
+      box-shadow: 0 0 15px rgba(56, 178, 172, 0.4);
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between pb-16 md:pb-0">
 
-  <!-- الهيدر -->
+  <!-- الهيدر العلوي -->
   <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <svg class="w-10 h-10 shadow-lg shadow-cyan-500/20 rounded-full" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="48" fill="#06b6d4" />
-          <path d="M30 68 L68 32 L50 32 L68 32 L68 50 Z" fill="#ffffff" />
+        <!-- اللوجو الخاص بكم بدقة عالية SVG -->
+        <svg class="w-10 h-10 shadow-lg shadow-teal-500/20 rounded-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <circle cx="256" cy="256" r="240" fill="#2d3748" />
+          <circle cx="256" cy="256" r="220" fill="#a0aec0" />
+          <circle cx="256" cy="256" r="200" fill="#38b2ac" />
+          <path d="M 180 340 L 256 160 L 332 340 L 280 340 L 256 270 L 220 340 Z" fill="#ffffff" />
+          <path d="M 256 160 L 290 230 L 256 270 Z" fill="#e2e8f0" opacity="0.5" />
         </svg>
         <div>
           <h1 class="font-black text-lg text-white leading-tight">الفضاء الرقمي</h1>
-          <p class="text-xs text-cyan-400">للأجهزة الخلوية والكمبيوتر</p>
+          <p class="text-xs text-teal-400">للأجهزة الخلوية والكمبيوتر</p>
         </div>
       </div>
 
@@ -63,17 +75,17 @@
     </div>
   </header>
 
-  <!-- الهيرو -->
-  <section class="max-w-6xl mx-auto px-4 pt-8 pb-4 text-center">
-    <span class="inline-block bg-cyan-500/10 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/20 mb-3">عمان - المستندة 📍</span>
-    <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight">معرض الأجهزة الذكية والكمبيوتر</h2>
-    <p class="text-slate-400 text-sm max-w-2xl mx-auto">تصفح المعروضات المتوفرة بالمحل مع إمكانية الفلترة السريعة والطلب عبر الواتساب</p>
+  <!-- الهيرو مع الخلفية الرقمية الفضائية المخصصة -->
+  <section class="hero-space-bg border-b border-slate-800/80 max-w-6xl mx-auto px-4 pt-12 pb-10 my-4 rounded-3xl text-center shadow-2xl relative overflow-hidden">
+    <span class="inline-block bg-teal-500/20 text-teal-300 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/30 mb-3">عمان - المستندة 📍</span>
+    <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight text-white">عالم الأجهزة الذكية والكمبيوتر</h2>
+    <p class="text-slate-300 text-sm max-w-2xl mx-auto mb-2">تصفح أحدث المعروضات والعروض الحصرية بالمحل واطلب فوراً عبر الواتساب</p>
   </section>
 
   <!-- المحتوى الرئيسي -->
-  <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
+  <main class="max-w-6xl mx-auto px-4 py-4 flex-grow w-full space-y-6">
     
-    <!-- أزرار الفلترة العلوية (Filter Tabs) -->
+    <!-- أزرار الفلترة العلوية -->
     <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm font-bold justify-start sm:justify-center">
       <button onclick="filterProducts('all')" id="btn-all" class="filter-btn filter-btn-active whitespace-nowrap bg-slate-800 text-slate-300 border border-slate-700 px-4 py-2 rounded-xl transition">
         ✨ الكل
@@ -96,19 +108,19 @@
       </button>
     </div>
 
-    <!-- شبكة المنتجات المعروضة -->
-    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+    <!-- شبكة المنتجات -->
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
       <div class="col-span-full text-center py-12 text-slate-400">
-        <i class="fas fa-spinner fa-spin text-3xl text-cyan-400 mb-3"></i>
-        <p>جاري تحميل أحدث العروض والمنتجات...</p>
+        <i class="fas fa-spinner fa-spin text-3xl text-teal-400 mb-3"></i>
+        <p>جاري تحميل أحدث المنتجات والعروض...</p>
       </div>
     </div>
   </main>
 
-  <!-- قسم نموذج الطلب المباشر -->
+  <!-- قسم نموذج الطلب السريع -->
   <section class="max-w-3xl mx-auto px-4 py-10 w-full">
     <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 glow-cyan">
-      <h3 class="text-xl font-bold text-cyan-400 mb-2 flex items-center gap-2">
+      <h3 class="text-xl font-bold text-teal-400 mb-2 flex items-center gap-2">
         <i class="fas fa-shopping-cart"></i> نموذج الطلب السريع
       </h3>
       <p class="text-slate-400 text-xs mb-6">أدخل بياناتك وسيتم توجيه طلبك المباشر لواتساب المحل لتأكيد التوصيل.</p>
@@ -116,17 +128,17 @@
       <form id="order-form" onsubmit="sendWhatsAppOrder(event)" class="space-y-4">
         <div>
           <label class="block text-xs font-bold text-slate-300 mb-1">الاسم الكامل:</label>
-          <input type="text" id="cust-name" required placeholder="أدخل اسمك" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+          <input type="text" id="cust-name" required placeholder="أدخل اسمك" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-teal-400">
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-300 mb-1">رقم الهاتف:</label>
-          <input type="tel" id="cust-phone" required placeholder="07XXXXXXXX" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+          <input type="tel" id="cust-phone" required placeholder="07XXXXXXXX" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-teal-400">
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-300 mb-1">منطقة التوصيل:</label>
-          <select id="cust-location" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+          <select id="cust-location" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-teal-400">
             <option value="عمان - المستندة (استلام من المحل)">استلام مباشر من المحل (عمان - المستندة)</option>
             <option value="عمان (توصيل)">توصيل داخل عمان</option>
             <option value="باقي المحافظات (توصيل)">توصيل لباقي المحافظات</option>
@@ -135,12 +147,12 @@
 
         <div>
           <label class="block text-xs font-bold text-slate-300 mb-1">اسم الجهاز أو الطلب:</label>
-          <input type="text" id="cust-item" required placeholder="مثال: honor 200" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+          <input type="text" id="cust-item" required placeholder="مثال: honor 200" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-teal-400">
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-300 mb-1">طريقة الدفع المفضلة:</label>
-          <select id="cust-payment" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+          <select id="cust-payment" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-teal-400">
             <option value="الدفع عند الاستلام">الدفع عند الاستلام (كاش)</option>
             <option value="تحويل CliQ">تحويل عبر كليك (CliQ)</option>
             <option value="محفظة إلكترونية">زين كاش / أورنج ماني</option>
@@ -159,10 +171,10 @@
     جميع الحقوق محفوظة © الفضاء الرقمي للأجهزة الخلوية والكمبيوتر
   </footer>
 
-  <!-- الشريط السفلي للتلفون -->
+  <!-- الشريط السفلي الثابت للموبايل -->
   <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 p-2.5 flex justify-between gap-2 md:hidden z-50">
     <a href="tel:0770088226" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 border border-slate-700">
-      <i class="fas fa-phone text-cyan-400"></i> اتصال مباشر
+      <i class="fas fa-phone text-teal-400"></i> اتصال مباشر
     </a>
     <a href="https://wa.me/962770088226" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5">
       <i class="fab fa-whatsapp text-base"></i> واتساب سريع
@@ -223,7 +235,6 @@
     function filterProducts(category) {
       activeFilter = category;
 
-      // تحديث شكل الأزرار
       document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('filter-btn-active'));
       
       if (category === 'all') document.getElementById('btn-all').classList.add('filter-btn-active');
@@ -260,7 +271,7 @@
 
       filtered.forEach(item => {
         const isUsed = item.category.includes('مستعمل') || item.category.toLowerCase().includes('used');
-        const badgeColor = isUsed ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' : 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30';
+        const badgeColor = isUsed ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' : 'bg-teal-500/20 text-teal-400 border-teal-500/30';
         const badgeText = isUsed ? 'مستعمل ممتازة' : 'جهاز جديد';
 
         const whatsappMsg = encodeURIComponent(`مرحباً الفضاء الرقمي، أود استفسار/طلب: ${item.title} ${item.price ? 'بسعر ' + item.price + ' دينار' : ''}`);
@@ -279,7 +290,7 @@
               </div>
               <h4 class="font-bold text-base text-white mb-1 leading-snug">${item.title}</h4>
               ${item.description ? `<p class="text-sm text-slate-300 mb-3 leading-relaxed font-medium">${item.description}</p>` : ''}
-              <div class="text-2xl font-black text-cyan-400 mb-4">
+              <div class="text-2xl font-black text-teal-400 mb-4">
                 ${item.price ? `${item.price} <span class="text-xs text-slate-400 font-normal">د.أ</span>` : 'تواصل للسعر'}
               </div>
             </div>
