@@ -32,35 +32,36 @@
   <style>
     body { font-family: 'Tajawal', sans-serif; }
     .glow-cyan { box-shadow: 0 0 25px rgba(59, 193, 197, 0.2); }
-    .cyber-border { border: 1px solid rgba(59, 193, 197, 0.3); transition: all 0.3s ease; }
-    .cyber-border:hover { border-color: rgba(59, 193, 197, 0.8); transform: translateY(-3px); }
+    .cyber-border { transition: all 0.3s ease; }
     
-    /* خلفية الفضاء التقنية */
-    .hero-space-bg {
-      background-image: radial-gradient(circle at 50% 30%, rgba(59, 193, 197, 0.15) 0%, transparent 70%);
+    /* تصميم العداد التنازلي التفاعلي المطور */
+    .countdown-box {
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(245, 158, 11, 0.4);
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between pb-20 md:pb-0 bg-slate-950 text-slate-100 transition-colors duration-300">
+<body class="min-h-screen flex flex-col justify-between pb-20 md:pb-0 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
 
   <!-- الهيدر العلوي -->
-  <header class="sticky top-0 z-50 bg-slate-900/80 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 shadow-lg">
+  <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 shadow-sm">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
         <img src="https://cdn.phototourl.com/member/2026-09-24-3094565d-8d95-412f-bf43-cd17880582d4.png" alt="لوجو المتجر" class="w-11 h-11 rounded-full object-cover border-2 border-[#3BC1C5]/50 shadow-md flex-shrink-0">
         <div>
-          <h1 class="font-black text-lg md:text-xl text-white leading-tight">المتجر الذكي</h1>
+          <h1 class="font-black text-lg md:text-xl text-slate-900 dark:text-white leading-tight">المتجر الذكي</h1>
           <p class="text-xs text-[#3BC1C5] font-semibold">للأجهزة الخلوية والكمبيوتر</p>
         </div>
       </div>
 
       <div class="flex items-center gap-3">
         <!-- زر تبديل الوضع (غامق/فاتح) -->
-        <button onclick="toggleTheme()" class="bg-slate-800 hover:bg-slate-700 text-amber-400 dark:text-cyan-400 p-2.5 rounded-xl border border-slate-700 transition shadow-inner" title="تغيير المظهر">
+        <button onclick="toggleTheme()" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-amber-500 dark:text-cyan-400 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 transition shadow-inner" title="تغيير المظهر">
           <i id="theme-icon" class="fas fa-sun text-sm"></i>
         </button>
 
-        <a href="https://wa.me/962780576584" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2 transition shadow-lg shadow-emerald-500/20">
+        <a href="https://wa.me/962780576584" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2 transition shadow-md">
           <i class="fab fa-whatsapp text-lg"></i>
           <span class="hidden sm:inline">تواصل واتساب</span>
         </a>
@@ -69,30 +70,30 @@
   </header>
 
   <!-- الهيرو الرئيسي -->
-  <section class="hero-space-bg border-b border-slate-800/80 max-w-7xl mx-auto px-4 pt-12 pb-10 my-4 rounded-3xl text-center relative overflow-hidden mx-4 md:mx-auto w-[calc(100%-2rem)]">
+  <section class="border-b border-slate-200 dark:border-slate-800/80 max-w-7xl mx-auto px-4 pt-12 pb-10 my-4 rounded-3xl text-center relative overflow-hidden mx-4 md:mx-auto w-[calc(100%-2rem)] bg-white dark:bg-slate-900/40 shadow-sm">
     <div class="inline-flex items-center gap-1.5 bg-[#3BC1C5]/10 text-[#3BC1C5] text-xs font-bold px-4 py-1.5 rounded-full border border-[#3BC1C5]/30 mb-4 shadow-sm">
       <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> عروض حصرية ومحدثة مباشرة
     </div>
     <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight text-slate-900 dark:text-white">عالم الأجهزة الذكية والكمبيوتر</h2>
-    <p class="text-slate-600 dark:text-slate-300 text-sm max-w-2xl mx-auto mb-6">تصفح أحدث المعروضات، الهواتف، واللابتوبات، واطلب طلبك الفوري بكل سهولة.</p>
+    <p class="text-slate-600 dark:text-slate-300 text-sm max-w-2xl mx-auto mb-6">تصفح أحدث المعروضات، الهواتف، اللابتوبات، والإكسسوارات والعروض الحصرية.</p>
     
     <!-- أدوات التحكم والفلترة -->
-    <div class="flex flex-wrap items-center justify-between gap-4 max-w-5xl mx-auto pt-4 border-t border-slate-800/50">
+    <div class="flex flex-wrap items-center justify-between gap-4 max-w-5xl mx-auto pt-4 border-t border-slate-200 dark:border-slate-800/50">
       <!-- أزرار الفلترة -->
       <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm font-bold">
-        <button onclick="filterProducts('all')" id="btn-all" class="filter-btn filter-btn-active whitespace-nowrap bg-slate-800 text-slate-300 border border-slate-700 px-4 py-2 rounded-xl transition">✨ الكل</button>
-        <button onclick="filterProducts('جديد')" id="btn-new" class="filter-btn whitespace-nowrap bg-slate-800 text-slate-300 border border-slate-700 px-4 py-2 rounded-xl transition">📱 أجهزة جديدة</button>
-        <button onclick="filterProducts('مستعمل')" id="btn-used" class="filter-btn whitespace-nowrap bg-slate-800 text-slate-300 border border-slate-700 px-4 py-2 rounded-xl transition">🔄 أجهزة مستعملة</button>
-        <button onclick="filterProducts('كمبيوتر')" id="btn-pc" class="filter-btn whitespace-nowrap bg-slate-800 text-slate-300 border border-slate-700 px-4 py-2 rounded-xl transition">💻 كمبيوتر ولابتوب</button>
-        <button onclick="filterProducts('إكسسوارات')" id="btn-acc" class="filter-btn whitespace-nowrap bg-slate-800 text-slate-300 border border-slate-700 px-4 py-2 rounded-xl transition">🎧 إكسسوارات</button>
+        <button onclick="filterProducts('all')" id="btn-all" class="filter-btn filter-btn-active whitespace-nowrap bg-[#3BC1C5] text-slate-950 px-4 py-2 rounded-xl transition shadow-md">✨ الكل</button>
+        <button onclick="filterProducts('جديد')" id="btn-new" class="filter-btn whitespace-nowrap bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl transition">📱 أجهزة جديدة</button>
+        <button onclick="filterProducts('مستعمل')" id="btn-used" class="filter-btn whitespace-nowrap bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl transition">🔄 أجهزة مستعملة</button>
+        <button onclick="filterProducts('كمبيوتر')" id="btn-pc" class="filter-btn whitespace-nowrap bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl transition">💻 كمبيوتر ولابتوب</button>
+        <button onclick="filterProducts('إكسسوارات وعروض')" id="btn-acc" class="filter-btn whitespace-nowrap bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl transition">🎧 إكسسوارات وعروض</button>
       </div>
 
       <!-- زر تبديل العرض (شبكة / قائمة) -->
-      <div class="flex items-center bg-slate-800 border border-slate-700 rounded-xl p-1 gap-1">
+      <div class="flex items-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-1 gap-1">
         <button onclick="setViewMode('grid')" id="view-grid-btn" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#3BC1C5] text-slate-950 transition" title="عرض مربعات">
           <i class="fas fa-th-large"></i>
         </button>
-        <button onclick="setViewMode('list')" id="view-list-btn" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition" title="عرض أعمدة/قائمة">
+        <button onclick="setViewMode('list')" id="view-list-btn" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" title="عرض أعمدة/قائمة">
           <i class="fas fa-bars"></i>
         </button>
       </div>
@@ -102,7 +103,7 @@
   <!-- المحتوى الرئيسي -->
   <main class="max-w-7xl mx-auto px-4 py-4 flex-grow w-full">
     <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-      <div class="col-span-full text-center py-16 text-slate-400">
+      <div class="col-span-full text-center py-16 text-slate-500 dark:text-slate-400">
         <i class="fas fa-spinner fa-spin text-4xl text-[#3BC1C5] mb-3"></i>
         <p class="text-sm font-semibold">جاري تحميل أحدث المنتجات والعروض...</p>
       </div>
@@ -111,36 +112,36 @@
 
   <!-- نموذج الطلب السريع -->
   <section class="max-w-3xl mx-auto px-4 py-12 w-full">
-    <div class="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 glow-cyan shadow-xl">
+    <div class="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-8 glow-cyan shadow-xl">
       <h3 class="text-xl font-black text-[#3BC1C5] mb-2 flex items-center gap-2">
         <i class="fas fa-shopping-cart"></i> نموذج الطلب الفوري
       </h3>
-      <p class="text-slate-400 text-xs mb-6">أدخل بياناتك وسيتم توجيه طلبك المباشر لواتساب المحل لتأكيد التفاصيل.</p>
+      <p class="text-slate-600 dark:text-slate-400 text-xs mb-6">أدخل بياناتك وسيتم توجيه طلبك المباشر لواتساب المحل لتأكيد التفاصيل.</p>
 
       <form id="order-form" onsubmit="sendWhatsAppOrder(event)" class="space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">الاسم الكامل:</label>
-            <input type="text" id="cust-name" required placeholder="أدخل اسمك" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-[#3BC1C5]">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">الاسم الكامل:</label>
+            <input type="text" id="cust-name" required placeholder="أدخل اسمك" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">رقم الهاتف:</label>
-            <input type="tel" id="cust-phone" required placeholder="07XXXXXXXX" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-[#3BC1C5]">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">رقم الهاتف:</label>
+            <input type="tel" id="cust-phone" required placeholder="07XXXXXXXX" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">منطقة التوصيل:</label>
-            <select id="cust-location" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-[#3BC1C5]">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">منطقة التوصيل:</label>
+            <select id="cust-location" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
               <option value="استلام مباشر من المحل">استلام مباشر من المحل</option>
               <option value="توصيل داخل العاصمة">توصيل داخل العاصمة</option>
               <option value="توصيل لباقي المحافظات">توصيل لباقي المحافظات</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">طريقة الدفع:</label>
-            <select id="cust-payment" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-[#3BC1C5]">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">طريقة الدفع:</label>
+            <select id="cust-payment" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
               <option value="الدفع عند الاستلام (كاش)">الدفع عند الاستلام (كاش)</option>
               <option value="تحويل CliQ">تحويل عبر كليك (CliQ)</option>
               <option value="محفظة إلكترونية">محفظة إلكترونية</option>
@@ -149,8 +150,8 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-300 mb-1">اسم الجهاز أو الطلب:</label>
-          <input type="text" id="cust-item" required placeholder="مثال: iPhone 14 Pro Max" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-[#3BC1C5]">
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">اسم الجهاز أو الطلب:</label>
+          <input type="text" id="cust-item" required placeholder="مثال: iPhone 14 Pro Max" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
         </div>
 
         <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black py-3.5 rounded-xl text-center flex items-center justify-center gap-2 transition text-base shadow-lg shadow-emerald-500/20">
@@ -161,13 +162,13 @@
   </section>
 
   <!-- الفوتر -->
-  <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500">
     <p>جميع الحقوق محفوظة © المتجر الذكي للأجهزة الخلوية والكمبيوتر 2026</p>
   </footer>
 
   <!-- الشريط السفلي للموبايل -->
-  <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-lg border-t border-slate-800 p-2.5 flex justify-between gap-2 md:hidden z-50 shadow-2xl">
-    <a href="tel:0780576584" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 border border-slate-700">
+  <div class="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 p-2.5 flex justify-between gap-2 md:hidden z-50 shadow-2xl">
+    <a href="tel:0780576584" class="flex-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700">
       <i class="fas fa-phone text-[#3BC1C5]"></i> اتصال
     </a>
     <a href="https://wa.me/962780576584" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md">
@@ -181,7 +182,7 @@
 
     let allProductsList = [];
     let activeFilter = 'all';
-    let currentViewMode = 'grid'; // 'grid' or 'list'
+    let currentViewMode = 'grid'; 
     let countdownInterval = null;
 
     function loadProducts() {
@@ -195,7 +196,7 @@
           const rows = results.data;
           
           if (!rows || rows.length === 0) {
-            container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">لا توجد منتجات بالجدول حالياً.</div>`;
+            container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">لا توجد منتجات بالجدول حالياً.</div>`;
             return;
           }
 
@@ -213,11 +214,11 @@
 
             if (!title || !title.trim()) return;
 
-            // التحقق من انتهاء العد التنازلي وحذف المنتج تلقائياً
+            // الحذف التلقائي للمنتج إذا انقضى وقت العرض
             if (endDateStr && endDateStr.trim() !== '') {
               const endTime = new Date(endDateStr.trim()).getTime();
               if (!isNaN(endTime) && now >= endTime) {
-                return; // تجاوز المنتج إذا انتهى عرضه
+                return; 
               }
             }
 
@@ -235,26 +236,26 @@
           startCountdownTimer();
         },
         error: function() {
-          container.innerHTML = `<div class="col-span-full text-center py-8 text-rose-400">تعذر تحميل بيانات الجدول. تأكد من إعدادات المشاركة.</div>`;
+          container.innerHTML = `<div class="col-span-full text-center py-8 text-rose-500">تعذر تحميل بيانات الجدول. تأكد من إعدادات المشاركة.</div>`;
         }
       });
     }
 
     function filterProducts(category) {
       activeFilter = category;
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('filter-btn-active', 'bg-[#3BC1C5]', 'text-slate-950'));
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.add('bg-slate-800', 'text-slate-300'));
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.className = "filter-btn whitespace-nowrap bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl transition";
+      });
       
       let btnId = 'btn-all';
       if (category === 'جديد') btnId = 'btn-new';
       else if (category === 'مستعمل') btnId = 'btn-used';
       else if (category === 'كمبيوتر') btnId = 'btn-pc';
-      else if (category === 'إكسسوارات') btnId = 'btn-acc';
+      else if (category === 'إكسسوارات وعروض') btnId = 'btn-acc';
 
       const activeBtn = document.getElementById(btnId);
       if (activeBtn) {
-        activeBtn.classList.remove('bg-slate-800', 'text-slate-300');
-        activeBtn.classList.add('bg-[#3BC1C5]', 'text-slate-950', 'font-extrabold', 'shadow-md');
+        activeBtn.className = "filter-btn whitespace-nowrap bg-[#3BC1C5] text-slate-950 font-extrabold px-4 py-2 rounded-xl transition shadow-md";
       }
 
       renderGrid();
@@ -267,10 +268,10 @@
 
       if (mode === 'grid') {
         gridBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-[#3BC1C5] text-slate-950 transition";
-        listBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition";
+        listBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
       } else {
         listBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-[#3BC1C5] text-slate-950 transition";
-        gridBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition";
+        gridBtn.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
       }
       renderGrid();
     }
@@ -287,45 +288,51 @@
         if (target === 'جديد') return cat.includes('جديد') || cat.includes('new');
         if (target === 'مستعمل') return cat.includes('مستعمل') || cat.includes('used');
         if (target === 'كمبيوتر') return cat.includes('كمبيوتر') || cat.includes('لابتوب') || cat.includes('pc') || cat.includes('laptop');
-        if (target === 'إكسسوارات') return cat.includes('إكسسوار') || cat.includes('اكسسوار') || cat.includes('عروض') || cat.includes('عرض');
+        if (target === 'إكسسوارات وعروض') return cat.includes('إكسسوار') || cat.includes('اكسسوار') || cat.includes('عروض') || cat.includes('عرض') || cat.includes('accessory') || cat.includes('offer');
         return cat.includes(target);
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">لا توجد منتجات مطابقة حالياً.</div>`;
+        container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">لا توجد منتجات مطابقة لهذا القسم حالياً.</div>`;
         return;
       }
 
       if (currentViewMode === 'list') {
         container.className = "space-y-4 pt-2";
-        filtered.forEach((item, index) => {
+        filtered.forEach((item) => {
+          const isOffer = item.category.toLowerCase().includes('عرض') || item.category.toLowerCase().includes('offer');
           const isUsed = item.category.includes('مستعمل') || item.category.toLowerCase().includes('used');
-          const badgeColor = isUsed ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' : 'bg-[#3BC1C5]/20 text-[#3BC1C5] border-[#3BC1C5]/30';
-          const badgeText = isUsed ? 'مستعمل ممتازة' : 'جهاز جديد';
+          
+          let badgeColor = 'bg-[#3BC1C5]/20 text-[#3BC1C5] border-[#3BC1C5]/30';
+          let badgeText = 'جهاز جديد';
+          if (isOffer) { badgeColor = 'bg-rose-500/25 text-rose-500 border-rose-500/40 animate-pulse'; badgeText = '🔥 عرض خاص'; }
+          else if (isUsed) { badgeColor = 'bg-amber-500/20 text-amber-500 border-amber-500/30'; badgeText = '🔄 مستعمل ممتاز'; }
+          else if (item.category.toLowerCase().includes('اكسسوار') || item.category.toLowerCase().includes('إكسسوار')) { badgeColor = 'bg-purple-500/20 text-purple-500 border-purple-500/30'; badgeText = '🎧 إكسسوار'; }
+
           const whatsappMsg = encodeURIComponent(`مرحباً، أود استفسار/طلب: ${item.title} ${item.price ? 'بسعر ' + item.price + ' دينار' : ''}`);
 
           container.innerHTML += `
-            <div class="bg-slate-900/90 dark:bg-slate-900/80 cyber-border rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 transition group">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 transition shadow-sm hover:shadow-md">
               <div class="flex items-center gap-4 w-full sm:w-auto">
-                <div class="w-20 h-20 rounded-xl bg-slate-950 flex-shrink-0 overflow-hidden border border-slate-800">
-                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition" onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}'">
+                <div class="w-20 h-20 rounded-xl bg-slate-100 dark:bg-slate-950 flex-shrink-0 overflow-hidden border border-slate-200 dark:border-slate-800">
+                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}'">
                 </div>
                 <div>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${badgeColor} inline-block mb-1">${badgeText}</span>
-                  <h4 class="font-bold text-base text-white">${item.title}</h4>
-                  ${item.description ? `<p class="text-xs text-slate-300 line-clamp-1">${item.description}</p>` : ''}
-                  ${item.endDate ? `<div class="text-[11px] text-amber-400 font-bold mt-1 countdown-timer" data-end="${item.endDate}"><i class="fas fa-clock"></i> يحسب الوقت...</div>` : ''}
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${badgeColor} inline-block mb-1">${badgeText}</span>
+                  <h4 class="font-bold text-base text-slate-900 dark:text-white">${item.title}</h4>
+                  ${item.description ? `<p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-1">${item.description}</p>` : ''}
+                  ${item.endDate ? `<div class="text-[11px] text-amber-500 font-bold mt-1 countdown-timer" data-end="${item.endDate}"><i class="fas fa-clock"></i> جاري الحساب...</div>` : ''}
                 </div>
               </div>
               <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
                 <div class="text-xl font-black text-[#3BC1C5]">
-                  ${item.price ? `${item.price} <span class="text-xs text-slate-400">د.أ</span>` : 'تواصل للسعر'}
+                  ${item.price ? `${item.price} <span class="text-xs text-slate-500 dark:text-slate-400">د.أ</span>` : 'تواصل للسعر'}
                 </div>
                 <div class="flex gap-2">
                   <a href="https://wa.me/962780576584?text=${whatsappMsg}" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 transition">
                     <i class="fab fa-whatsapp"></i> طلب
                   </a>
-                  <button onclick="fillOrderForm('${item.title}')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-3 py-2 rounded-xl text-xs transition">
+                  <button onclick="fillOrderForm('${item.title}')" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold px-3 py-2 rounded-xl text-xs transition border border-slate-200 dark:border-slate-700">
                     النموذج
                   </button>
                 </div>
@@ -336,34 +343,48 @@
       } else {
         container.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2";
         filtered.forEach(item => {
+          const isOffer = item.category.toLowerCase().includes('عرض') || item.category.toLowerCase().includes('offer');
           const isUsed = item.category.includes('مستعمل') || item.category.toLowerCase().includes('used');
-          const badgeColor = isUsed ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' : 'bg-[#3BC1C5]/20 text-[#3BC1C5] border-[#3BC1C5]/30';
-          const badgeText = isUsed ? 'مستعمل ممتازة' : 'جهاز جديد';
+          
+          let badgeColor = 'bg-[#3BC1C5]/20 text-[#3BC1C5] border-[#3BC1C5]/30';
+          let badgeText = 'جهاز جديد';
+          if (isOffer) { badgeColor = 'bg-rose-500/25 text-rose-500 border-rose-500/40 animate-pulse'; badgeText = '🔥 عرض خاص'; }
+          else if (isUsed) { badgeColor = 'bg-amber-500/20 text-amber-500 border-amber-500/30'; badgeText = '🔄 مستعمل ممتاز'; }
+          else if (item.category.toLowerCase().includes('اكسسوار') || item.category.toLowerCase().includes('إكسسوار')) { badgeColor = 'bg-purple-500/20 text-purple-500 border-purple-500/30'; badgeText = '🎧 إكسسوار'; }
+
           const whatsappMsg = encodeURIComponent(`مرحباً، أود استفسار/طلب: ${item.title} ${item.price ? 'بسعر ' + item.price + ' دينار' : ''}`);
 
           container.innerHTML += `
-            <div class="bg-slate-900/90 dark:bg-slate-900/80 cyber-border rounded-2xl p-4 flex flex-col justify-between transition group">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 flex flex-col justify-between transition shadow-sm hover:shadow-lg group">
               <div>
                 <div class="flex justify-between items-center mb-3">
                   <span class="text-[11px] font-bold px-2.5 py-1 rounded-full border ${badgeColor}">
                     ${badgeText}
                   </span>
-                  ${item.endDate ? `<span class="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded-full font-bold countdown-timer" data-end="${item.endDate}"><i class="fas fa-clock"></i> جاري التحميل...</span>` : ''}
                 </div>
-                <div class="overflow-hidden rounded-xl bg-slate-950 mb-3 h-48 flex items-center justify-center border border-slate-800">
+
+                <!-- عداد تنازلي بصري فخم إذا وُجد تاريخ نهاية -->
+                ${item.endDate ? `
+                  <div class="countdown-timer mb-3 p-2 rounded-xl text-amber-600 dark:text-amber-400 text-xs font-bold flex items-center justify-between countdown-box" data-end="${item.endDate}">
+                    <span><i class="fas fa-stopwatch text-amber-500"></i> ينتهي العرض:</span>
+                    <span class="font-mono bg-amber-500/10 px-2 py-0.5 rounded text-[11px]">جاري الحساب...</span>
+                  </div>
+                ` : ''}
+
+                <div class="overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-950 mb-3 h-48 flex items-center justify-center border border-slate-200 dark:border-slate-800">
                   <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}'">
                 </div>
-                <h4 class="font-bold text-base text-white mb-1 leading-snug">${item.title}</h4>
-                ${item.description ? `<p class="text-sm text-slate-300 mb-3 leading-relaxed font-medium">${item.description}</p>` : ''}
+                <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1 leading-snug">${item.title}</h4>
+                ${item.description ? `<p class="text-sm text-slate-600 dark:text-slate-300 mb-3 leading-relaxed font-medium">${item.description}</p>` : ''}
                 <div class="text-2xl font-black text-[#3BC1C5] mb-4">
-                  ${item.price ? `${item.price} <span class="text-xs text-slate-400 font-normal">د.أ</span>` : 'تواصل للسعر'}
+                  ${item.price ? `${item.price} <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">د.أ</span>` : 'تواصل للسعر'}
                 </div>
               </div>
               <div class="space-y-2">
                 <a href="https://wa.me/962780576584?text=${whatsappMsg}" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 rounded-xl text-center flex items-center justify-center gap-2 transition text-sm shadow-md">
                   <i class="fab fa-whatsapp text-lg"></i> طلب سريع عبر الواتساب
                 </a>
-                <button onclick="fillOrderForm('${item.title}')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-2 rounded-xl text-xs transition">
+                <button onclick="fillOrderForm('${item.title}')" class="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-2 rounded-xl text-xs transition border border-slate-200 dark:border-slate-700">
                   تعبئة النموذج بالأسفل 👇
                 </button>
               </div>
@@ -373,6 +394,7 @@
       }
     }
 
+    // دالة العداد التنازلي التفاعلي
     function startCountdownTimer() {
       if (countdownInterval) clearInterval(countdownInterval);
 
@@ -386,8 +408,7 @@
           const distance = endTime - now;
 
           if (distance < 0) {
-            timer.innerHTML = "انتهى العرض";
-            // إعادة تحميل خفيفة أو إخفاء العنصر بعد انتهاء العد
+            timer.innerHTML = `<span class="text-rose-500 font-bold"><i class="fas fa-ban"></i> انتهى وقت العرض</span>`;
             setTimeout(() => loadProducts(), 2000);
             return;
           }
@@ -397,15 +418,19 @@
           const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
           const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-          let timeText = '';
-          if (days > 0) timeText += `${days}ي `;
-          timeText += `${hours}س ${minutes}د ${seconds}ث`;
+          let timeFormatted = '';
+          if (days > 0) timeFormatted += `${days} يوم `;
+          timeFormatted += `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-          timer.innerHTML = `<i class="fas fa-clock"></i> ينتهي في: ${timeText}`;
+          const spanTime = timer.querySelector('.font-mono');
+          if (spanTime) {
+            spanTime.innerText = timeFormatted;
+          }
         });
       }, 1000);
     }
 
+    // تبديل الوضع الغامق والفاتح لكل الموقع
     function toggleTheme() {
       const html = document.documentElement;
       const icon = document.getElementById('theme-icon');
