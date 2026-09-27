@@ -33,6 +33,7 @@
     body { font-family: 'Tajawal', sans-serif; }
     .glow-cyan { box-shadow: 0 0 25px rgba(59, 193, 197, 0.25); }
     
+    /* تأثيرات بصرية وحركية تفاعلية */
     .card-hover { 
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); 
     }
@@ -79,6 +80,7 @@
       </div>
 
       <div class="flex items-center gap-3">
+        <!-- زر تبديل الوضع (غامق/فاتح) -->
         <button onclick="toggleTheme()" class="click-scale bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-amber-500 dark:text-cyan-400 p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 transition shadow-inner" title="تغيير المظهر">
           <i id="theme-icon" class="fas fa-sun text-sm"></i>
         </button>
@@ -102,7 +104,9 @@
     <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight text-slate-900 dark:text-white">عالم الأجهزة الذكية والكمبيوتر</h2>
     <p class="text-slate-600 dark:text-slate-300 text-sm max-w-2xl mx-auto mb-6">تصفح أحدث المعروضات، الهواتف، اللابتوبات، والإكسسوارات والعروض الحصرية.</p>
     
+    <!-- أدوات التحكم والفلترة -->
     <div class="flex flex-wrap items-center justify-between gap-4 max-w-5xl mx-auto pt-4 border-t border-slate-300 dark:border-slate-800">
+      <!-- أزرار الفلترة -->
       <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm font-bold">
         <button onclick="filterProducts('all')" id="btn-all" class="filter-btn click-scale filter-btn-active whitespace-nowrap bg-[#3BC1C5] text-slate-950 px-4 py-2 rounded-xl transition shadow-md">✨ الكل</button>
         <button onclick="filterProducts('جديد')" id="btn-new" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">📱 أجهزة جديدة</button>
@@ -111,6 +115,7 @@
         <button onclick="filterProducts('إكسسوارات وعروض')" id="btn-acc" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">🎧 إكسسوارات وعروض</button>
       </div>
 
+      <!-- زر تبديل العرض (شبكة / قائمة) -->
       <div class="flex items-center bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-1 gap-1 shadow-inner">
         <button onclick="setViewMode('grid')" id="view-grid-btn" class="click-scale px-3 py-1.5 rounded-lg text-xs font-bold bg-[#3BC1C5] text-slate-950 transition shadow" title="عرض مربعات">
           <i class="fas fa-th-large"></i>
@@ -131,6 +136,19 @@
       </div>
     </div>
   </main>
+
+  <!-- نافذة منسدلة (Modal) لعرض الصورة الكاملة -->
+  <div id="image-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 transition-opacity duration-300" onclick="closeImageModal()">
+    <div class="relative max-w-3xl w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-3xl p-6 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+      <button onclick="closeImageModal()" class="absolute top-4 left-4 bg-slate-200 dark:bg-slate-800 hover:bg-rose-500 hover:text-white text-slate-700 dark:text-slate-300 w-10 h-10 rounded-full flex items-center justify-center transition font-bold z-10 shadow">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3 id="modal-title" class="text-lg font-black text-slate-900 dark:text-white mb-4 text-center"></h3>
+      <div class="flex items-center justify-center max-h-[70vh] bg-slate-100 dark:bg-slate-950 rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-800 p-2">
+        <img id="modal-img" src="" alt="صورة مكبرة" class="max-h-[65vh] w-auto object-contain">
+      </div>
+    </div>
+  </div>
 
   <!-- نموذج الطلب السريع -->
   <section class="max-w-3xl mx-auto px-4 py-12 w-full">
@@ -333,14 +351,18 @@
           container.innerHTML += `
             <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 card-hover shadow-sm fade-in-up">
               <div class="flex items-center gap-4 w-full sm:w-auto">
-                <!-- تم استخدام object-contain لكي تظهر الصورة كاملة غير مقطوعة -->
-                <div class="w-20 h-20 rounded-xl bg-slate-100 dark:bg-slate-950 flex-shrink-0 overflow-hidden border border-slate-300 dark:border-slate-800 p-1 flex items-center justify-center">
-                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}'">
+                <!-- صورة قابلة للضغط للتكبير -->
+                <div onclick="openImageModal('${item.image}', '${item.title.replace(/'/g, "\\'")}')" class="w-20 h-20 rounded-xl bg-slate-100 dark:bg-slate-950 flex-shrink-0 overflow-hidden border border-slate-300 dark:border-slate-800 cursor-pointer relative group" title="اضغط لعرض الصورة كاملة">
+                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
                 </div>
                 <div class="flex-1">
                   <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${badgeColor} inline-block mb-1">${badgeText}</span>
                   <h4 class="font-bold text-base text-slate-900 dark:text-white">${item.title}</h4>
                   
+                  <!-- الوصف مع زر عرض المزيد -->
                   ${item.description ? `
                     <div class="text-xs text-slate-600 dark:text-slate-300 mt-1">
                       <p id="desc-list-${index}" class="line-clamp-1 transition-all duration-300">${item.description}</p>
@@ -350,6 +372,7 @@
                     </div>
                   ` : ''}
 
+                  <!-- العداد التنازلي البارز لوضع الصفوف -->
                   ${item.endDate ? `
                     <div class="mt-3 p-3 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 countdown-container max-w-sm shadow-inner" data-end="${item.endDate}">
                       <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-2 flex items-center gap-1.5">
@@ -417,6 +440,7 @@
                   </span>
                 </div>
 
+                <!-- عداد تنازلي كبير جداً وواضح ومريح للعين -->
                 ${item.endDate ? `
                   <div class="mb-4 p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 countdown-container shadow-inner" data-end="${item.endDate}">
                     <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-2.5 flex items-center gap-1.5">
@@ -443,12 +467,17 @@
                   </div>
                 ` : ''}
 
-                <!-- تم استخدام object-contain مع مساحة داخلية padding لكي تظهر الصورة كاملة وواضحة -->
-                <div class="overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-950 mb-3 h-48 p-2 flex items-center justify-center border border-slate-300 dark:border-slate-800">
-                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-contain group-hover:scale-105 transition duration-500" onerror="this.onerror=null; this.src='${DEFAULT_IMAGE}'">
+                <!-- صورة قابلة للضغط لتكبيرها وعرضها كاملاً -->
+                <div onclick="openImageModal('${item.image}', '${item.title.replace(/'/g, "\\'")}')" class="overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-950 mb-3 h-48 flex items-center justify-center border border-slate-300 dark:border-slate-800 cursor-pointer relative group" title="اضغط لعرض الصورة كاملة">
+                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-sm font-bold gap-2">
+                    <i class="fas fa-search-plus"></i> تكبير الصورة
+                  </div>
                 </div>
+
                 <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1.5 leading-snug">${item.title}</h4>
                 
+                <!-- الوصف مع زر عرض المزيد -->
                 ${item.description ? `
                   <div class="mb-4">
                     <p id="desc-grid-${index}" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium line-clamp-1 transition-all duration-300">${item.description}</p>
@@ -475,6 +504,22 @@
           `;
         });
       }
+    }
+
+    // دوال تحكم الصورة المكبرة (Modal)
+    function openImageModal(imgSrc, title) {
+      const modal = document.getElementById('image-modal');
+      const modalImg = document.getElementById('modal-img');
+      const modalTitle = document.getElementById('modal-title');
+      
+      modalImg.src = imgSrc;
+      modalTitle.innerText = title;
+      modal.classList.remove('hidden');
+    }
+
+    function closeImageModal() {
+      const modal = document.getElementById('image-modal');
+      modal.classList.add('hidden');
     }
 
     function toggleDescription(index, mode) {
@@ -540,6 +585,11 @@
       }
     }
 
+    function fillOrderForإm(itemName) {
+      document.getElementById('cust-item').value = itemName;
+      document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+    }
+
     function fillOrderForm(itemName) {
       document.getElementById('cust-item').value = itemName;
       document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
@@ -547,7 +597,7 @@
 
     function sendWhatsAppOrder(e) {
       e.preventDefault();
-      const name = document.getElementById('cust-name').value;
+      const name = document.getElementById('cust-name5') ? '' : document.getElementById('cust-name').value;
       const phone = document.getElementById('cust-phone').value;
       const location = document.getElementById('cust-location').value;
       const item = document.getElementById('cust-item').value;
