@@ -122,15 +122,28 @@
 
     <!-- أدوات التحكم والفلترة -->
     <div class="max-w-5xl mx-auto pt-4 border-t border-slate-300 dark:border-slate-800 text-right">
-      <!-- منطقة الفلترة بدون شروحات زائدة -->
-      <div class="flex items-center gap-2 mb-3">
-        <span class="text-xs font-black text-[#3BC1C5] flex items-center gap-1.5 bg-[#3BC1C5]/10 px-3 py-1 rounded-lg border border-[#3BC1C5]/20">
-          <i class="fas fa-filter"></i> منطقة الفلترة
+      
+      <!-- شريط فلترة المنتجات وترتيبها -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+        <span class="text-xs font-black text-[#3BC1C5] flex items-center gap-1.5 bg-[#3BC1C5]/10 px-3 py-1.5 rounded-xl border border-[#3BC1C5]/20">
+          <i class="fas fa-filter"></i> فلترة المنتجات
         </span>
+
+        <!-- خيارات الترتيب الجديدة -->
+        <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-bold whitespace-nowrap"><i class="fas fa-sort ml-1"></i> ترتيب حسب:</span>
+          <select id="sort-select" onchange="handleSortChange()" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5] shadow-inner font-bold flex-1 sm:flex-initial">
+            <option value="default">الافتراضي</option>
+            <option value="price-high">الأعلى سعراً</option>
+            <option value="price-low">الأقل سعراً</option>
+            <option value="newest">الأحدث</option>
+            <option value="oldest">الأقدم</option>
+          </select>
+        </div>
       </div>
 
       <div class="flex flex-wrap items-center justify-between gap-4">
-        <!-- أزرار الفلترة -->
+        <!-- أزرار التصنيفات -->
         <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm font-bold">
           <button onclick="applyFilter('all')" id="btn-all" class="filter-btn click-scale whitespace-nowrap bg-[#3BC1C5] text-slate-950 px-4 py-2 rounded-xl transition shadow-md font-extrabold">✨ الكل</button>
           <button onclick="applyFilter('جديد')" id="btn-new" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">📱 أجهزة جديدة</button>
@@ -248,6 +261,7 @@
     let allProductsList = [];
     let activeFilter = 'all';
     let searchQuery = '';
+    let currentSort = 'default';
     let currentViewMode = 'grid'; 
     let countdownInterval = null;
     let searchTimeout = null;
@@ -279,19 +293,25 @@
     }
 
     // إدارة حالة التاريخ للرجوع عبر إيماءات أو أزرار الهاتف
-    function updateHistoryState(filter, search, push = true) {
+    function updateHistoryState(filter, search, sort, push = true) {
       activeFilter = filter;
       searchQuery = search;
+      currentSort = sort;
       
       const searchInput = document.getElementById('search-input');
       if (searchInput.value !== search) {
         searchInput.value = search;
       }
 
+      const sortSelect = document.getElementById('sort-select');
+      if (sortSelect.value !== sort) {
+        sortSelect.value = sort;
+      }
+
       updateFilterButtonsUI(filter);
       renderGrid();
 
-      const stateObj = { filter, search };
+      const stateObj = { filter, search, sort };
       if (push) {
         history.pushState(stateObj, '', '');
       } else {
@@ -300,12 +320,16 @@
     }
 
     window.addEventListener('popstate', (event) => {
-      const state = event.state || { filter: 'all', search: '' };
+      const state = event.state || { filter: 'all', search: '', sort: 'default' };
       activeFilter = state.filter || 'all';
       searchQuery = state.search || '';
+      currentSort = state.sort || 'default';
       
       const searchInput = document.getElementById('search-input');
       searchInput.value = searchQuery;
+
+      const sortSelect = document.getElementById('sort-select');
+      sortSelect.value = currentSort;
 
       updateFilterButtonsUI(activeFilter);
       renderGrid();
@@ -366,7 +390,7 @@
           allProductsList = [];
           const now = new Date().getTime();
 
-          rows.forEach((row) => {
+          rows.forEach((row, index) => {
             const keys = Object.keys(row);
             const title = row['Title'] || row['title'] || row['اسم المنتج'] || row[keys[0]] || '';
             const price = row['Price'] || row['price'] || row['السعر'] || row[keys[1]] || '';
@@ -383,6 +407,7 @@
             }
 
             allProductsList.push({
+              originalIndex: index,
               title: title.trim(),
               price: price ? price.trim() : '',
               image: (image && image.trim() !== '') ? image.trim() : DEFAULT_IMAGE,
@@ -393,7 +418,7 @@
           });
 
           // تهيئة الحالة الأولية للتاريخ
-          updateHistoryState('all', '', false);
+          updateHistoryState('all', '', 'default', false);
           startCountdownTimer();
         },
         error: function() {
@@ -413,12 +438,17 @@
       if (searchTimeout) clearTimeout(searchTimeout);
       
       searchTimeout = setTimeout(() => {
-        updateHistoryState(activeFilter, val, true);
+        updateHistoryState(activeFilter, val, currentSort, true);
       }, 300);
     }
 
     function applyFilter(category) {
-      updateHistoryState(category, searchQuery, true);
+      updateHistoryState(category, searchQuery, currentSort, true);
+    }
+
+    function handleSortChange() {
+      const sortVal = document.getElementById('sort-select').value;
+      updateHistoryState(activeFilter, searchQuery, sortVal, true);
     }
 
     function updateFilterButtonsUI(category) {
@@ -467,7 +497,8 @@
         }
       }
 
-      const filtered = allProductsList.filter(item => {
+      // تطبيق الفلترة (حسب القسم والبحث)
+      let filtered = allProductsList.filter(item => {
         let matchesCategory = true;
         if (activeFilter !== 'all') {
           const cat = item.category.toLowerCase();
@@ -492,6 +523,23 @@
         }
 
         return matchesCategory && matchesSearch;
+      });
+
+      // تطبيق نظام الترتيب (الفرز) المتقدم
+      filtered.sort((a, b) => {
+        const priceA = parseFloat(a.price) || 0;
+        const priceB = parseFloat(b.price) || 0;
+
+        if (currentSort === 'price-high') {
+          return priceB - priceA;
+        } else if (currentSort === 'price-low') {
+          return priceA - priceB;
+        } else if (currentSort === 'newest') {
+          return b.originalIndex - a.originalIndex;
+        } else if (currentSort === 'oldest') {
+          return a.originalIndex - b.originalIndex;
+        }
+        return 0; // الترتيب الافتراضي
       });
 
       if (filtered.length === 0) {
