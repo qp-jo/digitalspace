@@ -348,6 +348,9 @@
 
           const whatsappMsg = encodeURIComponent(`مرحباً، أود استفسار/طلب: ${item.title} ${item.price ? 'بسعر ' + item.price + ' دينار' : ''}`);
 
+          // التحقق مما إذا كان الوصف طويلاً بما يكفي ليحتاج زر عرض المزيد
+          const isLongDesc = item.description && item.description.length > 50;
+
           container.innerHTML += `
             <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 card-hover shadow-sm fade-in-up">
               <div class="flex items-center gap-4 w-full sm:w-auto">
@@ -362,13 +365,14 @@
                   <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${badgeColor} inline-block mb-1">${badgeText}</span>
                   <h4 class="font-bold text-base text-slate-900 dark:text-white">${item.title}</h4>
                   
-                  <!-- الوصف مع زر عرض المزيد -->
+                  <!-- الوصف مع التحقق من الطول -->
                   ${item.description ? `
                     <div class="text-xs text-slate-600 dark:text-slate-300 mt-1">
-                      <p id="desc-list-${index}" class="line-clamp-1 transition-all duration-300">${item.description}</p>
-                      <button onclick="toggleDescription(${index}, 'list')" class="click-scale text-[#3BC1C5] font-bold text-[11px] mt-1 hover:underline flex items-center gap-1 cursor-pointer">
-                        <span id="desc-btn-list-${index}">عرض المزيد</span> <i id="desc-icon-list-${index}" class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
-                      </button>
+                      <p id="desc-list-${index}" class="${isLongDesc ? 'line-clamp-1 transition-all duration-300' : ''}">${item.description}</p>${isLongDesc ? `
+                        <button onclick="toggleDescription(${index}, 'list')" class="click-scale text-[#3BC1C5] font-bold text-[11px] mt-1 hover:underline flex items-center gap-1 cursor-pointer">
+                          <span id="desc-btn-list-${index}">عرض المزيد</span> <i id="desc-icon-list-${index}" class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                      ` : ''}
                     </div>
                   ` : ''}
 
@@ -431,6 +435,9 @@
 
           const whatsappMsg = encodeURIComponent(`مرحباً، أود استفسار/طلب: ${item.title} ${item.price ? 'بسعر ' + item.price + ' دينار' : ''}`);
 
+          // التحقق مما إذا كان الوصف طويلاً بما يكفي ليحتاج زر عرض المزيد
+          const isLongDesc = item.description && item.description.length > 50;
+
           container.innerHTML += `
             <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-2xl p-4 flex flex-col justify-between card-hover shadow-md group fade-in-up">
               <div>
@@ -440,7 +447,7 @@
                   </span>
                 </div>
 
-                <!-- عداد تنازلي كبير جداً وواضح ومريح للعين -->
+                <!-- عداد تنازلي كبير وواضح -->
                 ${item.endDate ? `
                   <div class="mb-4 p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 countdown-container shadow-inner" data-end="${item.endDate}">
                     <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-2.5 flex items-center gap-1.5">
@@ -477,14 +484,15 @@
 
                 <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1.5 leading-snug">${item.title}</h4>
                 
-                <!-- الوصف مع زر عرض المزيد -->
+                <!-- الوصف مع التحقق من الطول (يظهر الزر فقط إذا كان النص طويلاً) -->
                 ${item.description ? `
                   <div class="mb-4">
-                    <p id="desc-grid-${index}" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium line-clamp-1 transition-all duration-300">${item.description}</p>
-                    <button onclick="toggleDescription(${index}, 'grid')" class="click-scale text-[#3BC1C5] font-bold text-xs mt-1.5 hover:underline flex items-center gap-1.5 cursor-pointer">
-                      <span id="desc-btn-grid-${index}">عرض المزيد</span> 
-                      <i id="desc-icon-grid-${index}" class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
-                    </button>
+                    <p id="desc-grid-${index}" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium ${isLongDesc ? 'line-clamp-1 transition-all duration-300' : ''}">${item.description}</p>${isLongDesc ? `
+                      <button onclick="toggleDescription(${index}, 'grid')" class="click-scale text-[#3BC1C5] font-bold text-xs mt-1.5 hover:underline flex items-center gap-1.5 cursor-pointer">
+                        <span id="desc-btn-grid-${index}">عرض المزيد</span> 
+                        <i id="desc-icon-grid-${index}" class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                      </button>
+                    ` : ''}
                   </div>
                 ` : ''}
 
@@ -598,7 +606,6 @@
       const item = document.getElementById('cust-item').value;
       const payment = document.getElementById('cust-payment').value;
 
-      // تم التعديل ليصبح اسم المتجر واضحاً وصريحاً
       const message = `مرحباً، طلب جديد من المتجر الذكي 🚀%0A- *الاسم:* ${name}%0A- *الهاتف:* ${phone}%0A- *الطلب:* ${item}%0A- *المنطقة:* ${location}%0A- *طريقة الدفع:* ${payment}`;
       window.open(`https://wa.me/962780576584?text=${message}`, '_blank');
     }
