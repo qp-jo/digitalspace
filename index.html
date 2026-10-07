@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>المتجر الذكي | التقنية بين يديك</title>
+  <title>المتجر الذكي | للأجهزة الخلوية والكمبيوتر</title>
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,9 +13,7 @@
       theme: {
         extend: {
           colors: {
-            primary: '#06b6d4',
-            darkbg: '#030712',
-            carddark: '#0f172a'
+            primary: '#3BC1C5',
           }
         }
       }
@@ -26,159 +24,163 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- PapaParse Library -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-  
-  <!-- PapaParse -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   
+  <!-- Google Font (Tajawal) -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
   <style>
-    body { font-family: 'Cairo', sans-serif; }
-    .glass-effect {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+    body { font-family: 'Tajawal', sans-serif; }
+    .glow-cyan { box-shadow: 0 0 25px rgba(59, 193, 197, 0.25); }
+    
+    .card-hover { 
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); 
     }
-    .light .glass-effect {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
+    .card-hover:hover { 
+      transform: translateY(-6px); 
+      box-shadow: 0 15px 30px -10px rgba(59, 193, 197, 0.2);
     }
-    .card-modern {
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    .click-scale {
+      transition: transform 0.15s ease;
     }
-    .card-modern:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.25);
+    .click-scale:active {
+      transform: scale(0.96);
     }
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 0.8; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .glow-animation {
-      animation: pulseGlow 6s ease-in-out infinite;
+    .fade-in-up {
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    @keyframes floatBlob {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-15px) scale(1.05); }
+    }
+    .floating-bg {
+      animation: floatBlob 8s ease-in-out infinite;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between pb-28 md:pb-12 bg-slate-50 dark:bg-[#030712] text-slate-900 dark:text-slate-100 transition-colors duration-500">
+<body class="min-h-screen flex flex-col justify-between pb-24 md:pb-0 bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
 
-  <!-- الهيدر العلوي العائم -->
-  <header class="sticky top-3 z-50 max-w-7xl mx-auto px-4 w-[calc(100%-1.5rem)]">
-    <div class="glass-effect border border-slate-200 dark:border-slate-800 rounded-2xl px-5 py-3 shadow-xl flex justify-between items-center">
+  <!-- الهيدر العلوي -->
+  <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-300 dark:border-slate-800 px-4 py-3 shadow-md">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <div class="relative">
-          <img src="https://cdn.phototourl.com/member/2026-09-24-3094565d-8d95-412f-bf43-cd17880582d4.png" alt="Logo" class="w-10 h-10 rounded-xl object-cover border-2 border-cyan-500 shadow-md">
-          <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full animate-pulse"></span>
-        </div>
+        <img src="https://cdn.phototourl.com/member/2026-09-24-3094565d-8d95-412f-bf43-cd17880582d4.png" alt="لوجو المتجر" class="w-11 h-11 rounded-full object-cover border-2 border-[#3BC1C5] shadow-md flex-shrink-0">
         <div>
-          <h1 class="font-black text-base md:text-lg tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">المتجر الذكي</h1>
-          <p class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-wider">للأجهزة الخلوية والكمبيوتر</p>
+          <h1 class="font-black text-lg md:text-xl text-slate-900 dark:text-white leading-tight">المتجر الذكي</h1>
+          <p class="text-xs text-[#3BC1C5] font-semibold">للأجهزة الخلوية والكمبيوتر</p>
         </div>
       </div>
 
-      <div class="flex items-center gap-2.5">
-        <!-- زر التبديل الليلي والنهاري -->
-        <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-amber-500 dark:text-cyan-400 flex items-center justify-center transition border border-slate-200 dark:border-slate-700 shadow-inner">
+      <div class="flex items-center gap-3">
+        <!-- زر تبديل الوضع (غامق/فاتح) -->
+        <button onclick="toggleTheme()" class="click-scale bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-amber-500 dark:text-cyan-400 p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 transition shadow-inner" title="تغيير المظهر">
           <i id="theme-icon" class="fas fa-sun text-sm"></i>
         </button>
 
-        <a href="https://wa.me/962780576584" target="_blank" class="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs md:text-sm flex items-center gap-2 transition shadow-lg shadow-emerald-500/25">
-          <i class="fab fa-whatsapp text-base"></i>
-          <span class="hidden sm:inline">راسلنا واتساب</span>
+        <a href="https://wa.me/962780576584" target="_blank" class="click-scale bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm flex items-center gap-2 transition shadow-lg shadow-emerald-500/20">
+          <i class="fab fa-whatsapp text-lg"></i>
+          <span class="hidden sm:inline">تواصل واتساب</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- الهيرو المطور مع شريط البحث والفلاتر -->
-  <section class="max-w-7xl mx-auto px-4 mt-6 w-full">
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border border-slate-800 p-6 md:p-10 shadow-2xl">
-      <!-- خلفيات مضيئة متأرجحة -->
-      <div class="absolute -top-32 -right-32 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none glow-animation"></div>
-      <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl pointer-events-none glow-animation" style="animation-delay: 3s;"></div>
+  <!-- الهيرو الرئيسي -->
+  <section class="border border-slate-300 dark:border-slate-800 max-w-7xl mx-auto px-4 pt-10 pb-8 my-4 rounded-3xl text-center relative overflow-hidden mx-4 md:mx-auto w-[calc(100%-2rem)] bg-white dark:bg-slate-900/60 shadow-xl">
+    <div class="absolute -top-24 -right-24 w-72 h-72 bg-[#3BC1C5]/10 rounded-full blur-3xl pointer-events-none floating-bg"></div>
+    <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none floating-bg"></div>
 
-      <div class="relative z-10 max-w-3xl mx-auto text-center">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-bold mb-4 shadow-sm">
-          <i class="fas fa-bolt text-amber-400"></i> أحدث الإصدارات والعروض المباشرة
-        </span>
-        <h2 class="text-3xl md:text-5xl font-black text-white mb-3 tracking-tight">وجهتك الأولى للأجهزة والتقنية</h2>
-        <p class="text-slate-400 text-xs md:text-sm mb-6 leading-relaxed">تصفح أقوى الهواتف، اللابتوبات، والإكسسوارات بأسعار تنافسية وتحديثات فورية.</p>
+    <div class="inline-flex items-center gap-1.5 bg-[#3BC1C5]/15 text-[#3BC1C5] text-xs font-bold px-4 py-1.5 rounded-full border border-[#3BC1C5]/30 mb-3 shadow-sm">
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> عروض حصرية ومحدثة مباشرة
+    </div>
+    <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight text-slate-900 dark:text-white">عالم الأجهزة الذكية والكمبيوتر</h2>
+    <p class="text-slate-600 dark:text-slate-300 text-sm max-w-2xl mx-auto mb-6">تصفح أحدث المعروضات، الهواتف، اللابتوبات، والإكسسوارات والعروض الحصرية.</p>
+    
+    <!-- حقل البحث الذكي -->
+    <div class="max-w-xl mx-auto mb-6 relative">
+      <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
+        <i class="fas fa-search text-base"></i>
+      </span>
+      <input type="text" id="search-input" oninput="handleSearch()" placeholder="ابحث عن أي جهاز (مثال: سامسونج، آيفون، لابتوب...)" class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-2xl py-3.5 pr-12 pl-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5] shadow-inner transition">
+    </div>
 
-        <!-- صندوق البحث الفوري -->
-        <div class="relative max-w-xl mx-auto mb-6">
-          <span class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-cyan-400">
-            <i class="fas fa-search"></i>
-          </span>
-          <input type="text" id="search-input" oninput="filterProducts()" placeholder="ابحث عن هاتفك أو جهازك المفضل..." class="w-full bg-slate-900/90 border border-slate-700 focus:border-cyan-500 rounded-2xl py-3.5 pr-11 pl-4 text-sm text-white placeholder-slate-500 focus:outline-none shadow-inner transition">
-        </div>
+    <!-- أدوات التحكم والفلترة -->
+    <div class="flex flex-wrap items-center justify-between gap-4 max-w-5xl mx-auto pt-4 border-t border-slate-300 dark:border-slate-800">
+      <!-- أزرار الفلترة -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm font-bold">
+        <button onclick="filterProducts('all')" id="btn-all" class="filter-btn click-scale whitespace-nowrap bg-[#3BC1C5] text-slate-950 px-4 py-2 rounded-xl transition shadow-md font-extrabold">✨ الكل</button>
+        <button onclick="filterProducts('جديد')" id="btn-new" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">📱 أجهزة جديدة</button>
+        <button onclick="filterProducts('مستعمل')" id="btn-used" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">🔄 أجهزة مستعملة</button>
+        <button onclick="filterProducts('كمبيوتر')" id="btn-pc" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">💻 كمبيوتر ولابتوب</button>
+        <button onclick="filterProducts('إكسسوارات وعروض')" id="btn-acc" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">🎧 إكسسوارات وعروض</button>
+      </div>
 
-        <!-- أزرار التصنيفات والفلترة -->
-        <div class="flex items-center justify-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs font-bold">
-          <button onclick="setCategory('all')" id="btn-all" class="cat-btn px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 transition shadow-md whitespace-nowrap">✨ الكل</button>
-          <button onclick="setCategory('جديد')" id="btn-new" class="cat-btn px-4 py-2 rounded-xl bg-slate-800/80 text-slate-300 hover:bg-slate-800 border border-slate-700 transition whitespace-nowrap">📱 أجهزة جديدة</button>
-          <button onclick="setCategory('مستعمل')" id="btn-used" class="cat-btn px-4 py-2 rounded-xl bg-slate-800/80 text-slate-300 hover:bg-slate-800 border border-slate-700 transition whitespace-nowrap">🔄 أجهزة مستعملة</button>
-          <button onclick="setCategory('كمبيوتر')" id="btn-pc" class="cat-btn px-4 py-2 rounded-xl bg-slate-800/80 text-slate-300 hover:bg-slate-800 border border-slate-700 transition whitespace-nowrap">💻 كمبيوتر ولابتوب</button>
-          <button onclick="setCategory('إكسسوارات وعروض')" id="btn-acc" class="cat-btn px-4 py-2 rounded-xl bg-slate-800/80 text-slate-300 hover:bg-slate-800 border border-slate-700 transition whitespace-nowrap">🎧 إكسسوارات</button>
-        </div>
+      <!-- زر تبديل العرض (شبكة / قائمة) -->
+      <div class="flex items-center bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-1 gap-1 shadow-inner">
+        <button onclick="setViewMode('grid')" id="view-grid-btn" class="click-scale px-3 py-1.5 rounded-lg text-xs font-bold bg-[#3BC1C5] text-slate-950 transition shadow" title="عرض مربعات">
+          <i class="fas fa-th-large"></i>
+        </button>
+        <button onclick="setViewMode('list')" id="view-list-btn" class="click-scale px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" title="عرض أعمدة/قائمة">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- أدوات التحكم الإضافية (طريقة العرض) -->
-  <section class="max-w-7xl mx-auto px-4 mt-6 flex justify-between items-center w-full">
-    <div id="results-count" class="text-xs text-slate-500 dark:text-slate-400 font-bold">جاري تحميل المنتجات...</div>
-    <div class="flex items-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-1 gap-1 shadow-sm">
-      <button onclick="setViewMode('grid')" id="view-grid" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-500 text-slate-950 transition shadow">
-        <i class="fas fa-th-large"></i>
-      </button>
-      <button onclick="setViewMode('list')" id="view-list" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-  </section>
-
-  <!-- شبكة المنتجات -->
+  <!-- المحتوى الرئيسي -->
   <main class="max-w-7xl mx-auto px-4 py-4 flex-grow w-full">
-    <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- يتم حقن المنتجات هنا ديناميكياً -->
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+      <div class="col-span-full text-center py-20 text-slate-500 dark:text-slate-400">
+        <i class="fas fa-spinner fa-spin text-4xl text-[#3BC1C5] mb-3"></i>
+        <p class="text-sm font-semibold">جاري جلب أحدث المنتجات والعروض، يرجى الانتظار...</p>
+      </div>
     </div>
   </main>
 
-  <!-- نافذة تكبير الصورة (Modal) -->
-  <div id="image-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeImageModal()">
-    <div class="relative max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl" onclick="event.stopPropagation()">
-      <button onclick="closeImageModal()" class="absolute top-4 left-4 bg-slate-800 hover:bg-rose-500 text-slate-300 hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition font-bold z-10">
+  <!-- نافذة منسدلة (Modal) لعرض الصورة الكاملة -->
+  <div id="image-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 transition-opacity duration-300" onclick="closeImageModal()">
+    <div class="relative max-w-3xl w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-3xl p-6 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+      <button onclick="closeImageModal()" class="absolute top-4 left-4 bg-slate-200 dark:bg-slate-800 hover:bg-rose-500 hover:text-white text-slate-700 dark:text-slate-300 w-10 h-10 rounded-full flex items-center justify-center transition font-bold z-10 shadow">
         <i class="fas fa-times"></i>
       </button>
-      <h3 id="modal-title" class="text-base font-bold text-white mb-4 text-center"></h3>
-      <div class="flex items-center justify-center max-h-[65vh] bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 p-2">
-        <img id="modal-img" src="" alt="صورة مكبرة" class="max-h-[60vh] w-auto object-contain">
+      <h3 id="modal-title" class="text-lg font-black text-slate-900 dark:text-white mb-4 text-center"></h3>
+      <div class="flex items-center justify-center max-h-[70vh] bg-slate-100 dark:bg-slate-950 rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-800 p-2">
+        <img id="modal-img" src="" alt="صورة مكبرة" class="max-h-[65vh] w-auto object-contain">
       </div>
     </div>
   </div>
 
   <!-- نموذج الطلب السريع -->
-  <section class="max-w-3xl mx-auto px-4 py-8 w-full">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 md:p-8 shadow-xl">
-      <h3 class="text-lg font-black text-cyan-500 mb-2 flex items-center gap-2">
-        <i class="fas fa-paper-plane"></i> طلب جهاز أو منتج مباشر
+  <section class="max-w-3xl mx-auto px-4 py-12 w-full">
+    <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-3xl p-6 md:p-8 glow-cyan shadow-xl">
+      <h3 class="text-xl font-black text-[#3BC1C5] mb-2 flex items-center gap-2">
+        <i class="fas fa-shopping-cart"></i> نموذج الطلب الفوري
       </h3>
-      <p class="text-slate-500 dark:text-slate-400 text-xs mb-6">املأ البيانات أدناه وسيتم تحويل طلبك مباشرة إلى واتساب المحل.</p>
+      <p class="text-slate-600 dark:text-slate-400 text-xs mb-6">أدخل بياناتك وسيتم توجيه طلبك المباشر لواتساب المحل لتأكيد التفاصيل.</p>
 
       <form id="order-form" onsubmit="sendWhatsAppOrder(event)" class="space-y-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">اسمك الكريم:</label>
-            <input type="text" id="cust-name" required placeholder="أدخل اسمك" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm focus:border-cyan-500 focus:outline-none transition">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">الاسم الكامل:</label>
+            <input type="text" id="cust-name" required placeholder="أدخل اسمك" class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">رقم الهاتف:</label>
-            <input type="tel" id="cust-phone" required placeholder="07XXXXXXXX" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm focus:border-cyan-500 focus:outline-none transition">
+            <input type="tel" id="cust-phone" required placeholder="07XXXXXXXX" class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">طريقة الاستلام:</label>
-            <select id="cust-location" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm focus:border-cyan-500 focus:outline-none transition">
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">منطقة التوصيل:</label>
+            <select id="cust-location" class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
               <option value="استلام مباشر من المحل">استلام مباشر من المحل</option>
               <option value="توصيل داخل العاصمة">توصيل داخل العاصمة</option>
               <option value="توصيل لباقي المحافظات">توصيل لباقي المحافظات</option>
@@ -186,7 +188,7 @@
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">طريقة الدفع:</label>
-            <select id="cust-payment" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm focus:border-cyan-500 focus:outline-none transition">
+            <select id="cust-payment" class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
               <option value="الدفع عند الاستلام (كاش)">الدفع عند الاستلام (كاش)</option>
               <option value="تحويل CliQ">تحويل عبر كليك (CliQ)</option>
               <option value="محفظة إلكترونية">محفظة إلكترونية</option>
@@ -195,28 +197,28 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">المنتج المطلوب:</label>
-          <input type="text" id="cust-item" required placeholder="مثال: آيفون 15 برو ماكس" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3 text-sm focus:border-cyan-500 focus:outline-none transition">
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">اسم الجهاز أو الطلب:</label>
+          <input type="text" id="cust-item" required placeholder="مثال: iPhone 14 Pro Max" class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5]">
         </div>
 
-        <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black py-3.5 rounded-xl text-center flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-500/20">
-          <i class="fab fa-whatsapp text-lg"></i> إرسال الطلب عبر الواتساب
+        <button type="submit" class="click-scale w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black py-3.5 rounded-xl text-center flex items-center justify-center gap-2 transition text-base shadow-lg shadow-emerald-500/20">
+          <i class="fab fa-whatsapp text-xl"></i> إرسال الطلب عبر الواتساب
         </button>
       </form>
     </div>
   </section>
 
-  <!-- الفوتر السفلي -->
-  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-6 text-center text-xs text-slate-500">
+  <!-- الفوتر -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-300 dark:border-slate-800 py-6 text-center text-xs text-slate-500">
     <p>جميع الحقوق محفوظة © المتجر الذكي للأجهزة الخلوية والكمبيوتر 2026</p>
   </footer>
 
-  <!-- شريط الموبايل السفلي العائم -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 p-2.5 flex justify-between gap-2 md:hidden z-50 shadow-2xl">
-    <a href="tel:0780576584" class="flex-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700">
-      <i class="fas fa-phone text-cyan-400"></i> اتصال
+  <!-- الشريط السفلي للموبايل -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-t border-slate-300 dark:border-slate-800 p-2.5 flex justify-between gap-2 md:hidden z-50 shadow-2xl">
+    <a href="tel:0780576584" class="click-scale flex-1 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 border border-slate-300 dark:border-slate-700 shadow-sm">
+      <i class="fas fa-phone text-[#3BC1C5]"></i> اتصال
     </a>
-    <a href="https://wa.me/962780576584" target="_blank" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md">
+    <a href="https://wa.me/962780576584" target="_blank" class="click-scale flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-md">
       <i class="fab fa-whatsapp text-base"></i> واتساب
     </a>
   </div>
@@ -225,29 +227,70 @@
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/1oZJX4rbYrGAcvSGslSQg0pt5lK38fdHfOaLZWB2w40U/export?format=csv';
     const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500';
 
-    let allProducts = [];
-    let currentCategory = 'all';
-    let viewMode = 'grid';
-    let countdownTimer = null;
+    let allProductsList = [];
+    let activeFilter = 'all';
+    let searchQuery = '';
+    let currentViewMode = 'grid'; 
+    let countdownInterval = null;
 
-    function fetchProducts() {
-      const container = document.getElementById('products-container');
+    // ضبط المظهر تلقائياً حسب النظام
+    function initSystemTheme() {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      
+      if (prefersDark) {
+        html.classList.add('dark');
+        icon.className = "fas fa-sun text-sm";
+      } else {
+        html.classList.remove('dark');
+        icon.className = "fas fa-moon text-sm";
+      }
+
+      // الاستماع لتغييرات النظام لاحقاً
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (e.matches) {
+          html.classList.add('dark');
+          icon.className = "fas fa-sun text-sm";
+        } else {
+          html.classList.remove('dark');
+          icon.className = "fas fa-moon text-sm";
+        }
+      });
+    }
+
+    function loadProducts() {
+      const container = document.getElementById('products-grid');
+
+      // معالجة مهلة الاتصال لعدم ترك الصفحة فارغة للأبد
+      const timerFallback = setTimeout(() => {
+        if (allProductsList.length === 0) {
+          container.innerHTML = `
+            <div class="col-span-full text-center py-12 text-slate-500">
+              <i class="fas fa-exclamation-triangle text-amber-500 text-3xl mb-2"></i>
+              <p class="text-sm font-semibold mb-3">تأخر تحميل المنتجات أو تعذر الاتصال بالجدول.</p>
+              <button onclick="loadProducts()" class="bg-[#3BC1C5] text-slate-950 font-bold px-4 py-2 rounded-xl text-xs shadow">إعادة المحاولة</button>
+            </div>`;
+        }
+      }, 7000);
 
       Papa.parse(CSV_URL, {
         download: true,
         header: true,
         skipEmptyLines: true,
         complete: function(results) {
+          clearTimeout(timerFallback);
           const rows = results.data;
+          
           if (!rows || rows.length === 0) {
-            container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">لا توجد منتجات مضافة في الجدول حالياً.</div>`;
+            container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">لا توجد منتجات مسجلة بالجدول حالياً.</div>`;
             return;
           }
 
-          allProducts = [];
+          allProductsList = [];
           const now = new Date().getTime();
 
-          rows.forEach(row => {
+          rows.forEach((row) => {
             const keys = Object.keys(row);
             const title = row['Title'] || row['title'] || row['اسم المنتج'] || row[keys[0]] || '';
             const price = row['Price'] || row['price'] || row['السعر'] || row[keys[1]] || '';
@@ -260,10 +303,10 @@
 
             if (endDateStr && endDateStr.trim() !== '') {
               const endTime = new Date(endDateStr.trim()).getTime();
-              if (!isNaN(endTime) && now >= endTime) return;
+              if (!isNaN(endTime) && now >= endTime) return; 
             }
 
-            allProducts.push({
+            allProductsList.push({
               title: title.trim(),
               price: price ? price.trim() : '',
               image: (image && image.trim() !== '') ? image.trim() : DEFAULT_IMAGE,
@@ -273,23 +316,367 @@
             });
           });
 
-          renderProducts();
-          startCountdowns();
+          renderGrid();
+          startCountdownTimer();
         },
         error: function() {
-          container.innerHTML = `<div class="col-span-full text-center py-12 text-rose-500 font-bold">تعذّر تحميل البيانات. يجدر التحقق من صلاحيات نشر ملف الـ Google Sheets.</div>`;
+          clearTimeout(timerFallback);
+          container.innerHTML = `
+            <div class="col-span-full text-center py-12 text-rose-500">
+              <i class="fas fa-wifi text-3xl mb-2"></i>
+              <p class="text-sm font-semibold mb-3">تعذر تحميل بيانات الجدول. تأكد من اتصال الإنترنت أو صلاحيات مشاركة المستند.</p>
+              <button onclick="loadProducts()" class="bg-[#3BC1C5] text-slate-950 font-bold px-4 py-2 rounded-xl text-xs shadow">إعادة المحاولة</button>
+            </div>`;
         }
       });
     }
 
-    function setCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.className = "cat-btn px-4 py-2 rounded-xl bg-slate-800/80 text-slate-300 hover:bg-slate-800 border border-slate-700 transition whitespace-nowrap";
+    function handleSearch() {
+      searchQuery = document.getElementById('search-input').value.trim().toLowerCase();
+      renderGrid();
+    }
+
+    function filterProducts(category) {
+      activeFilter = category;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.className = "filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition";
+      });
+      
+      let btnId = 'btn-all';
+      if (category === 'جديد') btnId = 'btn-new';
+      else if (category === 'مستعمل') btnId = 'btn-used';
+      else if (category === 'كمبيوتر') btnId = 'btn-pc';
+      else if (category === 'إكسسوارات وعروض') btnId = 'btn-acc';
+
+      const activeBtn = document.getElementById(btnId);
+      if (activeBtn) {
+        activeBtn.className = "filter-btn click-scale whitespace-nowrap bg-[#3BC1C5] text-slate-950 font-extrabold px-4 py-2 rounded-xl transition shadow-md";
+      }
+
+      renderGrid();
+    }
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      const gridBtn = document.getElementById('view-grid-btn');
+      const listBtn = document.getElementById('view-list-btn');
+
+      if (mode === 'grid') {
+        gridBtn.className = "click-scale px-3 py-1.5 rounded-lg text-xs font-bold bg-[#3BC1C5] text-slate-950 transition shadow";
+        listBtn.className = "click-scale px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
+      } else {
+        listBtn.className = "click-scale px-3 py-1.5 rounded-lg text-xs font-bold bg-[#3BC1C5] text-slate-950 transition shadow";
+        gridBtn.className = "click-scale px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
+      }
+      renderGrid();
+    }
+
+    function renderGrid() {
+      const container = document.getElementById('products-grid');
+      container.innerHTML = '';
+
+      const filtered = allProductsList.filter(item => {
+        // فحص الفئة
+        let matchesCategory = true;
+        if (activeFilter !== 'all') {
+          const cat = item.category.toLowerCase();
+          const target = activeFilter.toLowerCase();
+          if (target === 'جديد') matchesCategory = cat.includes('جديد') || cat.includes('new');
+          else if (target === 'مستعمل') matchesCategory = cat.includes('مستعمل') || cat.includes('used');
+          else if (target === 'كمبيوتر') matchesCategory = cat.includes('كمبيوتر') || cat.includes('لابتوب') || cat.includes('pc') || cat.includes('laptop');
+          else if (target === 'إكسسوارات وعروض') matchesCategory = cat.includes('إكسسوار') || cat.includes('اكسسوار') || cat.includes('عروض') || cat.includes('عرض') || cat.includes('accessory') || cat.includes('offer');
+          else matchesCategory = cat.includes(target);
+        }
+
+        // فحص حقل البحث الذكي (يدعم الاسم أو الوصف بشكل مرن)
+        let matchesSearch = true;
+        if (searchQuery !== '') {
+          const titleLower = item.title.toLowerCase();
+          const descLower = item.description.toLowerCase();
+          matchesSearch = titleLower.includes(searchQuery) || descLower.includes(searchQuery);
+        }
+
+        return matchesCategory && matchesSearch;
       });
 
-      let btnId = 'btn-all';
-      if (cat === 'جديد') btnId = 'btn-new';
-      else if (cat === 'مستعمل') btnId = 'btn-used';
-      else if (cat === 'كمبيوتر') btnId = 'btn-pc';
-      else if (cat === 'إكسسوارات وعروض') btnId =
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-500 dark:text-slate-400"><i class="fas fa-search text-3xl mb-2 text-[#3BC1C5]"></i><p class="text-sm font-semibold">عذراً، لم نجد نتائج مطابقة لبحثك أو تصنيفك.</p></div>`;
+        return;
+      }
+
+      if (currentViewMode === 'list') {
+        container.className = "space-y-4 pt-2";
+        filtered.forEach((item, index) => {
+          const isOffer = item.category.toLowerCase().includes('عرض') || item.category.toLowerCase().includes('offer');
+          const isUsed = item.category.includes('مستعمل') || item.category.toLowerCase().includes('used');
+          
+          let badgeColor = 'bg-[#3BC1C5]/20 text-[#3BC1C5] border-[#3BC1C5]/30';
+          let badgeText = 'جهاز جديد';
+          if (isOffer) { badgeColor = 'bg-rose-500/20 text-rose-600 dark:text-rose-400 border-rose-500/30'; badgeText = '🔥 عرض خاص'; }
+          else if (isUsed) { badgeColor = 'bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-500/30'; badgeText = '🔄 مستعمل ممتاز'; }
+          else if (item.category.toLowerCase().includes('اكسسوار') || item.category.toLowerCase().includes('إكسسوار')) { badgeColor = 'bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30'; badgeText = '🎧 إكسسوار'; }
+
+          const whatsappMsg = encodeURIComponent(`مرحباً، أود استفسار/طلب: ${item.title} ${item.price ? 'بسعر ' + item.price + ' دينار' : ''}`);
+          const isLongDesc = item.description && item.description.length > 50;
+
+          container.innerHTML += `
+            <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 card-hover shadow-sm fade-in-up">
+              <div class="flex items-center gap-4 w-full sm:w-auto">
+                <div onclick="openImageModal('${item.image}', '${item.title.replace(/'/g, "\\'")}')" class="w-20 h-20 rounded-xl bg-slate-100 dark:bg-slate-950 flex-shrink-0 overflow-hidden border border-slate-300 dark:border-slate-800 cursor-pointer relative group" title="اضغط لعرض الصورة كاملة">
+                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${badgeColor} inline-block mb-1">${badgeText}</span>
+                  <h4 class="font-bold text-base text-slate-900 dark:text-white">${item.title}</h4>
+                  
+                  ${item.description ? `
+                    <div class="text-xs text-slate-600 dark:text-slate-300 mt-1">
+                      <p id="desc-list-${index}" class="${isLongDesc ? 'line-clamp-1 transition-all duration-300' : ''}">${item.description}</p>${isLongDesc ? `
+                        <button onclick="toggleDescription(event, ${index}, 'list')" class="click-scale text-[#3BC1C5] font-bold text-[11px] mt-1 hover:underline flex items-center gap-1 cursor-pointer">
+                          <span id="desc-btn-list-${index}">عرض المزيد</span> <i id="desc-icon-list-${index}" class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                        </button>
+                      ` : ''}
+                    </div>
+                  ` : ''}
+
+                  <!-- العداد التنازلي المحدث بتصميم أنيق ومدور -->
+                  ${item.endDate ? `
+                    <div class="mt-3 p-3 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 countdown-container max-w-sm shadow-inner" data-end="${item.endDate}">
+                      <div class="text-[11px] font-bold text-amber-600 dark:text-amber-400 mb-2 flex items-center gap-1.5">
+                        <i class="fas fa-stopwatch text-amber-500 text-sm"></i> ينتهي العرض خلال:
+                      </div>
+                      <div class="grid grid-cols-4 gap-2 text-center">
+                        <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-2 shadow-sm">
+                          <span class="block text-base font-black text-rose-500 days-box">00</span>
+                          <span class="block text-[9px] text-slate-500 font-bold">يوم</span>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-2 shadow-sm">
+                          <span class="block text-base font-black text-[#3BC1C5] hours-box">00</span>
+                          <span class="block text-[9px] text-slate-500 font-bold">ساعة</span>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-2 shadow-sm">
+                          <span class="block text-base font-black text-[#3BC1C5] mins-box">00</span>
+                          <span class="block text-[9px] text-slate-500 font-bold">دقيقة</span>
+                        </div>
+                        <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-2 shadow-sm">
+                          <span class="block text-base font-black text-amber-500 secs-box">00</span>
+                          <span class="block text-[9px] text-slate-500 font-bold">ثانية</span>
+                        </div>
+                      </div>
+                    </div>
+                  ` : ''}
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
+                <div class="text-xl font-black text-[#3BC1C5]">
+                  ${item.price ? `${item.price} <span class="text-xs text-slate-500 dark:text-slate-400">د.أ</span>` : 'تواصل للسعر'}
+                </div>
+                <div class="flex gap-2">
+                  <a href="https://wa.me/962780576584?text=${whatsappMsg}" target="_blank" class="click-scale bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 transition shadow">
+                    <i class="fab fa-whatsapp"></i> طلب
+                  </a>
+                  <button onclick="fillOrderForm('${item.title}')" class="click-scale bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold px-3 py-2 rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                    النموذج
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      } else {
+        container.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2";
+        filtered.forEach((item, index) => {
+          const isOffer = item.category.toLowerCase().includes('عرض') || item.category.toLowerCase().includes('offer');
+          const isUsed = item.category.includes('مستعمل') || item.category.toLowerCase().includes('used');
+          
+          let badgeColor = 'bg-[#3BC1C5]/20 text-[#3BC1C5] border-[#3BC1C5]/30';
+          let badgeText = 'جهاز جديد';
+          if (isOffer) { badgeColor = 'bg-rose-500/20 text-rose-600 dark:text-rose-400 border-rose-500/30'; badgeText = '🔥 عرض خاص'; }
+          else if (isUsed) { badgeColor = 'bg-amber-500/20 text-amber-600 dark:text-amber-400 border-amber-500/30'; badgeText = '🔄 مستعمل ممتاز'; }
+          else if (item.category.toLowerCase().includes('اكسسوار') || item.category.toLowerCase().includes('إكسسوار')) { badgeColor = 'bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30'; badgeText = '🎧 إكسسوار'; }
+
+          const whatsappMsg = encodeURIComponent(`مرحباً، أود استفسار/طلب: ${item.title} ${item.price ? 'بسعر ' + item.price + ' دينار' : ''}`);
+          const isLongDesc = item.description && item.description.length > 50;
+
+          container.innerHTML += `
+            <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-2xl p-4 flex flex-col justify-between card-hover shadow-md group fade-in-up">
+              <div>
+                <div class="flex justify-between items-center mb-3">
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-full border ${badgeColor}">
+                    ${badgeText}
+                  </span>
+                </div>
+
+                <!-- عداد تنازلي محسن ومصمم بدوائر جذابة -->
+                ${item.endDate ? `
+                  <div class="mb-4 p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 countdown-container shadow-inner" data-end="${item.endDate}">
+                    <div class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-2.5 flex items-center gap-1.5">
+                      <i class="fas fa-stopwatch text-amber-500 text-base"></i> ينتهي العرض خلال:
+                    </div>
+                    <div class="grid grid-cols-4 gap-2 text-center">
+                      <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-2.5 shadow-md">
+                        <span class="block text-lg font-black text-rose-500 days-box">00</span>
+                        <span class="block text-[10px] text-slate-500 font-bold mt-0.5">يوم</span>
+                      </div>
+                      <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-2.5 shadow-md">
+                        <span class="block text-lg font-black text-[#3BC1C5] hours-box">00</span>
+                        <span class="block text-[10px] text-slate-500 font-bold mt-0.5">ساعة</span>
+                      </div>
+                      <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-2.5 shadow-md">
+                        <span class="block text-lg font-black text-[#3BC1C5] mins-box">00</span>
+                        <span class="block text-[10px] text-slate-500 font-bold mt-0.5">دقيقة</span>
+                      </div>
+                      <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl p-2.5 shadow-md">
+                        <span class="block text-lg font-black text-amber-500 secs-box">00</span>
+                        <span class="block text-[10px] text-slate-500 font-bold mt-0.5">ثانية</span>
+                      </div>
+                    </div>
+                  </div>
+                ` : ''}
+
+                <div onclick="openImageModal('${item.image}', '${item.title.replace(/'/g, "\\'")}')" class="overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-950 mb-3 h-48 flex items-center justify-center border border-slate-300 dark:border-slate-800 cursor-pointer relative group" title="اضغط لعرض الصورة كاملة">
+                  <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-sm font-bold gap-2">
+                    <i class="fas fa-search-plus"></i> تكبير الصورة
+                  </div>
+                </div>
+
+                <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1.5 leading-snug">${item.title}</h4>
+                
+                ${item.description ? `
+                  <div class="mb-4">
+                    <p id="desc-grid-${index}" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium ${isLongDesc ? 'line-clamp-1 transition-all duration-300' : ''}">${item.description}</p>${isLongDesc ? `
+                      <button onclick="toggleDescription(event, ${index}, 'grid')" class="click-scale text-[#3BC1C5] font-bold text-xs mt-1.5 hover:underline flex items-center gap-1.5 cursor-pointer">
+                        <span id="desc-btn-grid-${index}">عرض المزيد</span> 
+                        <i id="desc-icon-grid-${index}" class="fas fa-chevron-down text-[10px] transition-transform duration-300"></i>
+                      </button>
+                    ` : ''}
+                  </div>
+                ` : ''}
+
+                <div class="text-2xl font-black text-[#3BC1C5] mb-4">
+                  ${item.price ? `${item.price} <span class="text-xs text-slate-500 dark:text-slate-400 font-normal">د.أ</span>` : 'تواصل للسعر'}
+                </div>
+              </div>
+              <div class="space-y-2">
+                <a href="https://wa.me/962780576584?text=${whatsappMsg}" target="_blank" class="click-scale w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 rounded-xl text-center flex items-center justify-center gap-2 transition text-sm shadow-md">
+                  <i class="fab fa-whatsapp text-lg"></i> طلب سريع عبر الواتساب
+                </a>
+                <button onclick="fillOrderForm('${item.title}')" class="click-scale w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-2 rounded-xl text-xs transition border border-slate-300 dark:border-slate-700">
+                  تعبئة النموذج بالأسفل 👇
+                </button>
+              </div>
+            </div>
+          `;
+        });
+      }
+    }
+
+    function openImageModal(imgSrc, title) {
+      const modal = document.getElementById('image-modal');
+      const modalImg = document.getElementById('modal-img');
+      const modalTitle = document.getElementById('modal-title');
+      
+      modalImg.src = imgSrc;
+      modalTitle.innerText = title;
+      modal.classList.remove('hidden');
+    }
+
+    function closeImageModal() {
+      const modal = document.getElementById('image-modal');
+      modal.classList.add('hidden');
+    }
+
+    // منع تداخل الحدث وإيقاف انتشار النقر لكي لا تفتح الصورة مع زر عرض المزيد
+    function toggleDescription(event, index, mode) {
+      event.stopPropagation();
+      const descEl = document.getElementById(`desc-${mode}-${index}`);
+      const btnEl = document.getElementById(`desc-btn-${mode}-${index}`);
+      const iconEl = document.getElementById(`desc-icon-${mode}-${index}`);
+
+      if (descEl.classList.contains('line-clamp-1')) {
+        descEl.classList.remove('line-clamp-1');
+        btnEl.innerText = 'إخفاء التفاصيل';
+        iconEl.style.transform = 'rotate(180deg)';
+      } else {
+        descEl.classList.add('line-clamp-1');
+        btnEl.innerText = 'عرض المزيد';
+        iconEl.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function startCountdownTimer() {
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      countdownInterval = setInterval(() => {
+        const containers = document.querySelectorAll('.countdown-container');
+        const now = new Date().getTime();
+
+        containers.forEach(container => {
+          const endDateStr = container.getAttribute('data-end');
+          const endTime = new Date(endDateStr).getTime();
+          const distance = endTime - now;
+
+          const daysBox = container.querySelector('.days-box');
+          const hoursBox = container.querySelector('.hours-box');
+          const minsBox = container.querySelector('.mins-box');
+          const secsBox = container.querySelector('.secs-box');
+
+          if (distance < 0) {
+            container.innerHTML = `<div class="text-rose-500 text-xs font-bold text-center py-1.5"><i class="fas fa-ban"></i> انتهى وقت العرض</div>`;
+            return;
+          }
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          if (daysBox) daysBox.innerText = days.toString().padStart(2, '0');
+          if (hoursBox) hoursBox.innerText = hours.toString().padStart(2, '0');
+          if (minsBox) minsBox.innerText = minutes.toString().padStart(2, '0');
+          if (secsBox) secsBox.innerText = seconds.toString().padStart(2, '0');
+        });
+      }, 1000);
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        icon.className = "fas fa-moon text-sm";
+      } else {
+        html.classList.add('dark');
+        icon.className = "fas fa-sun text-sm";
+      }
+    }
+
+    function fillOrderForm(itemName) {
+      document.getElementById('cust-item').value = itemName;
+      document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function sendWhatsAppOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('cust-name').value;
+      const phone = document.getElementById('cust-phone').value;
+      const location = document.getElementById('cust-location').value;
+      const item = document.getElementById('cust-item').value;
+      const payment = document.getElementById('cust-payment').value;
+
+      const message = `مرحباً، طلب جديد من المتجر الذكي 🚀%0A- *الاسم:* ${name}%0A- *الهاتف:* ${phone}%0A- *الطلب:* ${item}%0A- *المنطقة:* ${location}%0A- *طريقة الدفع:* ${payment}`;
+      window.open(`https://wa.me/962780576584?text=${message}`, '_blank');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initSystemTheme();
+      loadProducts();
+    });
+  </script>
+</body>
+</html>
