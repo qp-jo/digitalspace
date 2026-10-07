@@ -80,12 +80,6 @@
   <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-300 dark:border-slate-800 px-4 py-3 shadow-md">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <!-- زر الرجوع خطوة داخل الموقع -->
-        <button onclick="goBackStep()" class="click-scale bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 border border-slate-300 dark:border-slate-700 transition shadow-inner" title="رجوع خطوة للوراء (إلغاء البحث والفلترة)">
-          <i class="fas fa-arrow-right text-[#3BC1C5]"></i>
-          <span class="hidden sm:inline">رجوع</span>
-        </button>
-
         <img src="https://cdn.phototourl.com/member/2026-09-24-3094565d-8d95-412f-bf43-cd17880582d4.png" alt="لوجو المتجر" class="w-11 h-11 rounded-full object-cover border-2 border-[#3BC1C5] shadow-md flex-shrink-0">
         <div>
           <h1 class="font-black text-lg md:text-xl text-slate-900 dark:text-white leading-tight">المتجر الذكي</h1>
@@ -123,27 +117,26 @@
       <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
         <i class="fas fa-search text-base"></i>
       </span>
-      <input type="text" id="search-input" oninput="handleSearch()" placeholder="ابحث عن سامسونج، هونر، ايفون، لابتوب، عرض..." class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-2xl py-3.5 pr-12 pl-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5] shadow-inner transition">
+      <input type="text" id="search-input" oninput="handleSearchInput()" placeholder="ابحث عن سامسونج، هونر، ايفون، لابتوب، عرض..." class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-2xl py-3.5 pr-12 pl-4 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-[#3BC1C5] shadow-inner transition">
     </div>
 
     <!-- أدوات التحكم والفلترة -->
     <div class="max-w-5xl mx-auto pt-4 border-t border-slate-300 dark:border-slate-800 text-right">
-      <!-- توضيح منطقة الفلترة -->
+      <!-- منطقة الفلترة بدون شروحات زائدة -->
       <div class="flex items-center gap-2 mb-3">
         <span class="text-xs font-black text-[#3BC1C5] flex items-center gap-1.5 bg-[#3BC1C5]/10 px-3 py-1 rounded-lg border border-[#3BC1C5]/20">
-          <i class="fas fa-filter"></i> فلترة وتصنيف المنتجات:
+          <i class="fas fa-filter"></i> منطقة الفلترة
         </span>
-        <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">اختر القسم لعرض المنتجات المخصصة فوراً</span>
       </div>
 
       <div class="flex flex-wrap items-center justify-between gap-4">
         <!-- أزرار الفلترة -->
         <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs sm:text-sm font-bold">
-          <button onclick="filterProducts('all')" id="btn-all" class="filter-btn click-scale whitespace-nowrap bg-[#3BC1C5] text-slate-950 px-4 py-2 rounded-xl transition shadow-md font-extrabold">✨ الكل</button>
-          <button onclick="filterProducts('جديد')" id="btn-new" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">📱 أجهزة جديدة</button>
-          <button onclick="filterProducts('مستعمل')" id="btn-used" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">🔄 أجهزة مستعملة</button>
-          <button onclick="filterProducts('كمبيوتر')" id="btn-pc" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">💻 كمبيوتر ولابتوب</button>
-          <button onclick="filterProducts('إكسسوارات وعروض')" id="btn-acc" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">🎧 إكسسوارات وعروض</button>
+          <button onclick="applyFilter('all')" id="btn-all" class="filter-btn click-scale whitespace-nowrap bg-[#3BC1C5] text-slate-950 px-4 py-2 rounded-xl transition shadow-md font-extrabold">✨ الكل</button>
+          <button onclick="applyFilter('جديد')" id="btn-new" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">📱 أجهزة جديدة</button>
+          <button onclick="applyFilter('مستعمل')" id="btn-used" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">🔄 أجهزة مستعملة</button>
+          <button onclick="applyFilter('كمبيوتر')" id="btn-pc" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">💻 كمبيوتر ولابتوب</button>
+          <button onclick="applyFilter('إكسسوارات وعروض')" id="btn-acc" class="filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition">🎧 إكسسوارات وعروض</button>
         </div>
 
         <!-- زر تبديل العرض (شبكة / قائمة) -->
@@ -257,6 +250,7 @@
     let searchQuery = '';
     let currentViewMode = 'grid'; 
     let countdownInterval = null;
+    let searchTimeout = null;
 
     // قاموس الربط بين المصطلحات العربية ومصطلحات البحث الإنجليزية للبراندات والأجهزة
     const arabicToEnglishMap = {
@@ -284,13 +278,38 @@
         .replace(/[\u064b-\u065f]/g, '');
     }
 
-    // زر الرجوع خطوة للوراء داخل الموقع (إلغاء البحث والفلترة)
-    function goBackStep() {
-      document.getElementById('search-input').value = '';
-      searchQuery = '';
-      filterProducts('all');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    // إدارة حالة التاريخ للرجوع عبر إيماءات أو أزرار الهاتف
+    function updateHistoryState(filter, search, push = true) {
+      activeFilter = filter;
+      searchQuery = search;
+      
+      const searchInput = document.getElementById('search-input');
+      if (searchInput.value !== search) {
+        searchInput.value = search;
+      }
+
+      updateFilterButtonsUI(filter);
+      renderGrid();
+
+      const stateObj = { filter, search };
+      if (push) {
+        history.pushState(stateObj, '', '');
+      } else {
+        history.replaceState(stateObj, '', '');
+      }
     }
+
+    window.addEventListener('popstate', (event) => {
+      const state = event.state || { filter: 'all', search: '' };
+      activeFilter = state.filter || 'all';
+      searchQuery = state.search || '';
+      
+      const searchInput = document.getElementById('search-input');
+      searchInput.value = searchQuery;
+
+      updateFilterButtonsUI(activeFilter);
+      renderGrid();
+    });
 
     // ضبط المظهر تلقائياً حسب النظام
     function initSystemTheme() {
@@ -373,7 +392,8 @@
             });
           });
 
-          renderGrid();
+          // تهيئة الحالة الأولية للتاريخ
+          updateHistoryState('all', '', false);
           startCountdownTimer();
         },
         error: function() {
@@ -388,13 +408,20 @@
       });
     }
 
-    function handleSearch() {
-      searchQuery = document.getElementById('search-input').value.trim();
-      renderGrid();
+    function handleSearchInput() {
+      const val = document.getElementById('search-input').value.trim();
+      if (searchTimeout) clearTimeout(searchTimeout);
+      
+      searchTimeout = setTimeout(() => {
+        updateHistoryState(activeFilter, val, true);
+      }, 300);
     }
 
-    function filterProducts(category) {
-      activeFilter = category;
+    function applyFilter(category) {
+      updateHistoryState(category, searchQuery, true);
+    }
+
+    function updateFilterButtonsUI(category) {
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.className = "filter-btn click-scale whitespace-nowrap bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700 px-4 py-2 rounded-xl transition";
       });
@@ -409,8 +436,6 @@
       if (activeBtn) {
         activeBtn.className = "filter-btn click-scale whitespace-nowrap bg-[#3BC1C5] text-slate-950 font-extrabold px-4 py-2 rounded-xl transition shadow-md";
       }
-
-      renderGrid();
     }
 
     function setViewMode(mode) {
@@ -435,7 +460,6 @@
       const normalizedSearch = normalizeArabic(searchQuery);
       let translatedSearchTerm = '';
       
-      // مطابقة الكلمات العربية المدعومة مع نظيراتها الإنجليزية في العناوين
       for (let arKey in arabicToEnglishMap) {
         if (normalizedSearch.includes(arKey)) {
           translatedSearchTerm = arabicToEnglishMap[arKey];
