@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════
 // ═══ Service Worker — المتجر الذكي ═══
 // ═══════════════════════════════════════
-const CACHE_NAME = 'smart-store-digitspace-v1';
+const CACHE_NAME = 'smart-store-digitspace-v2';
 const urlsToCache = [
   './',
   './index.html',
