@@ -3,11 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="المتجر الذهبي - مجموعة العطور الفاخرة. توصيل سريع، دفع عند الاستلام.">
+<meta name="theme-color" content="#C6952B">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="المتجر الذهبي | مجموعة العطور الفاخرة">
+<meta property="og:description" content="تركيبة فاخرة تدوم طوال اليوم. توصيل سريع، دفع عند الاستلام.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200&h=630&fit=crop">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="المتجر الذهبي | مجموعة العطور الفاخرة">
+<meta name="twitter:description" content="تركيبة فاخرة تدوم طوال اليوم.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1541643600914-78b084683601?w=1200&h=630&fit=crop">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="المتجر الذهبي">
+
 <title>المتجر الذهبي | مجموعة العطور الفاخرة</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;500;700;800&family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+
 <style>
   :root{
     --gold:#C6952B;
@@ -25,16 +50,41 @@
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
+
   html{ scroll-padding-top: 88px; scroll-behavior:smooth; }
   body{
     background: var(--slate-950);
     color: var(--ivory);
     font-family: 'Almarai', 'Tahoma', sans-serif;
     overflow-x:hidden;
+    transition: background 0.3s ease, color 0.3s ease;
   }
+
+  /* ═══ Light Mode ═══ */
+  html.light{
+    --slate-950:#F8F6F1;
+    --slate-900:#FFFFFF;
+    --slate-850:#FDFBF7;
+    --slate-800:#F2EFE8;
+    --slate-700:#DDD8CD;
+    --ivory:#1A1A1A;
+    --ivory-dim:#6B6B6B;
+    --line:rgba(198,149,43,0.35);
+  }
+  html.light body{ background: var(--slate-950); color: var(--ivory); }
+  html.light .brand-gradient{ background: linear-gradient(135deg, #FDFBF7 0%, #F8F6F1 55%, #F5EFE0 100%); }
+  html.light #siteHeader{ background: rgba(248,246,241,0.75); }
+  html.light #siteHeader.scrolled{ background: rgba(248,246,241,0.92); }
+  html.light .card,
+  html.light .card-elevated,
+  html.light .pkg-card,
+  html.light .countdown-box{ background: #FFFFFF; }
+  html.light .input-field{ background: #F2EFE8; }
+  html.light #mobileBar{ background: rgba(248,246,241,0.92); }
+
   .font-display{ font-family:'Cairo','Tahoma',sans-serif; }
 
-  /* ---------- Backgrounds ---------- */
+  /* Backgrounds */
   .bg-pattern{
     background-image:
       radial-gradient(circle at 15% 10%, rgba(198,149,43,0.18), transparent 40%),
@@ -46,15 +96,18 @@
     background: linear-gradient(135deg, #16191F 0%, #0F1115 55%, #1A140B 100%);
   }
   .gold-text{ color: var(--gold-light); }
+  html.light .gold-text{ color: var(--gold); }
   .gold-line{ background: linear-gradient(90deg, transparent, var(--gold), transparent); height:1px; }
 
-  /* ---------- Glass ---------- */
+  /* Glass */
   .glass{
     background: rgba(255,255,255,0.04);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255,255,255,0.08);
   }
+  html.light .glass{ background: rgba(255,255,255,0.7); border-color: rgba(0,0,0,0.06); }
+
   #siteHeader{
     background: rgba(15,17,21,0.55);
     backdrop-filter: blur(18px);
@@ -67,13 +120,14 @@
     background: rgba(15,17,21,0.85);
   }
 
-  /* ---------- Buttons ---------- */
+  /* Buttons */
   .btn-gold{
     background: linear-gradient(135deg, var(--gold-light), var(--gold) 60%, var(--gold-dim));
     color:#1A1206;
     box-shadow: 0 10px 30px -10px rgba(198,149,43,0.55);
+    transition: all 0.3s ease;
   }
-  .btn-gold:hover{ box-shadow: 0 16px 40px -8px rgba(198,149,43,0.8); }
+  .btn-gold:hover{ box-shadow: 0 16px 40px -8px rgba(198,149,43,0.8); transform: translateY(-2px); }
   .btn-gold:active{ transform: translateY(1px) scale(0.98); }
   .btn-glow{ animation: glowPulse 2.6s ease-in-out infinite; }
   @keyframes glowPulse{
@@ -83,24 +137,28 @@
   .btn-ghost{
     border:1px solid var(--line);
     color: var(--ivory);
+    transition: all 0.3s ease;
   }
   .btn-ghost:hover{ border-color: var(--gold); background: rgba(198,149,43,0.08); }
 
-  /* ---------- Cards ---------- */
+  /* Cards */
   .card{
     background: var(--slate-900);
     border: 1px solid var(--line);
+    transition: all 0.3s ease;
   }
   .card-elevated{
     background: linear-gradient(180deg, var(--slate-850), var(--slate-900));
     border: 1px solid var(--line);
+    transition: all 0.3s ease;
   }
 
-  /* ---------- Inputs ---------- */
+  /* Inputs */
   .input-field{
     background: var(--slate-800);
     border: 1px solid var(--slate-700);
     color: var(--ivory);
+    transition: all 0.2s ease;
   }
   .input-field:focus{
     outline: none;
@@ -116,6 +174,7 @@
     background: var(--slate-900);
     border: 1px solid var(--line);
     min-width: 68px;
+    transition: all 0.3s ease;
   }
 
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{
@@ -123,12 +182,16 @@
     outline-offset: 2px;
   }
 
-  /* ---------- Package cards ---------- */
+  /* Package cards */
   .pkg-card{
     background: var(--slate-900);
     border: 1px solid var(--line);
+    transition: all 0.3s ease;
   }
-  .pkg-card.is-selected{ border-color: var(--gold-light); box-shadow: 0 0 0 1px var(--gold-light), 0 20px 40px -16px rgba(198,149,43,0.4); }
+  .pkg-card.is-selected{
+    border-color: var(--gold-light);
+    box-shadow: 0 0 0 1px var(--gold-light), 0 20px 40px -16px rgba(198,149,43,0.4);
+  }
   .badge{ background: var(--gold); color:#1A1206; }
   .badge-pulse{ position:relative; }
   .badge-pulse::after{
@@ -145,7 +208,23 @@
 
   .stars{ color: var(--gold-light); }
 
-  /* ---------- Floating discount tag ---------- */
+  /* Product images */
+  .product-gallery img{
+    transition: opacity 0.3s ease;
+  }
+  .product-thumb{
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .product-thumb.active{
+    border-color: var(--gold-light);
+  }
+  .product-thumb:hover{
+    border-color: var(--gold);
+  }
+
+  /* Floating discount tag */
   .float-tag{
     animation: floatY 3.4s ease-in-out infinite;
   }
@@ -154,7 +233,7 @@
     50%{ transform: translateY(-10px) rotate(-6deg); }
   }
 
-  /* ---------- Coupon flash ---------- */
+  /* Micro-interactions */
   .flash-success{ animation: flashSuccess 0.9s ease; }
   @keyframes flashSuccess{
     0%{ background-color: rgba(34,197,94,0.35); border-radius: 10px; }
@@ -174,7 +253,23 @@
     75%{ transform: translateX(6px); }
   }
 
-  /* ---------- FAQ accordion (CSS grid trick, no JS height calc) ---------- */
+  /* Toast */
+  #toast{
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    z-index: 100;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  #toast.show{
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  /* FAQ accordion */
   .accordion-content{
     display:grid;
     grid-template-rows: 0fr;
@@ -188,7 +283,7 @@
   .faq-item:last-child{ border-bottom:none; }
   .faq-trigger{ cursor:pointer; }
 
-  /* ---------- Hero entrance ---------- */
+  /* Hero entrance */
   .hero-reveal > *{
     opacity:0; transform: translateY(16px);
     animation: heroIn 0.7s ease forwards;
@@ -199,7 +294,7 @@
   .hero-reveal > *:nth-child(4){ animation-delay: 0.35s; }
   @keyframes heroIn{ to{ opacity:1; transform:none; } }
 
-  /* ---------- WhatsApp fab ---------- */
+  /* WhatsApp fab */
   .whatsapp-fab{
     position: fixed;
     left: 18px;
@@ -207,6 +302,7 @@
     z-index: 50;
     background: var(--green);
     box-shadow: 0 10px 24px -6px rgba(34,197,94,0.6);
+    transition: all 0.3s ease;
   }
   .whatsapp-fab .ping{
     position:absolute; inset:0; border-radius:9999px;
@@ -217,8 +313,13 @@
     0%{ transform:scale(1); opacity:0.5; }
     100%{ transform:scale(2); opacity:0; }
   }
+  @media (max-width: 640px){
+    .whatsapp-fab{
+      bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+    }
+  }
 
-  /* ---------- Sticky mobile bottom bar ---------- */
+  /* Sticky mobile bar */
   #mobileBar{
     position: fixed; left:0; right:0; bottom:0; z-index:50;
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -226,6 +327,49 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Theme toggle */
+  .theme-toggle{
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--line);
+    background: var(--slate-800);
+    color: var(--gold-light);
+  }
+  .theme-toggle:hover{ border-color: var(--gold); }
+
+  /* Badges */
+  .stock-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid;
+  }
+  .stock-badge.available{
+    background: rgba(34,197,94,0.15);
+    color: #4ADE80;
+    border-color: rgba(34,197,94,0.35);
+  }
+  .stock-badge.last{
+    background: rgba(239,68,68,0.15);
+    color: #F87171;
+    border-color: rgba(239,68,68,0.35);
+  }
+  .stock-badge.offer{
+    background: rgba(198,149,43,0.18);
+    color: var(--gold-light);
+    border-color: rgba(198,149,43,0.4);
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -239,21 +383,30 @@
 
   <!-- Header -->
   <header id="siteHeader" class="sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-3">
+      <a href="#" class="flex items-center gap-2" aria-label="المتجر الذهبي">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M15 2L27 9V21L15 28L3 21V9L15 2Z" stroke="var(--gold)" stroke-width="1.4"/>
           <path d="M15 9L20 12.5V19.5L15 23L10 19.5V12.5L15 9Z" fill="var(--gold)" opacity="0.85"/>
         </svg>
-        <span class="font-display font-bold text-lg sm:text-xl gold-text">المتجر الذهبي</span>
-      </div>
-      <div class="hidden sm:flex items-center gap-6 text-sm text-[color:var(--ivory-dim)]">
+        <span class="font-display font-bold text-lg sm:text-xl gold-text" id="storeName">المتجر الذهبي</span>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm text-[color:var(--ivory-dim)]">
         <a href="#features" class="hover:text-[color:var(--gold-light)] transition-colors duration-300">المميزات</a>
+        <a href="#product" class="hover:text-[color:var(--gold-light)] transition-colors duration-300">المنتج</a>
         <a href="#packages" class="hover:text-[color:var(--gold-light)] transition-colors duration-300">الباقات</a>
         <a href="#reviews" class="hover:text-[color:var(--gold-light)] transition-colors duration-300">آراء العملاء</a>
-        <a href="#faq" class="hover:text-[color:var(--gold-light)] transition-colors duration-300">الأسئلة الشائعة</a>
+        <a href="#faq" class="hover:text-[color:var(--gold-light)] transition-colors duration-300">الأسئلة</a>
       </div>
-      <a href="#order" class="btn-gold hover:scale-105 transition-all duration-300 font-display font-bold text-sm sm:text-base px-4 sm:px-6 py-2.5 rounded-full">اطلب الآن</a>
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" class="theme-toggle" aria-label="تبديل المظهر" title="تبديل المظهر">
+          <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 2V4M12 20V22M4 12H2M22 12H20M19.07 4.93L17.66 6.34M6.34 17.66L4.93 19.07M19.07 19.07L17.66 17.66M6.34 6.34L4.93 4.93" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <a href="#order" class="btn-gold font-display font-bold text-sm sm:text-base px-4 sm:px-6 py-2.5 rounded-full hidden sm:inline-block">اطلب الآن</a>
+      </div>
     </div>
   </header>
 
@@ -262,7 +415,7 @@
     <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 sm:py-24 grid md:grid-cols-2 gap-10 items-center">
       <div class="hero-reveal">
         <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold gold-text border rounded-full px-3 py-1.5 mb-5" style="border-color:var(--line)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--gold-light)"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--gold-light)" aria-hidden="true"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
           الأكثر مبيعًا لموسم ٢٠٢٦
         </span>
         <h1 class="font-display font-black text-3xl sm:text-5xl leading-tight mb-5">
@@ -272,13 +425,13 @@
           تركيبة فاخرة تدوم طوال اليوم، بزجاجة ذهبية أنيقة تليق بحضورك. توصيل سريع لجميع مناطق المملكة، والدفع عند الاستلام.
         </p>
         <div class="flex flex-wrap items-center gap-4 mb-9">
-          <a href="#order" class="btn-gold btn-glow hover:scale-105 transition-all duration-300 font-display font-bold text-base px-8 py-3.5 rounded-full inline-block">اطلبه الآن بخصم خاص</a>
-          <a href="#packages" class="btn-ghost hover:scale-105 transition-all duration-300 font-display font-bold text-base px-7 py-3.5 rounded-full inline-block">استعرض الباقات</a>
+          <a href="#order" class="btn-gold btn-glow font-display font-bold text-base px-8 py-3.5 rounded-full inline-block">اطلبه الآن بخصم خاص</a>
+          <a href="#packages" class="btn-ghost font-display font-bold text-base px-7 py-3.5 rounded-full inline-block">استعرض الباقات</a>
         </div>
         <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm">
           <div>
             <div class="font-display font-black text-lg gold-text">٤.٩ / ٥</div>
-            <div class="stars text-xs">★★★★★</div>
+            <div class="stars text-xs" aria-label="تقييم 5 من 5">★★★★★</div>
           </div>
           <div class="w-px h-8" style="background:var(--line)"></div>
           <div>
@@ -294,52 +447,35 @@
       </div>
 
       <div class="hero-reveal flex justify-center relative">
-        <span class="float-tag absolute -top-2 sm:top-2 left-2 sm:left-8 z-10 btn-gold shadow-2xl font-display font-bold text-xs sm:text-sm px-4 py-2 rounded-2xl">
+        <span class="float-tag absolute -top-2 sm:top-2 left-2 sm:left-8 z-10 btn-gold font-display font-bold text-xs sm:text-sm px-4 py-2 rounded-2xl">
           خصم ٣ د.أ اليوم
         </span>
-        <svg width="240" height="300" viewBox="0 0 240 300" class="max-w-[220px] sm:max-w-[260px] w-full h-auto drop-shadow-2xl" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="bottleGold" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#E3BD63"/>
-              <stop offset="55%" stop-color="#C6952B"/>
-              <stop offset="100%" stop-color="#8A6A1E"/>
-            </linearGradient>
-            <linearGradient id="glassGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#2A2F38"/>
-              <stop offset="100%" stop-color="#14171D"/>
-            </linearGradient>
-            <radialGradient id="glow" cx="50%" cy="40%" r="60%">
-              <stop offset="0%" stop-color="#C6952B" stop-opacity="0.35"/>
-              <stop offset="100%" stop-color="#C6952B" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <circle cx="120" cy="140" r="130" fill="url(#glow)"/>
-          <rect x="100" y="30" width="40" height="28" rx="4" fill="url(#bottleGold)"/>
-          <rect x="93" y="16" width="54" height="18" rx="3" fill="url(#bottleGold)"/>
-          <path d="M75 58H165C170 58 174 63 174 69V255C174 267 165 276 153 276H87C75 276 66 267 66 255V69C66 63 70 58 75 58Z" fill="url(#glassGrad)" stroke="var(--gold)" stroke-width="1.5"/>
-          <rect x="78" y="100" width="84" height="90" rx="6" fill="#0F1115" opacity="0.5"/>
-          <text x="120" y="150" text-anchor="middle" fill="var(--gold-light)" font-family="Cairo, sans-serif" font-size="15" font-weight="700">الذهبي</text>
-          <line x1="66" y1="220" x2="174" y2="220" stroke="var(--gold)" stroke-width="1" opacity="0.5"/>
-        </svg>
+        <div class="w-full max-w-[260px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border" style="border-color:var(--line)">
+          <img
+            src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=1000&fit=crop"
+            alt="عطر المتجر الذهبي"
+            loading="eager"
+            class="w-full h-full object-cover">
+        </div>
       </div>
     </div>
   </section>
 
   <div class="gold-line"></div>
 
-  <!-- Trust badges bar -->
+  <!-- Trust badges -->
   <section class="py-8 px-5 sm:px-8">
     <div class="max-w-5xl mx-auto flex flex-wrap justify-center gap-3 sm:gap-4">
-      <div class="glass hover:scale-105 transition-all duration-300 rounded-full px-5 py-3 flex items-center gap-2 shadow-2xl">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="var(--gold)" stroke-width="1.8"/><path d="M3 10H21" stroke="var(--gold)" stroke-width="1.8"/></svg>
+      <div class="glass rounded-full px-5 py-3 flex items-center gap-2 shadow-2xl">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2" stroke="var(--gold)" stroke-width="1.8"/><path d="M3 10H21" stroke="var(--gold)" stroke-width="1.8"/></svg>
         <span class="text-xs sm:text-sm font-bold">الدفع عند الاستلام</span>
       </div>
-      <div class="glass hover:scale-105 transition-all duration-300 rounded-full px-5 py-3 flex items-center gap-2 shadow-2xl">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 12H15M15 12L11 8M15 12L11 16" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7H18L21 11V16H15" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <div class="glass rounded-full px-5 py-3 flex items-center gap-2 shadow-2xl">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H15M15 12L11 8M15 12L11 16" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7H18L21 11V16H15" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
         <span class="text-xs sm:text-sm font-bold">توصيل سريع لكافة المحافظات</span>
       </div>
-      <div class="glass hover:scale-105 transition-all duration-300 rounded-full px-5 py-3 flex items-center gap-2 shadow-2xl">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L20 6V12C20 17 16.5 20.7 12 22C7.5 20.7 4 17 4 12V6L12 2Z" stroke="var(--gold)" stroke-width="1.8"/><path d="M9 12L11 14L15.5 9.5" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="glass rounded-full px-5 py-3 flex items-center gap-2 shadow-2xl">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L20 6V12C20 17 16.5 20.7 12 22C7.5 20.7 4 17 4 12V6L12 2Z" stroke="var(--gold)" stroke-width="1.8"/><path d="M9 12L11 14L15.5 9.5" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="text-xs sm:text-sm font-bold">ضمان الجودة</span>
       </div>
     </div>
@@ -347,7 +483,97 @@
 
   <div class="gold-line"></div>
 
-  <!-- Features grid -->
+  <!-- Product Showcase (NEW) -->
+  <section id="product" class="py-14 sm:py-20 px-5 sm:px-8">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-10">
+        <h2 class="font-display font-black text-2xl sm:text-3xl mb-3">تشكيلة الذهبي</h2>
+        <p class="text-sm sm:text-base text-[color:var(--ivory-dim)]">اختر عطرك المفضل من تشكيلتنا الحصرية</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-center card rounded-3xl p-5 sm:p-8">
+        <div class="product-gallery">
+          <div class="rounded-2xl overflow-hidden border aspect-square bg-black/20" style="border-color:var(--line)">
+            <img id="mainProductImage"
+                 src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop"
+                 alt="صورة المنتج"
+                 class="w-full h-full object-cover">
+          </div>
+          <div class="grid grid-cols-4 gap-2 mt-3">
+            <button class="product-thumb active rounded-lg overflow-hidden border aspect-square" data-src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop" aria-label="صورة 1">
+              <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=200&h=200&fit=crop" alt="" class="w-full h-full object-cover">
+            </button>
+            <button class="product-thumb rounded-lg overflow-hidden border aspect-square" data-src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800&h=800&fit=crop" aria-label="صورة 2">
+              <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=200&h=200&fit=crop" alt="" class="w-full h-full object-cover">
+            </button>
+            <button class="product-thumb rounded-lg overflow-hidden border aspect-square" data-src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800&h=800&fit=crop" aria-label="صورة 3">
+              <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=200&h=200&fit=crop" alt="" class="w-full h-full object-cover">
+            </button>
+            <button class="product-thumb rounded-lg overflow-hidden border aspect-square" data-src="https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=800&h=800&fit=crop" aria-label="صورة 4">
+              <img src="https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=200&h=200&fit=crop" alt="" class="w-full h-full object-cover">
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <span class="stock-badge available">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              متوفر
+            </span>
+            <span class="stock-badge offer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              عرض خاص
+            </span>
+          </div>
+
+          <h3 class="font-display font-black text-2xl sm:text-3xl mb-3">عطر الذهبي الفاخر</h3>
+          <div class="stars flex gap-0.5 mb-4" aria-label="تقييم 4.9 من 5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
+          </div>
+
+          <p class="text-sm sm:text-base text-[color:var(--ivory-dim)] leading-relaxed mb-6">
+            عطر شرقي فاخر بمزيج من العود والعنبر والمسك الأبيض. رائحة تدوم أكثر من ١٢ ساعة، ومناسبة لجميع المناسبات.
+          </p>
+
+          <div class="grid grid-cols-2 gap-3 mb-6 text-sm">
+            <div class="flex items-center gap-2 text-[color:var(--ivory-dim)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="var(--gold)" stroke-width="1.8"/><path d="M12 7V12L15.5 14" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"/></svg>
+              ثبات ١٢+ ساعة
+            </div>
+            <div class="flex items-center gap-2 text-[color:var(--ivory-dim)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C12 3 6 10 6 14.5C6 17.5 8.7 20 12 20C15.3 20 18 17.5 18 14.5C18 10 12 3 12 3Z" stroke="var(--gold)" stroke-width="1.8"/></svg>
+              تركيز EDP
+            </div>
+            <div class="flex items-center gap-2 text-[color:var(--ivory-dim)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="2" stroke="var(--gold)" stroke-width="1.8"/><path d="M4 8L12 3L20 8" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              تغليف فاخر
+            </div>
+            <div class="flex items-center gap-2 text-[color:var(--ivory-dim)]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5C21 16.75 12 21 12 21S3 16.75 3 11.5C3 7.9 5.7 5 9 5C10.5 5 11.8 5.7 12 6.5C12.2 5.7 13.5 5 15 5C18.3 5 21 7.9 21 11.5Z" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              مكونات طبيعية
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="#order" class="btn-gold btn-glow font-display font-bold text-base px-6 py-3 rounded-full flex-1 text-center min-w-[180px]">اطلب الآن</a>
+            <button id="shareBtn" class="btn-ghost font-display font-bold text-sm px-5 py-3 rounded-full flex items-center gap-2" aria-label="مشاركة المنتج">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M8.6 13.5L15.4 17.5M15.4 6.5L8.6 10.5" stroke="currentColor" stroke-width="1.8"/></svg>
+              مشاركة
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-line"></div>
+
+  <!-- Features -->
   <section id="features" class="py-14 sm:py-20 px-5 sm:px-8">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-10">
@@ -356,49 +582,49 @@
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="card hover:shadow-2xl rounded-2xl p-6">
           <div class="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style="background:rgba(198,149,43,0.12)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="var(--gold)" stroke-width="1.8"/><path d="M12 7V12L15.5 14" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="var(--gold)" stroke-width="1.8"/><path d="M12 7V12L15.5 14" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round"/></svg>
           </div>
           <h3 class="font-display font-bold mb-2">ثبات يدوم طويلاً</h3>
           <p class="text-sm text-[color:var(--ivory-dim)]">رائحة تبقى معك من الصباح حتى المساء دون تجديد</p>
         </div>
 
-        <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="card hover:shadow-2xl rounded-2xl p-6">
           <div class="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style="background:rgba(198,149,43,0.12)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3C12 3 6 10 6 14.5C6 17.5 8.7 20 12 20C15.3 20 18 17.5 18 14.5C18 10 12 3 12 3Z" stroke="var(--gold)" stroke-width="1.8"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C12 3 6 10 6 14.5C6 17.5 8.7 20 12 20C15.3 20 18 17.5 18 14.5C18 10 12 3 12 3Z" stroke="var(--gold)" stroke-width="1.8"/></svg>
           </div>
           <h3 class="font-display font-bold mb-2">تركيز عالي</h3>
           <p class="text-sm text-[color:var(--ivory-dim)]">نسبة زيوت عطرية مركّزة لرائحة أقوى وأعمق</p>
         </div>
 
-        <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="card hover:shadow-2xl rounded-2xl p-6">
           <div class="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style="background:rgba(198,149,43,0.12)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="8" width="16" height="12" rx="2" stroke="var(--gold)" stroke-width="1.8"/><path d="M4 8L12 3L20 8" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="2" stroke="var(--gold)" stroke-width="1.8"/><path d="M4 8L12 3L20 8" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
           </div>
           <h3 class="font-display font-bold mb-2">تغليف أنيق</h3>
           <p class="text-sm text-[color:var(--ivory-dim)]">عبوة ذهبية فاخرة تصلح للاستخدام الشخصي أو كهدية</p>
         </div>
 
-        <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="card hover:shadow-2xl rounded-2xl p-6">
           <div class="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style="background:rgba(198,149,43,0.12)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 11.5C21 16.75 12 21 12 21S3 16.75 3 11.5C3 7.9 5.7 5 9 5C10.5 5 11.8 5.7 12 6.5C12.2 5.7 13.5 5 15 5C18.3 5 21 7.9 21 11.5Z" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5C21 16.75 12 21 12 21S3 16.75 3 11.5C3 7.9 5.7 5 9 5C10.5 5 11.8 5.7 12 6.5C12.2 5.7 13.5 5 15 5C18.3 5 21 7.9 21 11.5Z" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
           </div>
           <h3 class="font-display font-bold mb-2">مكونات فاخرة</h3>
           <p class="text-sm text-[color:var(--ivory-dim)]">مستخلصات طبيعية مختارة بعناية من أفضل المصادر</p>
         </div>
 
-        <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="card hover:shadow-2xl rounded-2xl p-6">
           <div class="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style="background:rgba(198,149,43,0.12)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12H15M15 12L11 8M15 12L11 16" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7H18L21 11V16H15" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12H15M15 12L11 8M15 12L11 16" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7H18L21 11V16H15" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round"/></svg>
           </div>
           <h3 class="font-display font-bold mb-2">توصيل سريع</h3>
           <p class="text-sm text-[color:var(--ivory-dim)]">لجميع مناطق المملكة خلال ٢٤ إلى ٤٨ ساعة</p>
         </div>
 
-        <div class="card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
+        <div class="card hover:shadow-2xl rounded-2xl p-6">
           <div class="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style="background:rgba(198,149,43,0.12)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12L11 14L15.5 9.5" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="var(--gold)" stroke-width="1.8"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 12L11 14L15.5 9.5" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="var(--gold)" stroke-width="1.8"/></svg>
           </div>
           <h3 class="font-display font-bold mb-2">ضمان استرجاع</h3>
           <p class="text-sm text-[color:var(--ivory-dim)]">استبدال خلال ٧ أيام إذا لم تكن راضياً عن المنتج</p>
@@ -416,20 +642,20 @@
       <span class="badge-pulse inline-block text-xs font-bold gold-text border rounded-full px-3 py-1 mb-4" style="border-color:var(--line)">عرض لفترة محدودة</span>
       <h2 class="font-display font-bold text-xl sm:text-2xl mb-2">العرض ينتهي خلال</h2>
       <p class="text-sm text-[color:var(--ivory-dim)] mb-7">اطلب الآن قبل انتهاء الكمية المخصصة لهذا العرض</p>
-      <div id="countdown" class="flex justify-center gap-3 sm:gap-4">
-        <div class="countdown-box hover:scale-105 transition-all duration-300 shadow-2xl rounded-xl py-3 px-2 sm:px-4">
+      <div id="countdown" class="flex justify-center gap-3 sm:gap-4" role="timer" aria-live="polite">
+        <div class="countdown-box shadow-2xl rounded-xl py-3 px-2 sm:px-4">
           <div id="cd-days" class="font-display font-black text-2xl sm:text-3xl gold-text">00</div>
           <div class="text-xs text-[color:var(--ivory-dim)] mt-1">أيام</div>
         </div>
-        <div class="countdown-box hover:scale-105 transition-all duration-300 shadow-2xl rounded-xl py-3 px-2 sm:px-4">
+        <div class="countdown-box shadow-2xl rounded-xl py-3 px-2 sm:px-4">
           <div id="cd-hours" class="font-display font-black text-2xl sm:text-3xl gold-text">00</div>
           <div class="text-xs text-[color:var(--ivory-dim)] mt-1">ساعات</div>
         </div>
-        <div class="countdown-box hover:scale-105 transition-all duration-300 shadow-2xl rounded-xl py-3 px-2 sm:px-4">
+        <div class="countdown-box shadow-2xl rounded-xl py-3 px-2 sm:px-4">
           <div id="cd-minutes" class="font-display font-black text-2xl sm:text-3xl gold-text">00</div>
           <div class="text-xs text-[color:var(--ivory-dim)] mt-1">دقائق</div>
         </div>
-        <div class="countdown-box hover:scale-105 transition-all duration-300 shadow-2xl rounded-xl py-3 px-2 sm:px-4">
+        <div class="countdown-box shadow-2xl rounded-xl py-3 px-2 sm:px-4">
           <div id="cd-seconds" class="font-display font-black text-2xl sm:text-3xl gold-text">00</div>
           <div class="text-xs text-[color:var(--ivory-dim)] mt-1">ثواني</div>
         </div>
@@ -448,26 +674,26 @@
       </div>
       <div class="grid sm:grid-cols-3 gap-6">
 
-        <div class="pkg-card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 flex flex-col" data-value="زجاجة واحدة (٥٠ مل)" data-price="25">
+        <div class="pkg-card rounded-2xl p-6 flex flex-col" data-value="زجاجة واحدة (٥٠ مل)" data-price="25">
           <h3 class="font-display font-bold text-lg mb-1">زجاجة واحدة</h3>
           <p class="text-xs text-[color:var(--ivory-dim)] mb-5">٥٠ مل — مثالية للاستخدام اليومي</p>
           <div class="font-display font-black text-3xl gold-text mb-6">٢٥ <span class="text-sm font-bold">د.أ</span></div>
-          <button type="button" class="choose-pkg btn-ghost hover:scale-105 transition-all duration-300 mt-auto font-display font-bold text-sm py-3 rounded-full">اختر هذه الباقة</button>
+          <button type="button" class="choose-pkg btn-ghost mt-auto font-display font-bold text-sm py-3 rounded-full">اختر هذه الباقة</button>
         </div>
 
-        <div class="pkg-card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 flex flex-col relative" style="border-color:var(--gold-light)" data-value="عرض مزدوج (زجاجتين)" data-price="45">
+        <div class="pkg-card rounded-2xl p-6 flex flex-col relative" style="border-color:var(--gold-light)" data-value="عرض مزدوج (زجاجتين)" data-price="45">
           <span class="badge-pulse badge absolute -top-3 right-6 text-xs font-bold px-3 py-1 rounded-full shadow-2xl">الأكثر طلبًا</span>
           <h3 class="font-display font-bold text-lg mb-1">عرض مزدوج</h3>
           <p class="text-xs text-[color:var(--ivory-dim)] mb-5">زجاجتان — للاستخدام أو الإهداء</p>
           <div class="font-display font-black text-3xl gold-text mb-6">٤٥ <span class="text-sm font-bold">د.أ</span></div>
-          <button type="button" class="choose-pkg btn-gold btn-glow hover:scale-105 transition-all duration-300 mt-auto font-display font-bold text-sm py-3 rounded-full">اختر هذه الباقة</button>
+          <button type="button" class="choose-pkg btn-gold btn-glow mt-auto font-display font-bold text-sm py-3 rounded-full">اختر هذه الباقة</button>
         </div>
 
-        <div class="pkg-card hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6 flex flex-col" data-value="مجموعة العائلة (٣ زجاجات)" data-price="60">
+        <div class="pkg-card rounded-2xl p-6 flex flex-col" data-value="مجموعة العائلة (٣ زجاجات)" data-price="60">
           <h3 class="font-display font-bold text-lg mb-1">مجموعة العائلة</h3>
           <p class="text-xs text-[color:var(--ivory-dim)] mb-5">٣ زجاجات — أفضل قيمة مقابل السعر</p>
           <div class="font-display font-black text-3xl gold-text mb-6">٦٠ <span class="text-sm font-bold">د.أ</span></div>
-          <button type="button" class="choose-pkg btn-ghost hover:scale-105 transition-all duration-300 mt-auto font-display font-bold text-sm py-3 rounded-full">اختر هذه الباقة</button>
+          <button type="button" class="choose-pkg btn-ghost mt-auto font-display font-bold text-sm py-3 rounded-full">اختر هذه الباقة</button>
         </div>
 
       </div>
@@ -476,70 +702,14 @@
 
   <div class="gold-line"></div>
 
-  <!-- Reviews -->
+  <!-- Reviews (dynamic) -->
   <section id="reviews" class="py-14 sm:py-20 px-5 sm:px-8">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-10">
         <h2 class="font-display font-black text-2xl sm:text-3xl mb-3">ماذا يقول عملاؤنا</h2>
         <p class="text-sm sm:text-base text-[color:var(--ivory-dim)]">تجارب حقيقية من عملاء المتجر الذهبي</p>
       </div>
-      <div class="grid sm:grid-cols-3 gap-6">
-
-        <div class="card-elevated hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm" style="background:rgba(198,149,43,0.16); color:var(--gold-light)">س.م</div>
-            <div>
-              <div class="font-display font-bold text-sm">سارة م.</div>
-              <div class="text-xs text-[color:var(--ivory-dim)]">عمّان</div>
-            </div>
-          </div>
-          <div class="stars mb-3 flex gap-0.5">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-          </div>
-          <p class="text-sm text-[color:var(--ivory-dim)] leading-relaxed">ريحة فخمة وثابتة طول اليوم، والتغليف كان أنيق جداً. وصل الطلب خلال يوم واحد بس.</p>
-        </div>
-
-        <div class="card-elevated hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm" style="background:rgba(198,149,43,0.16); color:var(--gold-light)">أ.ر</div>
-            <div>
-              <div class="font-display font-bold text-sm">أحمد ر.</div>
-              <div class="text-xs text-[color:var(--ivory-dim)]">إربد</div>
-            </div>
-          </div>
-          <div class="stars mb-3 flex gap-0.5">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-          </div>
-          <p class="text-sm text-[color:var(--ivory-dim)] leading-relaxed">أخذت مجموعة العائلة كهدية لأهلي، الكل أعجب فيها. التواصل عبر واتساب كان سريع ومريح.</p>
-        </div>
-
-        <div class="card-elevated hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-2xl p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm" style="background:rgba(198,149,43,0.16); color:var(--gold-light)">ل.ح</div>
-            <div>
-              <div class="font-display font-bold text-sm">لينا ح.</div>
-              <div class="text-xs text-[color:var(--ivory-dim)]">الزرقاء</div>
-            </div>
-          </div>
-          <div class="stars mb-3 flex gap-0.5">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>
-          </div>
-          <p class="text-sm text-[color:var(--ivory-dim)] leading-relaxed">استخدمت كود الخصم GOLD2026 ووفرت، والدفع عند الاستلام خلّاني أطمن قبل ما أطلب.</p>
-        </div>
-
-      </div>
+      <div id="reviewsGrid" class="grid sm:grid-cols-3 gap-6"></div>
     </div>
   </section>
 
@@ -557,55 +727,47 @@
 
         <div>
           <label for="fullName" class="block text-sm font-bold mb-2">الاسم الكامل</label>
-          <input id="fullName" name="fullName" type="text" required placeholder="اكتب اسمك الثلاثي" class="input-field w-full rounded-lg px-4 py-3 text-sm sm:text-base transition-all duration-300">
+          <input id="fullName" name="fullName" type="text" required placeholder="اكتب اسمك الثلاثي" autocomplete="name" class="input-field w-full rounded-lg px-4 py-3 text-sm sm:text-base">
         </div>
 
         <div>
           <label for="phone" class="block text-sm font-bold mb-2">رقم الهاتف</label>
-          <input id="phone" name="phone" type="tel" required placeholder="07XXXXXXXX" class="input-field w-full rounded-lg px-4 py-3 text-sm sm:text-base transition-all duration-300" dir="ltr">
+          <input id="phone" name="phone" type="tel" required placeholder="07XXXXXXXX" inputmode="tel" autocomplete="tel" pattern="07[0-9]{8}" title="رقم أردني يبدأ بـ 07 ويتكون من 10 أرقام" class="input-field w-full rounded-lg px-4 py-3 text-sm sm:text-base" dir="ltr">
         </div>
 
         <div>
           <label for="city" class="block text-sm font-bold mb-2">المدينة</label>
           <div class="select-wrap">
-            <select id="city" name="city" required class="input-field w-full rounded-lg px-4 py-3 text-sm sm:text-base transition-all duration-300">
+            <select id="city" name="city" required class="input-field w-full rounded-lg px-4 py-3 text-sm sm:text-base">
               <option value="" disabled selected>اختر مدينتك</option>
-              <option>عمّان</option>
-              <option>إربد</option>
-              <option>الزرقاء</option>
-              <option>السلط</option>
-              <option>الكرك</option>
-              <option>مادبا</option>
-              <option>العقبة</option>
-              <option>المفرق</option>
-              <option>عجلون</option>
-              <option>جرش</option>
-              <option>الطفيلة</option>
-              <option>معان</option>
+              <option>عمّان</option><option>إربد</option><option>الزرقاء</option>
+              <option>السلط</option><option>الكرك</option><option>مادبا</option>
+              <option>العقبة</option><option>المفرق</option><option>عجلون</option>
+              <option>جرش</option><option>الطفيلة</option><option>معان</option>
             </select>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
 
         <div>
           <label for="product" class="block text-sm font-bold mb-2">اختر المنتج</label>
           <div class="select-wrap">
-            <select id="product" name="product" required class="input-field w-full rounded-lg px-4 py-3 text-sm sm:text-base transition-all duration-300">
+            <select id="product" name="product" required class="input-field w-full rounded-lg px-4 py-3 text-sm sm:text-base">
               <option value="زجاجة واحدة (٥٠ مل)" data-price="25">زجاجة واحدة (٥٠ مل) — ٢٥ د.أ</option>
               <option value="عرض مزدوج (زجاجتين)" data-price="45" selected>عرض مزدوج (زجاجتين) — ٤٥ د.أ</option>
               <option value="مجموعة العائلة (٣ زجاجات)" data-price="60">مجموعة العائلة (٣ زجاجات) — ٦٠ د.أ</option>
             </select>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9L12 15L18 9" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
 
         <div>
           <label for="coupon" class="block text-sm font-bold mb-2">كود الخصم (اختياري)</label>
           <div class="flex gap-2">
-            <input id="coupon" name="coupon" type="text" placeholder="أدخل الكود هنا" class="input-field flex-1 rounded-lg px-4 py-3 text-sm sm:text-base transition-all duration-300" dir="ltr">
-            <button type="button" id="applyCoupon" class="hover:scale-105 transition-all duration-300 px-5 rounded-lg font-display font-bold text-sm" style="background:var(--slate-700); color:var(--ivory)">تطبيق</button>
+            <input id="coupon" name="coupon" type="text" placeholder="أدخل الكود هنا" autocomplete="off" class="input-field flex-1 rounded-lg px-4 py-3 text-sm sm:text-base" dir="ltr">
+            <button type="button" id="applyCoupon" class="px-5 rounded-lg font-display font-bold text-sm" style="background:var(--slate-700); color:var(--ivory)">تطبيق</button>
           </div>
-          <p id="couponMsg" class="text-xs mt-2 hidden"></p>
+          <p id="couponMsg" class="text-xs mt-2 hidden" role="status"></p>
         </div>
 
         <div class="gold-line my-2"></div>
@@ -625,8 +787,8 @@
           </div>
         </div>
 
-        <button type="submit" class="btn-gold btn-glow hover:scale-105 transition-all duration-300 w-full font-display font-bold text-base sm:text-lg py-4 rounded-full flex items-center justify-center gap-2">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.05 2C6.58 2 2.13 6.42 2.13 11.86C2.13 13.6 2.59 15.28 3.47 16.76L2.05 22L7.44 20.61C8.87 21.4 10.44 21.82 12.05 21.82C17.52 21.82 21.97 17.4 21.97 11.96C21.97 9.32 20.93 6.84 19.03 4.96C17.13 3.08 14.63 2 12.05 2ZM12.05 20.1C10.6 20.1 9.18 19.71 7.95 18.98L7.66 18.81L4.5 19.63L5.34 16.57L5.15 16.27C4.34 15 3.9 13.45 3.9 11.86C3.9 7.39 7.55 3.76 12.06 3.76C14.24 3.76 16.29 4.61 17.83 6.14C19.37 7.67 20.2 9.71 20.2 11.96C20.19 16.44 16.54 20.1 12.05 20.1Z"/></svg>
+        <button type="submit" class="btn-gold btn-glow w-full font-display font-bold text-base sm:text-lg py-4 rounded-full flex items-center justify-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.05 2C6.58 2 2.13 6.42 2.13 11.86C2.13 13.6 2.59 15.28 3.47 16.76L2.05 22L7.44 20.61C8.87 21.4 10.44 21.82 12.05 21.82C17.52 21.82 21.97 17.4 21.97 11.96C21.97 9.32 20.93 6.84 19.03 4.96C17.13 3.08 14.63 2 12.05 2Z"/></svg>
           إرسال الطلب عبر واتساب
         </button>
         <p class="text-xs text-center text-[color:var(--ivory-dim)]">بالضغط على الزر سيتم فتح واتساب مع بيانات طلبك جاهزة للإرسال</p>
@@ -640,69 +802,7 @@
   <section id="faq" class="py-14 sm:py-20 px-5 sm:px-8">
     <div class="max-w-2xl mx-auto">
       <h2 class="font-display font-black text-2xl sm:text-3xl text-center mb-9">أسئلة شائعة</h2>
-      <div class="card shadow-2xl rounded-2xl overflow-hidden">
-
-        <div class="faq-item open">
-          <button type="button" class="faq-trigger w-full text-right flex items-center justify-between gap-4 px-5 sm:px-6 py-4">
-            <span class="font-display font-bold text-sm sm:text-base">كم مدة التوصيل؟</span>
-            <span class="faq-icon text-2xl gold-text leading-none">+</span>
-          </button>
-          <div class="accordion-content px-5 sm:px-6">
-            <div>
-              <p class="text-sm text-[color:var(--ivory-dim)] pb-4 leading-relaxed">يصل طلبك خلال ٢٤ إلى ٤٨ ساعة داخل عمّان، ومن ٢ إلى ٣ أيام لباقي محافظات المملكة.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button type="button" class="faq-trigger w-full text-right flex items-center justify-between gap-4 px-5 sm:px-6 py-4">
-            <span class="font-display font-bold text-sm sm:text-base">هل الدفع عند الاستلام متاح؟</span>
-            <span class="faq-icon text-2xl gold-text leading-none">+</span>
-          </button>
-          <div class="accordion-content px-5 sm:px-6">
-            <div>
-              <p class="text-sm text-[color:var(--ivory-dim)] pb-4 leading-relaxed">نعم، تدفع نقداً للمندوب عند استلام طلبك والتأكد منه، بدون أي دفع مسبق.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button type="button" class="faq-trigger w-full text-right flex items-center justify-between gap-4 px-5 sm:px-6 py-4">
-            <span class="font-display font-bold text-sm sm:text-base">كيف أستخدم كود الخصم؟</span>
-            <span class="faq-icon text-2xl gold-text leading-none">+</span>
-          </button>
-          <div class="accordion-content px-5 sm:px-6">
-            <div>
-              <p class="text-sm text-[color:var(--ivory-dim)] pb-4 leading-relaxed">أدخل الكود GOLD2026 في خانة كود الخصم بنموذج الطلب واضغط تطبيق، وسيتم خصم ٣ دنانير من الإجمالي فوراً.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button type="button" class="faq-trigger w-full text-right flex items-center justify-between gap-4 px-5 sm:px-6 py-4">
-            <span class="font-display font-bold text-sm sm:text-base">هل يمكن استبدال الطلب؟</span>
-            <span class="faq-icon text-2xl gold-text leading-none">+</span>
-          </button>
-          <div class="accordion-content px-5 sm:px-6">
-            <div>
-              <p class="text-sm text-[color:var(--ivory-dim)] pb-4 leading-relaxed">نعم، يمكن استبدال المنتج خلال ٧ أيام من الاستلام إذا كانت العبوة غير مستخدمة ومحفوظة بحالتها الأصلية.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button type="button" class="faq-trigger w-full text-right flex items-center justify-between gap-4 px-5 sm:px-6 py-4">
-            <span class="font-display font-bold text-sm sm:text-base">كيف أتابع حالة طلبي؟</span>
-            <span class="faq-icon text-2xl gold-text leading-none">+</span>
-          </button>
-          <div class="accordion-content px-5 sm:px-6">
-            <div>
-              <p class="text-sm text-[color:var(--ivory-dim)] pb-4 leading-relaxed">بعد إرسال طلبك عبر واتساب سيتواصل معك فريقنا لتأكيد التفاصيل وتزويدك بموعد التوصيل المتوقع.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <div class="card shadow-2xl rounded-2xl overflow-hidden" id="faqList"></div>
     </div>
   </section>
 
@@ -710,222 +810,404 @@
   <footer class="brand-gradient border-t px-5 sm:px-8 py-10" style="border-color:var(--line)">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
-        <svg width="24" height="24" viewBox="0 0 30 30" fill="none"><path d="M15 2L27 9V21L15 28L3 21V9L15 2Z" stroke="var(--gold)" stroke-width="1.4"/></svg>
-        <span class="font-display font-bold gold-text">المتجر الذهبي</span>
+        <svg width="24" height="24" viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M15 2L27 9V21L15 28L3 21V9L15 2Z" stroke="var(--gold)" stroke-width="1.4"/></svg>
+        <span class="font-display font-bold gold-text" id="footerName">المتجر الذهبي</span>
       </div>
-      <p class="text-xs text-[color:var(--ivory-dim)]">© 2026 المتجر الذهبي. جميع الحقوق محفوظة.</p>
+      <p class="text-xs text-[color:var(--ivory-dim)]" id="footerText">© 2026 المتجر الذهبي. جميع الحقوق محفوظة.</p>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp button (desktop) -->
-  <a href="https://wa.me/962780576584" target="_blank" rel="noopener" aria-label="تواصل معنا عبر واتساب" class="whatsapp-fab hidden sm:flex w-14 h-14 rounded-full items-center justify-center hover:scale-110 transition-all duration-300">
+  <!-- WhatsApp FAB -->
+  <a id="waFab" href="https://wa.me/962780576584" target="_blank" rel="noopener" aria-label="تواصل معنا عبر واتساب" class="whatsapp-fab flex w-14 h-14 rounded-full items-center justify-center">
     <span class="ping"></span>
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" style="position:relative"><path d="M12.05 2C6.58 2 2.13 6.42 2.13 11.86C2.13 13.6 2.59 15.28 3.47 16.76L2.05 22L7.44 20.61C8.87 21.4 10.44 21.82 12.05 21.82C17.52 21.82 21.97 17.4 21.97 11.96C21.97 9.32 20.93 6.84 19.03 4.96C17.13 3.08 14.63 2 12.05 2Z"/></svg>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" style="position:relative" aria-hidden="true"><path d="M12.05 2C6.58 2 2.13 6.42 2.13 11.86C2.13 13.6 2.59 15.28 3.47 16.76L2.05 22L7.44 20.61C8.87 21.4 10.44 21.82 12.05 21.82C17.52 21.82 21.97 17.4 21.97 11.96C21.97 9.32 20.93 6.84 19.03 4.96C17.13 3.08 14.63 2 12.05 2Z"/></svg>
   </a>
 
-  <!-- Sticky mobile bottom bar -->
+  <!-- Mobile bar -->
   <div id="mobileBar" class="sm:hidden">
     <div class="px-4 py-3 flex items-center justify-between gap-3">
       <div>
         <div class="text-[10px] text-[color:var(--ivory-dim)]">يبدأ من</div>
         <div class="font-display font-black gold-text text-lg">٢٥ د.أ</div>
       </div>
-      <a href="#order" class="btn-gold btn-glow hover:scale-105 transition-all duration-300 font-display font-bold text-sm px-8 py-3 rounded-full flex-1 text-center">اطلب الآن</a>
+      <a href="#order" class="btn-gold btn-glow font-display font-bold text-sm px-8 py-3 rounded-full flex-1 text-center">اطلب الآن</a>
     </div>
   </div>
 
-  <script>
-    // ---------- Header scroll shadow ----------
-    (function(){
-      const header = document.getElementById('siteHeader');
-      window.addEventListener('scroll', function(){
-        if (window.scrollY > 12){
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+  <!-- Toast -->
+  <div id="toast" role="status" aria-live="polite">
+    <div class="glass rounded-2xl px-5 py-3 shadow-2xl flex items-center gap-2" style="background:var(--slate-900); border:1px solid var(--line)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17L4 12" stroke="var(--gold-light)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span id="toastText" class="text-sm font-bold">تم</span>
+    </div>
+  </div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// ═══ STORE_CONFIG ═══
+// ═══════════════════════════════════════════════════════════════
+const STORE_CONFIG = {
+  name: 'المتجر الذهبي',
+  whatsapp: '962780576584',
+  currency: 'د.أ',
+  validCoupon: 'GOLD2026',
+  couponDiscount: 3,
+
+  reviews: [
+    { name: 'سارة م.', city: 'عمّان', initial: 'س.م', rating: 5, text: 'ريحة فخمة وثابتة طول اليوم، والتغليف كان أنيق جداً. وصل الطلب خلال يوم واحد بس.' },
+    { name: 'أحمد ر.', city: 'إربد', initial: 'أ.ر', rating: 5, text: 'أخذت مجموعة العائلة كهدية لأهلي، الكل أعجب فيها. التواصل عبر واتساب كان سريع ومريح.' },
+    { name: 'لينا ح.', city: 'الزرقاء', initial: 'ل.ح', rating: 5, text: 'استخدمت كود الخصم GOLD2026 ووفرت، والدفع عند الاستلام خلّاني أطمن قبل ما أطلب.' }
+  ],
+
+  faq: [
+    { q: 'كم مدة التوصيل؟', a: 'يصل طلبك خلال ٢٤ إلى ٤٨ ساعة داخل عمّان، ومن ٢ إلى ٣ أيام لباقي محافظات المملكة.' },
+    { q: 'هل الدفع عند الاستلام متاح؟', a: 'نعم، تدفع نقداً للمندوب عند استلام طلبك والتأكد منه، بدون أي دفع مسبق.' },
+    { q: 'كيف أستخدم كود الخصم؟', a: 'أدخل الكود GOLD2026 في خانة كود الخصم بنموذج الطلب واضغط تطبيق، وسيتم خصم ٣ دنانير من الإجمالي فوراً.' },
+    { q: 'هل يمكن استبدال الطلب؟', a: 'نعم، يمكن استبدال المنتج خلال ٧ أيام من الاستلام إذا كانت العبوة غير مستخدمة ومحفوظة بحالتها الأصلية.' },
+    { q: 'كيف أتابع حالة طلبي؟', a: 'بعد إرسال طلبك عبر واتساب سيتواصل معك فريقنا لتأكيد التفاصيل وتزويدك بموعد التوصيل المتوقع.' }
+  ]
+};
+
+// ═══════════════════════════════════════════════════════════════
+// ═══ Utilities ═══
+// ═══════════════════════════════════════════════════════════════
+const $ = (sel) => document.querySelector(sel);
+
+function escapeHtml(s){
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showToast(msg){
+  const t = $('#toast');
+  $('#toastText').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function fmtNum(n){
+  return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + STORE_CONFIG.currency;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ═══ Apply Config ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const name = STORE_CONFIG.name;
+  document.title = name + ' | مجموعة العطور الفاخرة';
+  $('#storeName').textContent = name;
+  $('#footerName').textContent = name;
+  $('#footerText').textContent = '© ' + new Date().getFullYear() + ' ' + name + '. جميع الحقوق محفوظة.';
+  const waUrl = 'https://wa.me/' + STORE_CONFIG.whatsapp;
+  $('#waFab').href = waUrl;
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// ═══ Theme Toggle ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const html = document.documentElement;
+  const icon = $('#themeIcon');
+  const btn = $('#themeToggle');
+
+  const SUN = '<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/><path d="M12 2V4M12 20V22M4 12H2M22 12H20M19.07 4.93L17.66 6.34M6.34 17.66L4.93 19.07M19.07 19.07L17.66 17.66M6.34 6.34L4.93 4.93" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>';
+  const MOON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>';
+
+  function apply(mode){
+    if (mode === 'light') {
+      html.classList.add('light');
+      icon.innerHTML = MOON;
+    } else {
+      html.classList.remove('light');
+      icon.innerHTML = SUN;
+    }
+  }
+
+  const saved = localStorage.getItem('theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  apply(saved || (prefersLight ? 'light' : 'dark'));
+
+  btn.addEventListener('click', () => {
+    const isLight = html.classList.contains('light');
+    const next = isLight ? 'dark' : 'light';
+    apply(next);
+    localStorage.setItem('theme', next);
+    showToast(next === 'light' ? 'الوضع الفاتح' : 'الوضع الداكن');
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// ═══ Header Scroll ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const header = $('#siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  }, { passive: true });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// ═══ FAQ Render ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const list = $('#faqList');
+  list.innerHTML = STORE_CONFIG.faq.map((item, i) => `
+    <div class="faq-item ${i === 0 ? 'open' : ''}">
+      <button type="button" class="faq-trigger w-full text-right flex items-center justify-between gap-4 px-5 sm:px-6 py-4" aria-expanded="${i === 0}">
+        <span class="font-display font-bold text-sm sm:text-base">${escapeHtml(item.q)}</span>
+        <span class="faq-icon text-2xl gold-text leading-none" aria-hidden="true">+</span>
+      </button>
+      <div class="accordion-content px-5 sm:px-6">
+        <div>
+          <p class="text-sm text-[color:var(--ivory-dim)] pb-4 leading-relaxed">${escapeHtml(item.a)}</p>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.faq-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.parentElement;
+      const wasOpen = item.classList.contains('open');
+      list.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
       });
-    })();
-
-    // ---------- FAQ accordion ----------
-    (function(){
-      const items = document.querySelectorAll('.faq-item');
-      items.forEach(function(item){
-        const trigger = item.querySelector('.faq-trigger');
-        trigger.addEventListener('click', function(){
-          const isOpen = item.classList.contains('open');
-          items.forEach(function(i){ i.classList.remove('open'); });
-          if (!isOpen){ item.classList.add('open'); }
-        });
-      });
-    })();
-
-    // ---------- Countdown ----------
-    (function(){
-      const target = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
-      const daysEl = document.getElementById('cd-days');
-      const hoursEl = document.getElementById('cd-hours');
-      const minutesEl = document.getElementById('cd-minutes');
-      const secondsEl = document.getElementById('cd-seconds');
-
-      function pad(n){ return String(n).padStart(2, '0'); }
-
-      function tick(){
-        const now = new Date().getTime();
-        let diff = target - now;
-        if (diff < 0) diff = 0;
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        daysEl.textContent = pad(days);
-        hoursEl.textContent = pad(hours);
-        minutesEl.textContent = pad(minutes);
-        secondsEl.textContent = pad(seconds);
+      if (!wasOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
       }
-      tick();
-      setInterval(tick, 1000);
-    })();
+    });
+  });
+})();
 
-    // ---------- Price calculation ----------
-    (function(){
-      const productSelect = document.getElementById('product');
-      const couponInput = document.getElementById('coupon');
-      const applyCouponBtn = document.getElementById('applyCoupon');
-      const couponMsg = document.getElementById('couponMsg');
-      const basePriceEl = document.getElementById('basePrice');
-      const discountEl = document.getElementById('discountAmount');
-      const totalEl = document.getElementById('totalPrice');
-      const priceSummary = document.getElementById('priceSummary');
-      const pkgCards = document.querySelectorAll('.pkg-card');
+// ═══════════════════════════════════════════════════════════════
+// ═══ Reviews Render ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const grid = $('#reviewsGrid');
+  const star = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L14.6 9H22L15.9 13.3L18.2 20L12 15.9L5.8 20L8.1 13.3L2 9H9.4L12 2Z"/></svg>';
 
-      const VALID_COUPON = 'GOLD2026';
-      const COUPON_DISCOUNT = 3;
-      let couponApplied = false;
+  grid.innerHTML = STORE_CONFIG.reviews.map(r => `
+    <div class="card-elevated rounded-2xl p-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-sm" style="background:rgba(198,149,43,0.16); color:var(--gold-light)">${escapeHtml(r.initial)}</div>
+        <div>
+          <div class="font-display font-bold text-sm">${escapeHtml(r.name)}</div>
+          <div class="text-xs text-[color:var(--ivory-dim)]">${escapeHtml(r.city)}</div>
+        </div>
+      </div>
+      <div class="stars mb-3 flex gap-0.5" aria-label="تقييم ${r.rating} من 5">${star.repeat(r.rating)}</div>
+      <p class="text-sm text-[color:var(--ivory-dim)] leading-relaxed">${escapeHtml(r.text)}</p>
+    </div>
+  `).join('');
+})();
 
-      function fmt(n){
-        return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' د.أ';
+// ═══════════════════════════════════════════════════════════════
+// ═══ Product Gallery ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const main = $('#mainProductImage');
+  const thumbs = document.querySelectorAll('.product-thumb');
+  thumbs.forEach(t => {
+    t.addEventListener('click', () => {
+      main.style.opacity = '0';
+      setTimeout(() => {
+        main.src = t.dataset.src;
+        main.style.opacity = '1';
+      }, 150);
+      thumbs.forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+    });
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// ═══ Share Product ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const btn = $('#shareBtn');
+  btn.addEventListener('click', async () => {
+    const shareData = {
+      title: STORE_CONFIG.name,
+      text: 'شاهد هذا العطر الفاخر من ' + STORE_CONFIG.name,
+      url: window.location.href
+    };
+    if (navigator.share) {
+      try { await navigator.share(shareData); }
+      catch(e) {}
+    } else if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        showToast('تم نسخ الرابط ✅');
+      } catch(e) {
+        showToast('انسخ الرابط يدوياً');
       }
+    }
+  });
+})();
 
-      function getBasePrice(){
-        const opt = productSelect.options[productSelect.selectedIndex];
-        return parseFloat(opt.getAttribute('data-price')) || 0;
+// ═══════════════════════════════════════════════════════════════
+// ═══ Countdown (with localStorage) ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const KEY = 'offer_end_ts';
+  let target = parseInt(localStorage.getItem(KEY) || '0', 10);
+  if (!target || target < Date.now()) {
+    target = Date.now() + 2 * 24 * 60 * 60 * 1000;
+    localStorage.setItem(KEY, target);
+  }
+
+  const daysEl = $('#cd-days'), hoursEl = $('#cd-hours'), minutesEl = $('#cd-minutes'), secondsEl = $('#cd-seconds');
+  const pad = n => String(n).padStart(2, '0');
+
+  function tick(){
+    let diff = target - Date.now();
+    if (diff < 0) diff = 0;
+    daysEl.textContent = pad(Math.floor(diff / 86400000));
+    hoursEl.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    minutesEl.textContent = pad(Math.floor((diff % 3600000) / 60000));
+    secondsEl.textContent = pad(Math.floor((diff % 60000) / 1000));
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// ═══ Price + Coupon + Order ═══
+// ═══════════════════════════════════════════════════════════════
+(function(){
+  const productSelect = $('#product');
+  const couponInput = $('#coupon');
+  const applyCouponBtn = $('#applyCoupon');
+  const couponMsg = $('#couponMsg');
+  const basePriceEl = $('#basePrice');
+  const discountEl = $('#discountAmount');
+  const totalEl = $('#totalPrice');
+  const priceSummary = $('#priceSummary');
+  const pkgCards = document.querySelectorAll('.pkg-card');
+
+  let couponApplied = false;
+
+  function getBasePrice(){
+    const opt = productSelect.options[productSelect.selectedIndex];
+    return parseFloat(opt.getAttribute('data-price')) || 0;
+  }
+
+  function markSelectedCard(){
+    const v = productSelect.value;
+    pkgCards.forEach(c => c.classList.toggle('is-selected', c.getAttribute('data-value') === v));
+  }
+
+  function updateSummary(){
+    const base = getBasePrice();
+    const discount = couponApplied ? STORE_CONFIG.couponDiscount : 0;
+    const total = Math.max(base - discount, 0);
+    basePriceEl.textContent = fmtNum(base);
+    discountEl.textContent = fmtNum(discount);
+    totalEl.textContent = fmtNum(total);
+    markSelectedCard();
+  }
+
+  productSelect.addEventListener('change', updateSummary);
+
+  pkgCards.forEach(card => {
+    card.querySelector('.choose-pkg').addEventListener('click', () => {
+      const v = card.getAttribute('data-value');
+      for (let i = 0; i < productSelect.options.length; i++){
+        if (productSelect.options[i].value === v){ productSelect.selectedIndex = i; break; }
       }
-
-      function markSelectedCard(){
-        const currentValue = productSelect.value;
-        pkgCards.forEach(function(card){
-          card.classList.toggle('is-selected', card.getAttribute('data-value') === currentValue);
-        });
-      }
-
-      function updateSummary(){
-        const base = getBasePrice();
-        const discount = couponApplied ? COUPON_DISCOUNT : 0;
-        const total = Math.max(base - discount, 0);
-
-        basePriceEl.textContent = fmt(base);
-        discountEl.textContent = fmt(discount);
-        totalEl.textContent = fmt(total);
-        markSelectedCard();
-      }
-
-      productSelect.addEventListener('change', updateSummary);
-
-      pkgCards.forEach(function(card){
-        const btn = card.querySelector('.choose-pkg');
-        btn.addEventListener('click', function(){
-          const value = card.getAttribute('data-value');
-          for (let i = 0; i < productSelect.options.length; i++){
-            if (productSelect.options[i].value === value){
-              productSelect.selectedIndex = i;
-              break;
-            }
-          }
-          updateSummary();
-          document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
-        });
-      });
-
-      applyCouponBtn.addEventListener('click', function(){
-        const code = couponInput.value.trim().toUpperCase();
-        couponMsg.classList.remove('hidden');
-
-        if (code === VALID_COUPON){
-          couponApplied = true;
-          couponMsg.textContent = 'تم تطبيق الخصم بنجاح — خصم ٣ دنانير';
-          couponMsg.style.color = 'var(--gold-light)';
-          updateSummary();
-
-          // Green flash + pop micro-interaction on the price summary
-          priceSummary.classList.remove('flash-success');
-          totalEl.classList.remove('pop-success');
-          void priceSummary.offsetWidth; // restart animation
-          priceSummary.classList.add('flash-success');
-          totalEl.classList.add('pop-success');
-        } else {
-          couponApplied = false;
-          couponMsg.textContent = 'الكود غير صحيح، تأكد من كتابته وحاول مجدداً';
-          couponMsg.style.color = '#E38585';
-          updateSummary();
-
-          couponInput.classList.remove('shake-error');
-          void couponInput.offsetWidth;
-          couponInput.classList.add('shake-error');
-        }
-      });
-
-      couponInput.addEventListener('input', function(){
-        if (couponInput.value.trim() === ''){
-          couponApplied = false;
-          couponMsg.classList.add('hidden');
-          updateSummary();
-        }
-      });
-
       updateSummary();
+      $('#order').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
 
-      // ---------- Form submit -> WhatsApp ----------
-      const form = document.getElementById('orderForm');
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
+  applyCouponBtn.addEventListener('click', () => {
+    const code = couponInput.value.trim().toUpperCase();
+    couponMsg.classList.remove('hidden');
 
-        const fullName = document.getElementById('fullName').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const city = document.getElementById('city').value;
-        const productOpt = productSelect.options[productSelect.selectedIndex];
-        const productName = productOpt.value;
+    if (code === STORE_CONFIG.validCoupon){
+      couponApplied = true;
+      couponMsg.textContent = 'تم تطبيق الخصم بنجاح — خصم ' + STORE_CONFIG.couponDiscount + ' دنانير';
+      couponMsg.style.color = 'var(--gold-light)';
+      updateSummary();
+      priceSummary.classList.remove('flash-success');
+      totalEl.classList.remove('pop-success');
+      void priceSummary.offsetWidth;
+      priceSummary.classList.add('flash-success');
+      totalEl.classList.add('pop-success');
+      showToast('تم تطبيق الكود ✅');
+    } else {
+      couponApplied = false;
+      couponMsg.textContent = 'الكود غير صحيح، تأكد من كتابته وحاول مجدداً';
+      couponMsg.style.color = '#E38585';
+      updateSummary();
+      couponInput.classList.remove('shake-error');
+      void couponInput.offsetWidth;
+      couponInput.classList.add('shake-error');
+    }
+  });
 
-        if (!fullName || !phone || !city){
-          alert('يرجى تعبئة جميع الحقول المطلوبة قبل إرسال الطلب');
-          return;
-        }
+  couponInput.addEventListener('input', () => {
+    if (couponInput.value.trim() === ''){
+      couponApplied = false;
+      couponMsg.classList.add('hidden');
+      updateSummary();
+    }
+  });
 
-        const base = getBasePrice();
-        const discount = couponApplied ? COUPON_DISCOUNT : 0;
-        const total = Math.max(base - discount, 0);
+  updateSummary();
 
-        const message =
-          'طلب جديد من المتجر الذهبي' + '\n' +
-          '------------------------' + '\n' +
-          'الاسم: ' + fullName + '\n' +
-          'الهاتف: ' + phone + '\n' +
-          'المدينة: ' + city + '\n' +
-          'المنتج: ' + productName + '\n' +
-          'السعر الأساسي: ' + fmt(base) + '\n' +
-          'الخصم: ' + fmt(discount) + (couponApplied ? ' (GOLD2026)' : '') + '\n' +
-          'الإجمالي: ' + fmt(total);
+  // ═══ Submit ═══
+  $('#orderForm').addEventListener('submit', e => {
+    e.preventDefault();
 
-        const phoneNumber = '962780576584';
-        const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = 'https://wa.me/' + phoneNumber + '?text=' + encodedMessage;
+    const fullName = $('#fullName').value.trim();
+    const phone = $('#phone').value.trim();
+    const city = $('#city').value;
 
-        window.open(whatsappUrl, '_blank');
-      });
-    })();
-  </script>
+    if (!fullName || !phone || !city){
+      showToast('يرجى تعبئة جميع الحقول المطلوبة');
+      return;
+    }
+    if (!/^07[0-9]{8}$/.test(phone)){
+      showToast('رقم الهاتف غير صحيح (يبدأ بـ 07 ومكون من 10 أرقام)');
+      return;
+    }
 
+    const base = getBasePrice();
+    const discount = couponApplied ? STORE_CONFIG.couponDiscount : 0;
+    const total = Math.max(base - discount, 0);
+    const orderId = 'ORD-' + Date.now().toString().slice(-8);
+
+    const message =
+      'طلب جديد من ' + STORE_CONFIG.name + '\n' +
+      '------------------------' + '\n' +
+      'رقم الطلب: ' + orderId + '\n' +
+      'الاسم: ' + fullName + '\n' +
+      'الهاتف: ' + phone + '\n' +
+      'المدينة: ' + city + '\n' +
+      'المنتج: ' + productSelect.value + '\n' +
+      'السعر الأساسي: ' + fmtNum(base) + '\n' +
+      'الخصم: ' + fmtNum(discount) + (couponApplied ? ' (' + STORE_CONFIG.validCoupon + ')' : '') + '\n' +
+      'الإجمالي: ' + fmtNum(total);
+
+    const url = 'https://wa.me/' + STORE_CONFIG.whatsapp + '?text=' + encodeURIComponent(message);
+    window.open(url, '_blank');
+    showToast('جاري فتح واتساب...');
+  });
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// ═══ Service Worker (PWA) ═══
+// ═══════════════════════════════════════════════════════════════
+if ('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('✅ Service Worker مسجل'))
+      .catch(err => console.warn('SW error:', err));
+  });
+}
+</script>
 </body>
 </html>
